@@ -104,6 +104,9 @@ public class DragComponent : MonoBehaviour
             if (dragged.Drop())
             {
                 dragged = null;
+
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                GetComponent<RotationComponent>().enabled = true;
             }
         }
         //or try pick
@@ -117,6 +120,9 @@ public class DragComponent : MonoBehaviour
                 onLostDraggable?.Invoke(possibleToPickDraggable);
                 previousPossibleToPickDraggable = null;
                 possibleToPickDraggable = null;
+
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                GetComponent<RotationComponent>().enabled = false;
             }
         }
     }
