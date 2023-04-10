@@ -100,6 +100,17 @@ public class DragComponent : MonoBehaviour
         return true;
     }
 
+    void SnapDraggableToCharacter()
+    {
+        RaycastHit characterCollisionPoint;
+
+        if (Physics.Linecast(possibleToPickHit.point, transform.position, out characterCollisionPoint))
+        {
+            Vector3 direction = characterCollisionPoint.point - possibleToPickHit.point;
+            dragged.transform.position += direction - (direction.normalized * distanceObjectWhenPicked);
+        }
+    }
+
     #endregion
 
     #region public API
@@ -140,6 +151,7 @@ public class DragComponent : MonoBehaviour
             if (possibleToPickDraggable.Pick(this))
             {
                 dragged = possibleToPickDraggable;
+                SnapDraggableToCharacter();
 
                 onLostDraggable?.Invoke(previousPossibleToPickDraggable);
                 onLostDraggable?.Invoke(possibleToPickDraggable);

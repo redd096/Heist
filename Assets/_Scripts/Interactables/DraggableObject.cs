@@ -23,7 +23,6 @@ public class DraggableObject : MonoBehaviour
             previousParent = transform.parent;
             transform.parent = character.transform;
             foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialOnPick;
-            MoveToCharacter(character);
             DestroyRigidbody();                     //destroy rigidbody to move with character
             return true;
         }
@@ -43,18 +42,6 @@ public class DraggableObject : MonoBehaviour
         }
 
         return false;
-    }
-
-    void MoveToCharacter(DragComponent character)
-    {
-        RaycastHit characterCollisionPoint;
-        RaycastHit draggableCollisionPoint = character.PossibleToPickRaycastHit;
-
-        if (Physics.Linecast(draggableCollisionPoint.point, character.transform.position, out characterCollisionPoint))
-        {
-            Vector3 direction = characterCollisionPoint.point - draggableCollisionPoint.point;
-            transform.position += direction - (direction.normalized * character.DistanceObjectWhenPicked);
-        }
     }
 
     #region rigidbody
