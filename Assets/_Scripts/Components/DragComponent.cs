@@ -29,12 +29,14 @@ public class DragComponent : MonoBehaviour
 
     public DraggableObject Dragged => dragged;
     public DraggableObject PossibleToPick => possibleToPickDraggable;
+    public RaycastHit PossibleToPickRaycastHit => possibleToPickHit;
     public DraggableObject previousPossibleToPick => previousPossibleToPickDraggable;
     public float DistanceObjectWhenPicked => distanceObjectWhenPicked;
 
     //interactables
     DraggableObject dragged;
     DraggableObject possibleToPickDraggable;
+    RaycastHit possibleToPickHit;
     DraggableObject previousPossibleToPickDraggable;
 
     void OnDrawGizmos()
@@ -109,8 +111,8 @@ public class DragComponent : MonoBehaviour
             return;
 
         //find draggable in distance
-        Physics.SphereCast(transform.position, radiusRaycast, aimComponent.AimDirectionInput, out RaycastHit hit, distancePickDraggable, ~layersToIgnore);
-        possibleToPickDraggable = hit.transform == null ? null : hit.transform.GetComponentInParent<DraggableObject>();
+        Physics.SphereCast(transform.position, radiusRaycast, aimComponent.AimDirectionInput, out possibleToPickHit, distancePickDraggable, ~layersToIgnore);
+        possibleToPickDraggable = possibleToPickHit.transform == null ? null : possibleToPickHit.transform.GetComponentInParent<DraggableObject>();
 
         if (previousPossibleToPickDraggable != possibleToPickDraggable)
         {

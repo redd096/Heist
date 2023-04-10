@@ -219,7 +219,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   radiusRaycast: 0.2
-  aimComponent: {fileID: 0}
+  aimComponent: {fileID: 4182660346221481028}
   showAreaInteractable:
     ShowDebug: 0
     ColorDebug: {r: 0, g: 1, b: 1, a: 1}
@@ -588,6 +588,7 @@ MonoBehaviour:
     - {fileID: 44812435935006394}
     - {fileID: 8702459743139565691}
     - {fileID: 2754417097012495366}
+    - {fileID: 5939242806148744326}
     Transitions:
     - DestinationState: NormalState
       TransitionCheck: 0
@@ -610,6 +611,7 @@ GameObject:
   - component: {fileID: 44812435935006394}
   - component: {fileID: 8702459743139565691}
   - component: {fileID: 2754417097012495366}
+  - component: {fileID: 5939242806148744326}
   - component: {fileID: 4966971993955766552}
   m_Layer: 0
   m_Name: DraggingState
@@ -681,6 +683,21 @@ MonoBehaviour:
   throwComponent: {fileID: 2843580852274682740}
   playerInput: {fileID: 3743467620155536814}
   inputName: Throw
+--- !u!114 &5939242806148744326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538582909963175296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63248291b71ed0946bb1c1f93b658166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskName: SetAimOnDrag
+  aimComponent: {fileID: 4182660346221481028}
+  dragComponent: {fileID: 8013662443815335634}
 --- !u!114 &4966971993955766552
 MonoBehaviour:
   m_ObjectHideFlags: 0

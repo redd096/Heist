@@ -4,6 +4,9 @@ using redd096.Attributes;
 
 public class AimComponent : MonoBehaviour
 {
+    [Header("When set at zero (e.g. release analog), keep last rotation")]
+    [SerializeField] bool ignoreDirectionZero = true;
+
     [Header("DEBUG")]
     [ReadOnly] public Vector3 AimDirectionInput = Vector3.right;            //when aim, set it with only direction (used to know where this object is aiming)
     [ReadOnly] public Vector3 AimPositionNotNormalized = Vector3.right;     //when aim, set it without normalize (used to set crosshair on screen - to know mouse position or analog inclination)
@@ -34,6 +37,9 @@ public class AimComponent : MonoBehaviour
     /// <param name="aimDirection"></param>
     public void AimInDirection(Vector3 aimDirection)
     {
+        if (ignoreDirectionZero && aimDirection == Vector3.zero)
+            return;
+
         //set direction aim
         AimPositionNotNormalized = transform.position + aimDirection;
         AimDirectionInput = aimDirection.normalized;
@@ -45,6 +51,9 @@ public class AimComponent : MonoBehaviour
     /// <param name="aimPosition"></param>
     public void AimAt(Vector3 aimPosition)
     {
+        if (ignoreDirectionZero && (aimPosition - transform.position).normalized == Vector3.zero)
+            return;
+
         //set direction aim
         AimPositionNotNormalized = aimPosition;
         AimDirectionInput = (aimPosition - transform.position).normalized;

@@ -7,7 +7,6 @@ public class DraggableObject : MonoBehaviour
 
     bool isPicked = false;
     Transform previousParent;
-    PhysicMaterial previousPhysicMaterial;
 
     //rigidbody vars
     float mass, drag, angularDrag;
@@ -49,15 +48,12 @@ public class DraggableObject : MonoBehaviour
     void MoveToCharacter(DragComponent character)
     {
         RaycastHit characterCollisionPoint;
-        RaycastHit draggableCollisionPoint;
+        RaycastHit draggableCollisionPoint = character.PossibleToPickRaycastHit;
 
-        if (Physics.Raycast(character.transform.position, character.GetComponent<AimComponent>().AimDirectionInput, out draggableCollisionPoint))
+        if (Physics.Linecast(draggableCollisionPoint.point, character.transform.position, out characterCollisionPoint))
         {
-            if (Physics.Linecast(draggableCollisionPoint.point, character.transform.position, out characterCollisionPoint))
-            {
-                Vector3 direction = characterCollisionPoint.point - draggableCollisionPoint.point;
-                transform.position += direction - (direction.normalized * character.DistanceObjectWhenPicked);
-            }
+            Vector3 direction = characterCollisionPoint.point - draggableCollisionPoint.point;
+            transform.position += direction - (direction.normalized * character.DistanceObjectWhenPicked);
         }
     }
 
