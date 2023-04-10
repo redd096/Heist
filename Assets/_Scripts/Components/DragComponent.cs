@@ -116,7 +116,7 @@ public class DragComponent : MonoBehaviour
                 possibleToPickDraggable = null;
 
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                GetComponent<RotationComponent>().enabled = false;
+                GetComponent<AimComponent>().enabled = false;
             }
         }
     }
@@ -130,7 +130,7 @@ public class DragComponent : MonoBehaviour
                 dragged = null;
 
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-                GetComponent<RotationComponent>().enabled = true;
+                GetComponent<AimComponent>().enabled = true;
                 return true;
             }
         }

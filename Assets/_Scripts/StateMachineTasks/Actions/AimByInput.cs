@@ -9,7 +9,7 @@ public class AimByInput : ActionTask
 {
 #if ENABLE_INPUT_SYSTEM
     [Header("Necessary Components - default get in parent")]
-    [SerializeField] RotationComponent aimComponent = default;
+    [SerializeField] AimComponent aimComponent = default;
     [SerializeField] PlayerInput playerInput = default;
 
     [Header("Aim")]
@@ -24,7 +24,7 @@ public class AimByInput : ActionTask
         base.OnInitTask();
 
         //set references
-        if (aimComponent == null) aimComponent = GetStateMachineComponent<RotationComponent>();
+        if (aimComponent == null) aimComponent = GetStateMachineComponent<AimComponent>();
         if (playerInput == null) playerInput = GetStateMachineComponent<PlayerInput>();
 
         lastAnalogSavedValue = new Vector2(transformTask.forward.x, transformTask.forward.z);
