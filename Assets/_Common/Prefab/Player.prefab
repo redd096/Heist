@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3058653413443892815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888589260974496929}
+  - component: {fileID: 5681589672139636062}
+  - component: {fileID: 4022939224192781672}
+  m_Layer: 0
+  m_Name: NormalState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &888589260974496929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058653413443892815}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7761890972069370390}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5681589672139636062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058653413443892815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b0b81ebfac19f43aec3ca1066fc64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskName: Movement
+  StateMachine: {fileID: 0}
+  IsTaskActive: 0
+  movementComponent: {fileID: 1716162120075746935}
+  playerInput: {fileID: 3743467620155536814}
+  inputName: Move
+--- !u!114 &4022939224192781672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058653413443892815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c30ba51d639dc4bb7e596c5a58824a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskName: Rotate
+  StateMachine: {fileID: 0}
+  IsTaskActive: 0
+  aimComponent: {fileID: 5099986611610022329}
+  playerInput: {fileID: 3743467620155536814}
+  inputName: Move
+  resetWhenReleaseAnalogInput: 0
 --- !u!1 &4891944727084366772
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +79,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4891944727084366731}
-  - component: {fileID: 6796316983370045045}
+  - component: {fileID: 4301130092445242975}
+  - component: {fileID: 1716162120075746935}
+  - component: {fileID: 5099986611610022329}
+  - component: {fileID: 1735899570174112655}
+  - component: {fileID: 3743467620155536814}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -30,10 +104,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4891944727366660058}
+  - {fileID: 7761890972069370390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6796316983370045045
+--- !u!114 &4301130092445242975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +117,113 @@ MonoBehaviour:
   m_GameObject: {fileID: 4891944727084366772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983fab0e52cba5743b4a6b462354b4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d9ca481b8f050f4ba05db5f2f4a6c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterType: 0
+  EnemyType: Base Enemy
+--- !u!114 &1716162120075746935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727084366772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab584bedcbb28a24eae53fb8df189bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateMode: 1
+  movementMode: 1
+  inputSpeed: 5
+  maxSpeed: 50
+  dragBasedOnVelocity: 1
+  useCustomDrag: 0
+  customDrag: 5
+  rb: {fileID: 1735899570174112655}
+  IsMovingRight: 1
+  MoveDirectionInput: {x: 0, y: 0}
+  LastDesiredVelocity: {x: 0, y: 0}
+  CurrentPushForce: {x: 0, y: 0}
+  CurrentVelocity: {x: 0, y: 0}
+  CurrentSpeed: 0
+--- !u!114 &5099986611610022329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727084366772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4496b1057013cd4ba8a5d1540b85698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  rb: {fileID: 1735899570174112655}
+  AimDirectionInput: {x: 1, y: 0, z: 0}
+  AimPositionNotNormalized: {x: 1, y: 0, z: 0}
+  showPositionNotNormalized:
+    ShowDebug: 0
+    ColorDebug: {r: 1, g: 0, b: 0, a: 1}
+  showDirectionInput:
+    ShowDebug: 0
+    ColorDebug: {r: 0, g: 1, b: 1, a: 1}
+--- !u!54 &1735899570174112655
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727084366772}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!114 &3743467620155536814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727084366772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 08a55472a78980c4ca158976e8ed1820, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 520f1dde-993e-46f7-b547-99af655f0996
+    m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49785787-ead4-4b0e-8149-50c42ca9ea6f
+    m_ActionName: Gameplay/Action[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &4891944727093687883
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,3 +438,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5227228420659045034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7761890972069370390}
+  - component: {fileID: 2678706268513403151}
+  m_Layer: 0
+  m_Name: StateMachine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7761890972069370390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227228420659045034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 888589260974496929}
+  m_Father: {fileID: 4891944727084366731}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2678706268513403151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227228420659045034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050edf7ae47c88345a3a8311c17cd85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  States:
+  - StateName: NormalState
+    Actions:
+    - {fileID: 5681589672139636062}
+    - {fileID: 4022939224192781672}
+    Transitions: []
+  CurrentState:
+    StateName: 
+    Actions: []
+    Transitions: []
+  blackboardDebug: []
