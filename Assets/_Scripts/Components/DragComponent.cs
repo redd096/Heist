@@ -15,12 +15,17 @@ public class DragComponent : MonoBehaviour
     [Tooltip("Ignore draggables with this layer")][SerializeField] LayerMask layersToIgnore = default;
     [SerializeField] float radiusRaycast = 0.2f;
 
+    [Header("Necessary Components (by default get from this gameObject)")]
+    [SerializeField] AimComponent aimComponent = default;
+
     [Header("DEBUG")]
     [SerializeField] ShowDebugRedd096 showAreaInteractable = Color.cyan;
 
     //events
     public System.Action<DraggableObject> onFoundDraggable { get; set; }
     public System.Action<DraggableObject> onLostDraggable { get; set; }
+    public System.Action onPick { get; set; }
+    public System.Action onDrop { get; set; }
 
     public DraggableObject Dragged => dragged;
     public DraggableObject PossibleToPick => possibleToPickDraggable;
@@ -75,12 +80,36 @@ public class DragComponent : MonoBehaviour
         }
     }
 
+    #region private API
+
+    bool CheckComponents()
+    {
+        //check if have components
+        if (aimComponent == null)
+            aimComponent = GetComponentInParent<AimComponent>();
+
+        //if movement mode is rigidbody, be sure to have a rigidbody
+        if (aimComponent == null)
+        {
+            Debug.LogWarning($"Miss AimComponent on {name}");
+            return false;
+        }
+
+        return true;
+    }
+
+    #endregion
+
     #region public API
 
     public void FindInteractables()
     {
+        //start only if there are all necessary components
+        if (CheckComponents() == false)
+            return;
+
         //find draggable in distance
-        Physics.SphereCast(transform.position, radiusRaycast, transform.forward, out RaycastHit hit, distancePickDraggable, ~layersToIgnore);
+        Physics.SphereCast(transform.position, radiusRaycast, aimComponent.AimDirectionInput, out RaycastHit hit, distancePickDraggable, ~layersToIgnore);
         possibleToPickDraggable = hit.transform == null ? null : hit.transform.GetComponentInParent<DraggableObject>();
 
         if (previousPossibleToPickDraggable != possibleToPickDraggable)
@@ -116,7 +145,7 @@ public class DragComponent : MonoBehaviour
                 possibleToPickDraggable = null;
 
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                GetComponent<AimComponent>().enabled = false;
+                onPick?.Invoke();
             }
         }
     }
@@ -130,7 +159,7 @@ public class DragComponent : MonoBehaviour
                 dragged = null;
 
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-                GetComponent<AimComponent>().enabled = true;
+                onDrop?.Invoke();
                 return true;
             }
         }

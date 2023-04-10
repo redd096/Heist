@@ -8,9 +8,8 @@ namespace redd096.StateMachine.StateMachineRedd096
         [Header("Task")]
         public string TaskName = "";
 
-        [Header("DEBUG")]
-        [ReadOnly] public StateMachineRedd096 StateMachine;
-        [ReadOnly] public bool IsTaskActive;
+        public StateMachineRedd096 StateMachine { get; set; }
+        public bool IsTaskActive { get; set; }
 
         bool isInitialized;
 

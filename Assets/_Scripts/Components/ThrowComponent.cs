@@ -8,6 +8,7 @@ public class ThrowComponent : MonoBehaviour
 
     [Header("Necessary Components (by default get from this gameObject)")]
     [SerializeField] DragComponent dragComponent = default;
+    [SerializeField] AimComponent aimComponent = default;
 
     public void Throw()
     {
@@ -20,7 +21,7 @@ public class ThrowComponent : MonoBehaviour
             DraggableObject draggedObject = dragComponent.Dragged;
             dragComponent.Drop();
 
-            Vector3 direction = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+            Vector3 direction = new Vector3(aimComponent.AimDirectionInput.x, 0, aimComponent.AimDirectionInput.z).normalized;
             draggedObject.GetComponent<Rigidbody>().AddForce(direction * pushForce + Vector3.up * pushHeight, ForceMode.VelocityChange);
         }
     }
@@ -30,10 +31,18 @@ public class ThrowComponent : MonoBehaviour
         if (dragComponent == null)
             dragComponent = GetComponent<DragComponent>();
 
-        //if movement mode is rigidbody, be sure to have a rigidbody
         if (dragComponent == null)
         {
             Debug.LogWarning("Miss DragComponent on " + name);
+            return false;
+        }
+
+        if (aimComponent == null)
+            aimComponent = GetComponent<AimComponent>();
+
+        if (aimComponent == null)
+        {
+            Debug.LogWarning("Miss AimComponent on " + name);
             return false;
         }
 

@@ -51,7 +51,7 @@ public class DraggableObject : MonoBehaviour
         RaycastHit characterCollisionPoint;
         RaycastHit draggableCollisionPoint;
 
-        if (Physics.Raycast(character.transform.position, character.transform.forward, out draggableCollisionPoint))
+        if (Physics.Raycast(character.transform.position, character.GetComponent<AimComponent>().AimDirectionInput, out draggableCollisionPoint))
         {
             if (Physics.Linecast(draggableCollisionPoint.point, character.transform.position, out characterCollisionPoint))
             {
