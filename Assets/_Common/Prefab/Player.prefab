@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TaskName: Rotate
-  aimComponent: {fileID: 0}
+  aimComponent: {fileID: 4182660346221481028}
   playerInput: {fileID: 3743467620155536814}
   inputName: Move
 --- !u!114 &346948929392241493
