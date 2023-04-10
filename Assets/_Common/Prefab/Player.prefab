@@ -68,7 +68,7 @@ MonoBehaviour:
   TaskName: Rotate
   StateMachine: {fileID: 0}
   IsTaskActive: 0
-  aimComponent: {fileID: 5099986611610022329}
+  aimComponent: {fileID: 0}
   playerInput: {fileID: 3743467620155536814}
   inputName: Move
   resetWhenReleaseAnalogInput: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4891944727084366731}
   - component: {fileID: 4301130092445242975}
   - component: {fileID: 1716162120075746935}
-  - component: {fileID: 5099986611610022329}
+  - component: {fileID: 4182660346221481028}
   - component: {fileID: 8013662443815335634}
   - component: {fileID: 2843580852274682740}
   - component: {fileID: 1735899570174112655}
@@ -188,7 +188,7 @@ MonoBehaviour:
   CurrentPushForce: {x: 0, y: 0}
   CurrentVelocity: {x: 0, y: 0}
   CurrentSpeed: 0
---- !u!114 &5099986611610022329
+--- !u!114 &4182660346221481028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,8 +200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4496b1057013cd4ba8a5d1540b85698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  rb: {fileID: 1735899570174112655}
   AimDirectionInput: {x: 1, y: 0, z: 0}
   AimPositionNotNormalized: {x: 1, y: 0, z: 0}
   showPositionNotNormalized:
@@ -297,6 +295,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 49785787-ead4-4b0e-8149-50c42ca9ea6f
     m_ActionName: Gameplay/Action[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fcba6ccd-8ef7-4a86-a2cd-476743c69cbf
+    m_ActionName: Gameplay/Throw[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -409,6 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4891944727366660058}
+  - component: {fileID: 8074261119468911475}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -433,6 +436,20 @@ Transform:
   m_Father: {fileID: 4891944727084366731}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8074261119468911475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727366660059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef30f02a000f8d04c8f689ab4593e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 20
+  aimComponent: {fileID: 4182660346221481028}
 --- !u!1 &4891944727425455705
 GameObject:
   m_ObjectHideFlags: 0
