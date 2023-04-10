@@ -91,7 +91,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7932930028475216394}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ce083c906a1e8b34c8619b21bf1a8fb9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -175,6 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53501761a28e914b8b3d113d700b43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phMaterialDefault: {fileID: 13400000, guid: 1e0e31860547c234b914469fc8f19f3f, type: 2}
+  phMaterialOnPick: {fileID: 13400000, guid: ce083c906a1e8b34c8619b21bf1a8fb9, type: 2}
 --- !u!54 &2047265557181653188
 Rigidbody:
   m_ObjectHideFlags: 0

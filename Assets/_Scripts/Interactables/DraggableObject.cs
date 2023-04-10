@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
 {
+    [SerializeField] PhysicMaterial phMaterialDefault = default;
+    [SerializeField] PhysicMaterial phMaterialOnPick = default;
+
     bool isPicked = false;
     Transform previousParent;
+    PhysicMaterial previousPhysicMaterial;
 
     //rigidbody vars
     float mass, drag, angularDrag;
@@ -19,6 +23,7 @@ public class DraggableObject : MonoBehaviour
             isPicked = true;
             previousParent = transform.parent;
             transform.parent = character.transform;
+            foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialOnPick;
             MoveToCharacter(character);
             DestroyRigidbody();                     //destroy rigidbody to move with character
             return true;
@@ -33,6 +38,7 @@ public class DraggableObject : MonoBehaviour
         {
             isPicked = false;
             transform.parent = previousParent;
+            foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
             RecreateRigidbody();
             return true;
         }
