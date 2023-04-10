@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 888589260974496929}
   - component: {fileID: 5681589672139636062}
   - component: {fileID: 4022939224192781672}
+  - component: {fileID: 346948929392241493}
   m_Layer: 0
   m_Name: NormalState
   m_TagString: Untagged
@@ -70,6 +71,24 @@ MonoBehaviour:
   playerInput: {fileID: 3743467620155536814}
   inputName: Move
   resetWhenReleaseAnalogInput: 0
+--- !u!114 &346948929392241493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058653413443892815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d175610cab6054eb062220cd6c48b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskName: Interact
+  StateMachine: {fileID: 0}
+  IsTaskActive: 0
+  interactComponent: {fileID: 8013662443815335634}
+  playerInput: {fileID: 3743467620155536814}
+  inputName: Interact
 --- !u!1 &4891944727084366772
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +529,7 @@ MonoBehaviour:
     Actions:
     - {fileID: 5681589672139636062}
     - {fileID: 4022939224192781672}
+    - {fileID: 346948929392241493}
     Transitions: []
   CurrentState:
     StateName: 

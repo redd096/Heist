@@ -12,6 +12,7 @@ public class DraggableObject : MonoBehaviour
             isPicked = true;
             previousParent = transform.parent;
             transform.parent = character;
+            MoveToCharacter(character);
             return true;
         }
 
@@ -28,5 +29,20 @@ public class DraggableObject : MonoBehaviour
         }
 
         return false;
+    }
+
+    void MoveToCharacter(Transform character)
+    {
+        RaycastHit characterCollisionPoint;
+        RaycastHit draggableCollisionPoint;
+
+        if (Physics.Raycast(character.position, character.forward, out draggableCollisionPoint))
+        {
+            if (Physics.Linecast(draggableCollisionPoint.point, character.position, out characterCollisionPoint))
+            {
+                Vector3 direction = (characterCollisionPoint.point - draggableCollisionPoint.point);
+                transform.position += direction;
+            }
+        }
     }
 }
