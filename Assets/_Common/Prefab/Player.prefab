@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 4301130092445242975}
   - component: {fileID: 1716162120075746935}
   - component: {fileID: 5099986611610022329}
+  - component: {fileID: 8013662443815335634}
   - component: {fileID: 1735899570174112655}
   - component: {fileID: 3743467620155536814}
   m_Layer: 0
@@ -168,6 +169,27 @@ MonoBehaviour:
     ShowDebug: 0
     ColorDebug: {r: 1, g: 0, b: 0, a: 1}
   showDirectionInput:
+    ShowDebug: 0
+    ColorDebug: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &8013662443815335634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727084366772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bce29c2a04f9e4f9a8c21c832f4868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateMode: 2
+  timeCoroutine: 0.1
+  distancePickDraggable: 1
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 0
+  showAreaInteractable:
     ShowDebug: 0
     ColorDebug: {r: 0, g: 1, b: 1, a: 1}
 --- !u!54 &1735899570174112655

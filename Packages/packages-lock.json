@@ -1,15 +1,5 @@
 {
   "dependencies": {
-    "com.redd096.redd096-utilities": {
-      "version": "https://github.com/redd096/UnityUtilities.git?path=/Packages/com.redd096.redd096-utilities",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.inputsystem": "1.4.3",
-        "com.unity.textmeshpro": "3.0.6"
-      },
-      "hash": "3033d103ce6297f93698d7b4e0c58e745b2841f4"
-    },
     "com.unity.collab-proxy": {
       "version": "1.17.7",
       "depth": 0,
@@ -74,7 +64,7 @@
     },
     "com.unity.inputsystem": {
       "version": "1.4.4",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
