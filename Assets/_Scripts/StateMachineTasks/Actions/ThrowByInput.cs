@@ -5,22 +5,22 @@ using UnityEngine.InputSystem;
 #endif
 using redd096.StateMachine.StateMachineRedd096;
 
-public class InteractByInput : ActionTask
+public class ThrowByInput : ActionTask
 {
 #if ENABLE_INPUT_SYSTEM
     [Header("Necessary Components - default get in parent")]
-    [SerializeField] DragComponent interactComponent = default;
+    [SerializeField] ThrowComponent throwComponent = default;
     [SerializeField] PlayerInput playerInput = default;
 
-    [Header("Interact")]
-    [SerializeField] string inputName = "Interact";
+    [Header("Throw")]
+    [SerializeField] string inputName = "Throw";
 
     protected override void OnInitTask()
     {
         base.OnInitTask();
 
         //set references
-        if (interactComponent == null) interactComponent = GetStateMachineComponent<DragComponent>();
+        if (throwComponent == null) throwComponent = GetStateMachineComponent<ThrowComponent>();
         if (playerInput == null) playerInput = GetStateMachineComponent<PlayerInput>();
 
         //show warnings if not found
@@ -32,12 +32,12 @@ public class InteractByInput : ActionTask
     {
         base.OnUpdateTask();
 
-        if (interactComponent == null || playerInput == null || playerInput.actions == null)
+        if (throwComponent == null || playerInput == null || playerInput.actions == null)
             return;
 
-        //when press input, interact
+        //when press input
         if (playerInput.actions.FindAction(inputName).WasPressedThisFrame())
-            interactComponent.Interact();
+            throwComponent.Throw();
     }
 #else
         [HelpBox("This works only with new unity input system", HelpBoxAttribute.EMessageType.Error)]

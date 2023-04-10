@@ -47,8 +47,8 @@ public class RotationComponent : MonoBehaviour
         //rb.AddTorque(Vector3.up * Mathf.Clamp01(angle) * rotationSpeed);
 
         Quaternion lookRotation = Quaternion.LookRotation(AimDirectionInput, Vector3.up);
-        rb.rotation = (Quaternion.Lerp(rb.rotation, lookRotation, Time.fixedDeltaTime * rotationSpeed));
-        rb.rotation = (Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0));
+        rb.rotation = Quaternion.Lerp(rb.rotation, lookRotation, Time.fixedDeltaTime * rotationSpeed);
+        rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0);
     }
 
     #region private API

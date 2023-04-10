@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5681589672139636062}
   - component: {fileID: 4022939224192781672}
   - component: {fileID: 346948929392241493}
+  - component: {fileID: 3916087214115471444}
   m_Layer: 0
   m_Name: NormalState
   m_TagString: Untagged
@@ -89,6 +90,24 @@ MonoBehaviour:
   interactComponent: {fileID: 8013662443815335634}
   playerInput: {fileID: 3743467620155536814}
   inputName: Interact
+--- !u!114 &3916087214115471444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058653413443892815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08218f174a888e43ab6960a872f0cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskName: Throw
+  StateMachine: {fileID: 0}
+  IsTaskActive: 0
+  throwComponent: {fileID: 2843580852274682740}
+  playerInput: {fileID: 3743467620155536814}
+  inputName: Throw
 --- !u!1 &4891944727084366772
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +229,7 @@ MonoBehaviour:
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 0
+  radiusRaycast: 0.2
   showAreaInteractable:
     ShowDebug: 0
     ColorDebug: {r: 0, g: 1, b: 1, a: 1}
@@ -225,6 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68097f735588724b984044921696aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushForce: 10
+  pushHeight: 5
+  dragComponent: {fileID: 8013662443815335634}
 --- !u!54 &1735899570174112655
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -544,6 +567,7 @@ MonoBehaviour:
     - {fileID: 5681589672139636062}
     - {fileID: 4022939224192781672}
     - {fileID: 346948929392241493}
+    - {fileID: 3916087214115471444}
     Transitions: []
   CurrentState:
     StateName: 

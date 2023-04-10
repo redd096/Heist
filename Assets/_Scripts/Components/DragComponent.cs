@@ -1,7 +1,6 @@
 using redd096.Attributes;
 using redd096;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DragComponent : MonoBehaviour
@@ -14,6 +13,7 @@ public class DragComponent : MonoBehaviour
     [Tooltip("Distance to check for draggable")][SerializeField] float distancePickDraggable = 1;
     [Tooltip("Snap object to character, but keep a little distance")][SerializeField] float distanceObjectWhenPicked = 0.1f;
     [Tooltip("Ignore draggables with this layer")][SerializeField] LayerMask layersToIgnore = default;
+    [SerializeField] float radiusRaycast = 0.2f;
 
     [Header("DEBUG")]
     [SerializeField] ShowDebugRedd096 showAreaInteractable = Color.cyan;
@@ -39,6 +39,7 @@ public class DragComponent : MonoBehaviour
         {
             Gizmos.color = showAreaInteractable.ColorDebug;
             Gizmos.DrawLine(transform.position, transform.position + transform.forward * distancePickDraggable);
+            Gizmos.DrawWireSphere(transform.position + transform.forward * distancePickDraggable, radiusRaycast);
             Gizmos.color = Color.white;
         }
     }
@@ -79,7 +80,7 @@ public class DragComponent : MonoBehaviour
     public void FindInteractables()
     {
         //find draggable in distance
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distancePickDraggable, ~layersToIgnore);
+        Physics.SphereCast(transform.position, radiusRaycast, transform.forward, out RaycastHit hit, distancePickDraggable, ~layersToIgnore);
         possibleToPickDraggable = hit.transform == null ? null : hit.transform.GetComponentInParent<DraggableObject>();
 
         if (previousPossibleToPickDraggable != possibleToPickDraggable)
@@ -99,16 +100,9 @@ public class DragComponent : MonoBehaviour
     public void Interact()
     {
         //try drop
-        if (dragged)
-        {
-            if (dragged.Drop())
-            {
-                dragged = null;
+        if (Drop())
+            return;
 
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-                GetComponent<RotationComponent>().enabled = true;
-            }
-        }
         //or try pick
         else if (possibleToPickDraggable != null)
         {
@@ -125,6 +119,23 @@ public class DragComponent : MonoBehaviour
                 GetComponent<RotationComponent>().enabled = false;
             }
         }
+    }
+
+    public bool Drop()
+    {
+        if (dragged)
+        {
+            if (dragged.Drop())
+            {
+                dragged = null;
+
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                GetComponent<RotationComponent>().enabled = true;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     #endregion
