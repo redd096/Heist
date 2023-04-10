@@ -5,13 +5,13 @@ public class DraggableObject : MonoBehaviour
     bool isPicked = false;
     Transform previousParent;
 
-    public bool Pick(Transform character)
+    public bool Pick(DragComponent character)
     {
         if (isPicked == false)
         {
             isPicked = true;
             previousParent = transform.parent;
-            transform.parent = character;
+            transform.parent = character.transform;
             MoveToCharacter(character);
             return true;
         }
@@ -31,17 +31,17 @@ public class DraggableObject : MonoBehaviour
         return false;
     }
 
-    void MoveToCharacter(Transform character)
+    void MoveToCharacter(DragComponent character)
     {
         RaycastHit characterCollisionPoint;
         RaycastHit draggableCollisionPoint;
 
-        if (Physics.Raycast(character.position, character.forward, out draggableCollisionPoint))
+        if (Physics.Raycast(character.transform.position, character.transform.forward, out draggableCollisionPoint))
         {
-            if (Physics.Linecast(draggableCollisionPoint.point, character.position, out characterCollisionPoint))
+            if (Physics.Linecast(draggableCollisionPoint.point, character.transform.position, out characterCollisionPoint))
             {
-                Vector3 direction = (characterCollisionPoint.point - draggableCollisionPoint.point);
-                transform.position += direction;
+                Vector3 direction = characterCollisionPoint.point - draggableCollisionPoint.point;
+                transform.position += direction - (direction.normalized * character.DistanceObjectWhenPicked);
             }
         }
     }

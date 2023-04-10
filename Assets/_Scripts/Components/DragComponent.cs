@@ -12,6 +12,7 @@ public class DragComponent : MonoBehaviour
     [Tooltip("Find Draggables on Update or FixedUpdate?")][SerializeField] EUpdateMode updateMode = EUpdateMode.Coroutine;
     [Tooltip("Delay between updates using Coroutine method")][EnableIf("updateMode", EUpdateMode.Coroutine)][SerializeField] float timeCoroutine = 0.1f;
     [Tooltip("Distance to check for draggable")][SerializeField] float distancePickDraggable = 1;
+    [Tooltip("Snap object to character, but keep a little distance")][SerializeField] float distanceObjectWhenPicked = 0.1f;
     [Tooltip("Ignore draggables with this layer")][SerializeField] LayerMask layersToIgnore = default;
 
     [Header("DEBUG")]
@@ -24,6 +25,7 @@ public class DragComponent : MonoBehaviour
     public DraggableObject Dragged => dragged;
     public DraggableObject PossibleToPick => possibleToPickDraggable;
     public DraggableObject previousPossibleToPick => previousPossibleToPickDraggable;
+    public float DistanceObjectWhenPicked => distanceObjectWhenPicked;
 
     //interactables
     DraggableObject dragged;
@@ -107,7 +109,7 @@ public class DragComponent : MonoBehaviour
         //or try pick
         else if (possibleToPickDraggable != null)
         {
-            if (possibleToPickDraggable.Pick(transform))
+            if (possibleToPickDraggable.Pick(this))
             {
                 dragged = possibleToPickDraggable;
 
