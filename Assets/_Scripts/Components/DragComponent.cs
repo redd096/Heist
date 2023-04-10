@@ -146,7 +146,6 @@ public class DragComponent : MonoBehaviour
                 previousPossibleToPickDraggable = null;
                 possibleToPickDraggable = null;
 
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 onPick?.Invoke();
             }
         }
@@ -160,7 +159,6 @@ public class DragComponent : MonoBehaviour
             {
                 dragged = null;
 
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 onDrop?.Invoke();
                 return true;
             }

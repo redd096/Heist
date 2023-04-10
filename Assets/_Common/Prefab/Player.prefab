@@ -67,7 +67,6 @@ MonoBehaviour:
   aimComponent: {fileID: 0}
   playerInput: {fileID: 3743467620155536814}
   inputName: Move
-  resetWhenReleaseAnalogInput: 0
 --- !u!114 &346948929392241493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4496b1057013cd4ba8a5d1540b85698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDirectionZero: 1
   AimDirectionInput: {x: 1, y: 0, z: 0}
   AimPositionNotNormalized: {x: 1, y: 0, z: 0}
   showPositionNotNormalized:
@@ -253,7 +253,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 3
 --- !u!114 &3743467620155536814
 MonoBehaviour:
