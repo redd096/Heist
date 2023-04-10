@@ -44,8 +44,9 @@ public class RotationComponent : MonoBehaviour
     void Rotate()
     {
         Quaternion lookRotation = Quaternion.LookRotation(AimDirectionInput, Vector3.up);
-
+        
         rb.rotation = Quaternion.Lerp(rb.rotation, lookRotation, Time.fixedDeltaTime * rotationSpeed);
+        rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0);
     }
 
     #region private API
