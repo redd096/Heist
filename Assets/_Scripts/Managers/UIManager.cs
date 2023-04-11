@@ -8,6 +8,10 @@ public class UIManager : redd096.UIManager
     [SerializeField] TextMeshProUGUI countdownBeforeStart = default;
     [SerializeField] TextMeshProUGUI timerText = default;
 
+    [Header("Text EndMenu")]
+    [SerializeField] GameObject textOnWin = default;
+    [SerializeField] GameObject textOnFinishTime = default;
+
     public void UpdateCountdownBeforeStart(int timeInSeconds)
     {
         if (countdownBeforeStart == null)
@@ -43,6 +47,18 @@ public class UIManager : redd096.UIManager
         //set timer minutes:seconds
         int minutes = timeInSeconds / 60;
         int seconds = timeInSeconds % 60;
-        timerText.text = $"{minutes}:{seconds}";
+        timerText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    public void UpdateEndMenuText(bool isWin)
+    {
+        if (textOnWin == null || textOnFinishTime == null)
+        {
+            if (ShowDebugLogs) Debug.Log("Missing text endMenu on UIManager");
+            return;
+        }
+
+        textOnWin.SetActive(isWin);
+        textOnFinishTime.SetActive(isWin == false);
     }
 }
