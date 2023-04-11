@@ -23,7 +23,8 @@ namespace redd096.StateMachine.StateMachineRedd096
         protected virtual void Start()
         {
             //start with first state
-            SetState(0);
+            if (CurrentState == null)
+                SetState(0);
         }
 
         protected virtual void Update()

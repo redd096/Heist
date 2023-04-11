@@ -70,4 +70,10 @@ public class LevelManager : MonoBehaviour
         state = EStateLevelManager.endGame;
         GameManager.uiManager.EndMenu(true);
     }
+
+    public void TryActivateCharacter(Character character)
+    {
+        if (state == EStateLevelManager.game)
+            character.GetComponentInChildren<StateMachineRedd096>().SetState(firstStatePlayers);
+    }
 }

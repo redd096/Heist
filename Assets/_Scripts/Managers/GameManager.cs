@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public static UIManager uiManager { get; private set; }
+    public static LevelManager levelManager { get; private set; }
 
     protected override void SetDefaults()
     {
@@ -12,5 +13,6 @@ public class GameManager : Singleton<GameManager>
 
         //set references
         uiManager = FindObjectOfType<UIManager>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 }

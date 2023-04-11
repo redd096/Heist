@@ -2011,6 +2011,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsBeforeStartTimer: 3
   timerInSeconds: 90
+  activePlayersAfterCountdown: 1
+  firstStatePlayers: NormalState
 --- !u!1 &6385864242262186936
 GameObject:
   m_ObjectHideFlags: 0
