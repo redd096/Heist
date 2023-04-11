@@ -13,7 +13,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         timer = Time.time + secondsBeforeStartTimer;
-        GameManager.uiManager.UpdateCountdownBeforeStart(Mathf.CeilToInt(timer - Time.time));
+        GameManager.uiManager.UpdateCountdownBeforeStart(secondsBeforeStartTimer);
+        GameManager.uiManager.UpdateTimer(timerInSeconds);
         GameManager.uiManager.ShowCountdown(true);
     }
 
@@ -52,6 +53,7 @@ public class LevelManager : MonoBehaviour
     void OnFinishTimer()
     {
         //show end menu
+        GameManager.uiManager.UpdateTimer(0);
         state = EStateLevelManager.endGame;
         GameManager.uiManager.EndMenu(true);
     }
