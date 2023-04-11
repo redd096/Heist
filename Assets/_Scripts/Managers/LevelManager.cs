@@ -1,9 +1,14 @@
+using redd096.Attributes;
+using redd096.GameTopDown2D;
+using redd096.StateMachine.StateMachineRedd096;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] int secondsBeforeStartTimer = 3;
     [SerializeField] int timerInSeconds = 90;
+    [SerializeField] bool activePlayersAfterCountdown = true;
+    [EnableIf("activePlayersAfterCountdown")][SerializeField] string firstStatePlayers = "NormalState";
 
     enum EStateLevelManager { countdown, game, endGame}
 
@@ -48,6 +53,14 @@ public class LevelManager : MonoBehaviour
         GameManager.uiManager.ShowCountdown(false);
         state = EStateLevelManager.game;
         timer = Time.time + timerInSeconds;
+
+        //set state to every player
+        if (activePlayersAfterCountdown)
+        {
+            foreach (Character character in FindObjectsOfType<Character>())
+                if (character.CharacterType == Character.ECharacterType.Player)
+                    character.GetComponentInChildren<StateMachineRedd096>().SetState(firstStatePlayers);
+        }
     }
 
     void OnFinishTimer()
