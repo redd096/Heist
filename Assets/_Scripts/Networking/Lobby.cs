@@ -9,10 +9,39 @@ using System;
 public class Lobby : MonoBehaviour
 {
     public TMP_Text text;
+    public GameObject playerPrefab;
+    public Transform container;
+    private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
+    private void Awake()
+    {
+        NetworkManager.instance.OnPlayerEnter += AddPlayer;
+        NetworkManager.instance.OnPlayerRefreshName += RefreshPlayer;
+        NetworkManager.instance.OnPlayerExit += RemovePlayer;
+    }
 
     public void Start()
     {
         text.text = NetworkManager.instance.Runner.SessionInfo.Name;
+    }
+
+    public void AddPlayer(User user)
+    {
+        var go = Instantiate(playerPrefab, container);
+        go.GetComponentInChildren<TMP_Text>().text = user.Username;
+        _players.Add(user.Object.Id.ToString(), go);
+    }
+
+    public void RefreshPlayer(User user)
+    {
+        var go = _players[user.Object.Id.ToString()];
+        go.GetComponentInChildren<TMP_Text>().text = user.Username;
+    }
+
+    public void RemovePlayer(User user)
+    {
+        var go = _players[user.Object.Id.ToString()];
+        _players.Remove(user.Object.Id.ToString());
+        Destroy(go);
     }
 }

@@ -14,6 +14,8 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public string playerName;
 
+    public Action<User> OnPlayerEnter, OnPlayerRefreshName, OnPlayerExit;
+
     private List<SessionInfo> _sessions;
     public List<SessionInfo> Sessions
     {

@@ -2,15 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using System;
 
 public class User : NetworkBehaviour
 {
-    [Networked]
+    [Networked(OnChanged = nameof(RefreshUI))]
     public string Username { get; set; }
+
 
     private void Start()
     {
-        if(Object.HasInputAuthority)
-            Username = NetworkManager.instance.playerName;
+        if (Object.HasInputAuthority)
+        {
+            RPC_SendName(NetworkManager.instance.playerName);
+        }
+        NetworkManager.instance.OnPlayerEnter?.Invoke(this);
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_SendName(string username, RpcInfo info = default)
+    {
+        Username = username;
+    }
+
+    public static void RefreshUI(Changed<User> changed)
+    {
+        NetworkManager.instance.OnPlayerRefreshName?.Invoke(changed.Behaviour);
+    }
+
+    private void OnDestroy()
+    {
+        NetworkManager.instance.OnPlayerExit?.Invoke(this);
     }
 }
