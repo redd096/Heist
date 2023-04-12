@@ -1,4 +1,3 @@
-using redd096.StateMachine.StateMachineRedd096;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,7 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     [Header("Pawns")]
+    [SerializeField] PlayerPawn playerPrefab = default;
     [SerializeField] PlayerPawn[] playersInScene = default;
 
     //win check
@@ -144,7 +144,6 @@ public class LevelManager : MonoBehaviour
 
     public PlayerPawn GetCharacterToPossess(int playerIndex)
     {
-        //debug
         if (playersInScene == null || playersInScene.Length <= 0)
             playersInScene = FindObjectsOfType<PlayerPawn>(true);
 
@@ -158,7 +157,11 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        Debug.LogError("Wrong player index");
-        return null;
+        //else instantiate new player
+        PlayerPawn pawn = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        List<PlayerPawn> pawnsList = new List<PlayerPawn>(playersInScene);
+        pawnsList.Add(pawn);
+        playersInScene = pawnsList.ToArray();   //and add to the list
+        return pawn;
     }
 }
