@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4891944727084366772, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: RotatingPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5939242806148744326, guid: 735f74d8885df6c479769896ab490adc, type: 3}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4182660346221481028, guid: 735f74d8885df6c479769896ab490adc, type: 3}
   m_PrefabInstance: {fileID: 1689576800144398246}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6093714350226041874}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4496b1057013cd4ba8a5d1540b85698, type: 3}
@@ -110,12 +110,40 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6028118433053544493, guid: 735f74d8885df6c479769896ab490adc, type: 3}
   m_PrefabInstance: {fileID: 1689576800144398246}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6093714350226041874}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ee3530061397f748acb299cbe538e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6093714350226041874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4891944727084366772, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+  m_PrefabInstance: {fileID: 1689576800144398246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8260183280709609113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093714350226041874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: b025bb3405bf2b644a1e5e3fe491f5f3
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1 &6993446797369315878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8538582909963175296, guid: 735f74d8885df6c479769896ab490adc, type: 3}
@@ -135,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: Rotate2
   speed: 100
+  doJiggle: 0
   stronzo: {fileID: 7457710915315051733}
   aimComponent: {fileID: 3276753873561050082}
   movementComponent: {fileID: 1109488956470338601}
