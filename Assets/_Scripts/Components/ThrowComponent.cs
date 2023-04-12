@@ -12,6 +12,10 @@ public class ThrowComponent : MonoBehaviour
     [SerializeField] MovementComponent movementComponent = default;
     [SerializeField] AimComponent aimComponent = default;
 
+    [Header("Throw at precise axis degrees (0 is forward)")]
+    [SerializeField] bool snapToAxis = true;
+    [SerializeField] float[] axisDegrees = new float[4] { 0, 90, 180, -90 };
+
     public void Throw()
     {
         //start only if there are all necessary components
@@ -25,11 +29,34 @@ public class ThrowComponent : MonoBehaviour
 
             //movement or aim direction
             Vector3 directionInput = throwAtMovementDirection ? movementComponent.MoveDirectionInput : aimComponent.AimDirectionInput;
-            if (directionInput == Vector3.zero) directionInput = transform.forward;             //if no aim/move direction, throw forward
+            if (directionInput == Vector3.zero) directionInput = transform.forward;             //if no aim or move direction, throw forward
             Vector3 direction = new Vector3(directionInput.x, 0, directionInput.z).normalized;  //be sure to ignore Y
+            if (snapToAxis) direction = GetSnappedDirection(direction);                         //if necessary, snap direction
             draggedObject.GetComponent<Rigidbody>().AddForce(direction * pushForce + Vector3.up * pushHeight, ForceMode.VelocityChange);
         }
     }
+
+    Vector3 GetSnappedDirection(Vector3 direction)
+    {
+        //find nearest angle
+        float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+        float nearestDegree = axisDegrees[0];
+        float lowerAngle = Mathf.Infinity;
+        foreach (float a in axisDegrees)
+        {
+            float abs = Mathf.Abs(a - angle);
+            if (abs < lowerAngle)
+            {
+                lowerAngle = abs;
+                nearestDegree = a;
+            }
+        }
+
+        //get axis with this angle
+        Vector3 foundDirection = Quaternion.AngleAxis(nearestDegree, Vector3.up) * transform.forward;
+        return foundDirection;
+    }
+
     bool CheckComponents()
     {
         //check if have components

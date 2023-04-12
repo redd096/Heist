@@ -241,6 +241,12 @@ MonoBehaviour:
   dragComponent: {fileID: 8013662443815335634}
   movementComponent: {fileID: 1716162120075746935}
   aimComponent: {fileID: 4182660346221481028}
+  snapToAxis: 1
+  axisDegrees:
+  - 0
+  - 90
+  - 180
+  - -90
 --- !u!54 &1735899570174112655
 Rigidbody:
   m_ObjectHideFlags: 0
