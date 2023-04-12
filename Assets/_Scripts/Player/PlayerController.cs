@@ -1,10 +1,9 @@
-using redd096;
 using redd096.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : MonoBehaviour
 {
     [ReadOnly] public PlayerPawn CurrentPawn = default;
 
@@ -12,6 +11,11 @@ public class PlayerController : Singleton<PlayerController>
 
     PlayerInput _playerInput;
     PlayerInput playerInput { get { if (_playerInput == null) _playerInput = GetComponent<PlayerInput>(); return _playerInput; } }
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     public void Possess(PlayerPawn pawn)
     {
