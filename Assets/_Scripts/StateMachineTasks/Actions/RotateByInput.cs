@@ -13,8 +13,6 @@ public class RotateByInput : ActionTask
     [SerializeField] Rigidbody movementComponent = default;
     [SerializeField] PlayerPawn pawn = default;
 
-    [Header("Rotation")]
-    [SerializeField] string inputName = "Rotate";
 
     protected override void OnInitTask()
     {

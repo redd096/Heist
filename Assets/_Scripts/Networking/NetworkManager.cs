@@ -10,6 +10,9 @@ using redd096;
 public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 {
     public NetworkRunner Runner;
+    [SerializeField] private NetworkPrefabRef _playerPrefab;
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    public string playerName;
 
     private List<SessionInfo> _sessions;
     public List<SessionInfo> Sessions
@@ -25,8 +28,9 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
         Runner.ProvideInput = true;
     }
 
-    public async void StartGame(GameMode mode, string sessionName)
+    public async void StartGame(GameMode mode, string sessionName, string username)
     {
+        playerName = username;
 
         // Start or join (depends on gamemode) a session with a specific name
         await Runner.StartGame(new StartGameArgs()
@@ -34,7 +38,7 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
             GameMode = mode,
             SessionName = sessionName,
             Scene = 1,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()            
         });
     }
 
@@ -79,10 +83,24 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log("WOOOOO");
+        if (runner.IsServer)
+        {
+            // Create a unique position for the player
+            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
+            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+            // Keep track of the player avatars so we can remove it when they disconnect
+            _spawnedCharacters.Add(player, networkPlayerObject);
+        }
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
+        // Find and remove the players avatar
+        if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkObject))
+        {
+            runner.Despawn(networkObject);
+            _spawnedCharacters.Remove(player);
+        }
     }
 
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)

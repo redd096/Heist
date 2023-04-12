@@ -8,11 +8,15 @@ using System.Linq;
 public class MainMenuManager : MonoBehaviour
 {
     public TMP_InputField roomCode;
+    public TMP_InputField username;
 
     public void Create()
     {
+        if (username.text == "")
+            return;
+
         var id = GenerateRoomID();
-        NetworkManager.instance.StartGame(GameMode.Host, id);
+        NetworkManager.instance.StartGame(GameMode.Host, id, username.text);
     }
 
     private string GenerateRoomID()
@@ -42,6 +46,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void Join()
     {
-        NetworkManager.instance.StartGame(GameMode.Client, roomCode.text);
+        if (username.text == "")
+            return;
+
+        NetworkManager.instance.StartGame(GameMode.Client, roomCode.text, username.text);
     }
 }

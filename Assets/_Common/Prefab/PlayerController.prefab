@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3608680791650146027}
   - component: {fileID: 3608680791650146024}
   - component: {fileID: 2105051738827755057}
+  - component: {fileID: 2687287428940964484}
+  - component: {fileID: -2456377489853431393}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -76,3 +78,41 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2687287428940964484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608680791650146025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: a7917615200504144917ffd881938947
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: -2456377489853431393}
+  SimulationBehaviours: []
+--- !u!114 &-2456377489853431393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608680791650146025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a1f5ed8068f8f4aba35fa05c73d0e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _Username: 
