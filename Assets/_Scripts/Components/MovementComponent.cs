@@ -22,10 +22,10 @@ public class MovementComponent : MonoBehaviour
 
     [Header("DEBUG")]
     [ReadOnly] public bool IsMovingRight = true;            //check if moving right
-    [ReadOnly] public Vector2 MoveDirectionInput;           //when moves, set it with only input direction (used to know last movement direction)
-    [ReadOnly] public Vector2 LastDesiredVelocity;          //when moves, set it as input direction * speed
-    [ReadOnly] public Vector2 CurrentPushForce;             //used to push this object (push by recoil, knockback, dash, etc...), will be decreased by drag in every frame
-    [ReadOnly] public Vector2 CurrentVelocity;              //calculated velocity for this frame or rigidbody.velocity
+    [ReadOnly] public Vector3 MoveDirectionInput;           //when moves, set it with only input direction (used to know last movement direction)
+    [ReadOnly] public Vector3 LastDesiredVelocity;          //when moves, set it as input direction * speed
+    [ReadOnly] public Vector3 CurrentPushForce;             //used to push this object (push by recoil, knockback, dash, etc...), will be decreased by drag in every frame
+    [ReadOnly] public Vector3 CurrentVelocity;              //calculated velocity for this frame or rigidbody.velocity
     [ReadOnly] public float CurrentSpeed;                   //CurrentVelocity.magnitude or rigidbody.velocity.magnitude
     public float InputSpeed { get => inputSpeed; set => inputSpeed = value; }
     public float MaxSpeed { get => maxSpeed; set => maxSpeed = value; }
@@ -38,11 +38,11 @@ public class MovementComponent : MonoBehaviour
         set { if (useCustomDrag) customDrag = value; else if (rb) rb.drag = value; }
     }
     /// <summary>
-    /// Return IsMovingRight as a direction. Can also set it passing a Vector2 with X greater or lower than 0
+    /// Return IsMovingRight as a direction. Can also set it passing a Vector3 with X greater or lower than 0
     /// </summary>
-    public Vector2 IsMovingRightDirection
+    public Vector3 IsMovingRightDirection
     {
-        get => IsMovingRight ? Vector2.right : Vector2.left;
+        get => IsMovingRight ? Vector3.right : Vector3.left;
         set { if (Mathf.Approximately(value.x, 0) == false) IsMovingRight = value.x > 0; }
     }
 
@@ -50,9 +50,9 @@ public class MovementComponent : MonoBehaviour
     public System.Action<bool> onChangeMovementDirection { get; set; }
 
     //private
-    Vector2 desiredVelocity;                //when moves, set it as input direction * speed (used to move this object, will be reset in every frame)
-    Vector2 calculatedVelocity;             //desiredVelocity + DesiredPushForce
-    Vector2 newPushForce;                   //new push force when Drag
+    Vector3 desiredVelocity;                //when moves, set it as input direction * speed (used to move this object, will be reset in every frame)
+    Vector3 calculatedVelocity;             //desiredVelocity + DesiredPushForce
+    Vector3 newPushForce;                   //new push force when Drag
 
     void Update()
     {
@@ -76,8 +76,8 @@ public class MovementComponent : MonoBehaviour
 
         //set velocity (input + push)
         CalculateVelocity();
-        CurrentVelocity = movementMode == EMovementModes.Transform ? (calculatedVelocity != Vector2.zero ? calculatedVelocity : Vector2.zero) : (rb ? rb.velocity : Vector2.zero);
-        CurrentSpeed = CurrentVelocity != Vector2.zero ? CurrentVelocity.magnitude : 0.0f;
+        CurrentVelocity = movementMode == EMovementModes.Transform ? (calculatedVelocity != Vector3.zero ? calculatedVelocity : Vector3.zero) : (rb ? rb.velocity : Vector3.zero);
+        CurrentSpeed = CurrentVelocity != Vector3.zero ? CurrentVelocity.magnitude : 0.0f;
 
         //set if change movement direction
         if (IsMovingRight != CheckIsMovingRight())
@@ -93,7 +93,7 @@ public class MovementComponent : MonoBehaviour
 
         //reset movement input (cause if nobody call an update, this object must to be still in next frame), but save in LastDesiredVelocity (to read in inspector or if some script need it)
         LastDesiredVelocity = desiredVelocity;
-        desiredVelocity = Vector2.zero;
+        desiredVelocity = Vector3.zero;
 
         //remove push force (direction * drag * delta)
         CalculateNewPushForce();
@@ -125,7 +125,7 @@ public class MovementComponent : MonoBehaviour
 
         //clamp at max speed
         if (maxSpeed >= 0)
-            calculatedVelocity = Vector2.ClampMagnitude(calculatedVelocity, maxSpeed);
+            calculatedVelocity = Vector3.ClampMagnitude(calculatedVelocity, maxSpeed);
     }
 
     bool CheckIsMovingRight()
@@ -145,13 +145,12 @@ public class MovementComponent : MonoBehaviour
         //do movement with rigidbody (let unity calculate reachable position)
         if (movementMode == EMovementModes.Rigidbody)
         {
-            rb.velocity = new Vector3(calculatedVelocity.x, 0, calculatedVelocity.y);
+            rb.velocity = calculatedVelocity;
         }
         //or move with transform
         else if (movementMode == EMovementModes.Transform)
         {
-            Vector3 velocity = new Vector3(calculatedVelocity.x, 0, calculatedVelocity.y);
-            transform.position += velocity *
+            transform.position += calculatedVelocity *
                 (updateMode == EUpdateModes.Update ? Time.deltaTime : Time.fixedDeltaTime);
         }
     }
@@ -169,6 +168,8 @@ public class MovementComponent : MonoBehaviour
             newPushForce.x = 0;
         if (CurrentPushForce.y >= 0 && newPushForce.y < 0 || CurrentPushForce.y <= 0 && newPushForce.y > 0)
             newPushForce.y = 0;
+        if (CurrentPushForce.z >= 0 && newPushForce.z < 0 || CurrentPushForce.z <= 0 && newPushForce.z > 0)
+            newPushForce.z = 0;
     }
 
     #endregion
@@ -179,7 +180,7 @@ public class MovementComponent : MonoBehaviour
     /// Set movement in direction
     /// </summary>
     /// <param name="direction"></param>
-    public void MoveInDirection(Vector2 direction)
+    public void MoveInDirection(Vector3 direction)
     {
         //save last input direction + set movement
         MoveDirectionInput = direction.normalized;
@@ -190,10 +191,10 @@ public class MovementComponent : MonoBehaviour
     /// Set movement to position
     /// </summary>
     /// <param name="positionToReach"></param>
-    public void MoveTo(Vector2 positionToReach)
+    public void MoveTo(Vector3 positionToReach)
     {
         //save last input direction + set movement
-        MoveDirectionInput = (positionToReach - (Vector2)transform.position).normalized;
+        MoveDirectionInput = (positionToReach - transform.position).normalized;
         desiredVelocity = MoveDirectionInput * inputSpeed;
     }
 
@@ -202,7 +203,7 @@ public class MovementComponent : MonoBehaviour
     /// </summary>
     /// <param name="direction"></param>
     /// <param name="customSpeed"></param>
-    public void MoveInDirection(Vector2 direction, float customSpeed)
+    public void MoveInDirection(Vector3 direction, float customSpeed)
     {
         //save last input direction + set movement
         MoveDirectionInput = direction.normalized;
@@ -214,10 +215,10 @@ public class MovementComponent : MonoBehaviour
     /// </summary>
     /// <param name="positionToReach"></param>
     /// <param name="customSpeed"></param>
-    public void MoveTo(Vector2 positionToReach, float customSpeed)
+    public void MoveTo(Vector3 positionToReach, float customSpeed)
     {
         //save last input direction + set movement
-        MoveDirectionInput = (positionToReach - (Vector2)transform.position).normalized;
+        MoveDirectionInput = (positionToReach - transform.position).normalized;
         desiredVelocity = MoveDirectionInput * customSpeed;
     }
 
@@ -227,7 +228,7 @@ public class MovementComponent : MonoBehaviour
     /// <param name="pushDirection"></param>
     /// <param name="pushForce"></param>
     /// <param name="resetPreviousPush"></param>
-    public virtual void PushInDirection(Vector2 pushDirection, float pushForce, bool resetPreviousPush = false)
+    public virtual void PushInDirection(Vector3 pushDirection, float pushForce, bool resetPreviousPush = false)
     {
         //reset previous push or add new one to it
         if (resetPreviousPush)
@@ -241,19 +242,19 @@ public class MovementComponent : MonoBehaviour
     /// NB that this use current push and speed, doesn't know if this frame will receive some push or other, so it's not 100% correct
     /// </summary>
     /// <returns></returns>
-    public Vector2 CalculateNextPosition()
+    public Vector3 CalculateNextPosition()
     {
         CalculateVelocity();
 
         //do movement with rigidbody (let unity calculate reachable position)
         if (movementMode == EMovementModes.Rigidbody)
         {
-            return transform.position + (Vector3)calculatedVelocity * Time.fixedDeltaTime;
+            return transform.position + calculatedVelocity * Time.fixedDeltaTime;
         }
         //or move with transform
         else
         {
-            return transform.position + (Vector3)calculatedVelocity *
+            return transform.position + calculatedVelocity *
                 (updateMode == EUpdateModes.Update ? Time.deltaTime : Time.fixedDeltaTime);
         }
     }

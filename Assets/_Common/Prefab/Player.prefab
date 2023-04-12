@@ -173,10 +173,10 @@ MonoBehaviour:
   customDrag: 5
   rb: {fileID: 1735899570174112655}
   IsMovingRight: 1
-  MoveDirectionInput: {x: 0, y: 0}
-  LastDesiredVelocity: {x: 0, y: 0}
-  CurrentPushForce: {x: 0, y: 0}
-  CurrentVelocity: {x: 0, y: 0}
+  MoveDirectionInput: {x: 0, y: 0, z: 0}
+  LastDesiredVelocity: {x: 0, y: 0, z: 0}
+  CurrentPushForce: {x: 0, y: 0, z: 0}
+  CurrentVelocity: {x: 0, y: 0, z: 0}
   CurrentSpeed: 0
 --- !u!114 &4182660346221481028
 MonoBehaviour:
@@ -237,7 +237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushForce: 17
   pushHeight: 0
+  throwAtMovementDirection: 1
   dragComponent: {fileID: 8013662443815335634}
+  movementComponent: {fileID: 1716162120075746935}
   aimComponent: {fileID: 4182660346221481028}
 --- !u!54 &1735899570174112655
 Rigidbody:

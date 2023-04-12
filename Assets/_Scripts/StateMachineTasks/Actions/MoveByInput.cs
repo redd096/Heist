@@ -27,6 +27,7 @@ public class MoveByInput : ActionTask
             return;
 
         //move in direction
-        movementComponent.MoveInDirection(pawn.CurrentController.FindAction(inputName).ReadValue<Vector2>());
+        Vector2 direction = pawn.CurrentController.FindAction(inputName).ReadValue<Vector2>();
+        movementComponent.MoveInDirection(new Vector3(direction.x, 0, direction.y));
     }
 }
