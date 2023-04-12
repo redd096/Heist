@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using redd096;
 
-public class MenuManager : Singleton<MenuManager>
+public class MenuManager : MonoBehaviour, INetworkRunnerCallbacks
 {
     public TMP_InputField roomCode;
     public NetworkRunner _runner;
@@ -39,5 +39,74 @@ public class MenuManager : Singleton<MenuManager>
     public void Join()
     {
         StartGame(GameMode.Client, roomCode.text);
+    }
+
+
+    public void OnConnectedToServer(NetworkRunner runner)
+    {
+        Debug.Log("OH ALLORA");
+    }
+
+    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
+    {
+        Debug.Log("OH NO");
+    }
+
+    public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
+    {
+        Debug.Log("UMMM");
+    }
+
+    public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
+    {
+    }
+
+    public void OnDisconnectedFromServer(NetworkRunner runner)
+    {
+    }
+
+    public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
+    {
+    }
+
+    public void OnInput(NetworkRunner runner, NetworkInput input)
+    {
+    }
+
+    public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
+    {
+    }
+
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+    {
+        Debug.Log("WOOOOO");
+    }
+
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+    {
+    }
+
+    public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)
+    {
+    }
+
+    public void OnSceneLoadDone(NetworkRunner runner)
+    {
+    }
+
+    public void OnSceneLoadStart(NetworkRunner runner)
+    {
+    }
+
+    public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
+    {
+    }
+
+    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+    {
+    }
+
+    public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
+    {
     }
 }
