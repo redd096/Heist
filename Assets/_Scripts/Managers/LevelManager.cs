@@ -1,5 +1,3 @@
-using redd096.Attributes;
-using redd096.GameTopDown2D;
 using redd096.StateMachine.StateMachineRedd096;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +9,6 @@ public class LevelManager : MonoBehaviour
     [Header("Timers")]
     [SerializeField] int secondsBeforeStartTimer = 3;
     [SerializeField] int timerInSeconds = 90;
-    [SerializeField] bool activePlayersAfterCountdown = true;
-    [EnableIf("activePlayersAfterCountdown")][SerializeField] string firstStatePlayers = "NormalState";
 
     enum EStateLevelManager { countdown, game, endGame}
 
@@ -21,6 +17,10 @@ public class LevelManager : MonoBehaviour
 
     #endregion
 
+    [Header("Pawns")]
+    [SerializeField] PlayerPawn[] playersInScene = default;
+
+    //win check
     DraggableObject[] draggableObjectsInScene = default;
     TriggerZone[] triggerZonesInScene = default;
 
@@ -31,6 +31,10 @@ public class LevelManager : MonoBehaviour
         //save elements in scene
         draggableObjectsInScene = FindObjectsOfType<DraggableObject>();
         triggerZonesInScene = FindObjectsOfType<TriggerZone>();
+
+        //activate pawns in scene for every player
+        foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())
+            TryActivatePlayer(playerController);
     }
 
     private void Update()
@@ -95,21 +99,22 @@ public class LevelManager : MonoBehaviour
         state = EStateLevelManager.game;
         timer = Time.time + timerInSeconds;
 
-        //set state to every player
-        if (activePlayersAfterCountdown)
+        //possess pawns
+        foreach (PlayerController player in FindObjectsOfType<PlayerController>())
         {
-            foreach (Character character in FindObjectsOfType<Character>())
-                if (character.CharacterType == Character.ECharacterType.Player)
-                    character.GetComponentInChildren<StateMachineRedd096>().SetState(firstStatePlayers);
+            TryActivatePlayer(player);
         }
     }
 
     #endregion
 
-    public void TryActivateCharacter(Character character)
+    public void TryActivatePlayer(PlayerController player)
     {
+        PlayerPawn pawn = GetCharacterToPossess(player.playerIndex);
+        if (pawn) pawn.gameObject.SetActive(true);
+
         if (state == EStateLevelManager.game)
-            character.GetComponentInChildren<StateMachineRedd096>().SetState(firstStatePlayers);
+            player.Possess(pawn);
     }
 
     public void CheckWin()
@@ -135,5 +140,25 @@ public class LevelManager : MonoBehaviour
 
         //if contains every draggable, call for win
         OnWin();
+    }
+
+    public PlayerPawn GetCharacterToPossess(int playerIndex)
+    {
+        //debug
+        if (playersInScene == null || playersInScene.Length <= 0)
+            playersInScene = FindObjectsOfType<PlayerPawn>(true);
+
+        //find player in the list
+        if (playerIndex < playersInScene.Length && playersInScene[playerIndex] != null)
+        {
+            //be sure isn't already possessed
+            if (playersInScene[playerIndex].CurrentController == null)
+            {
+                return playersInScene[playerIndex];
+            }
+        }
+
+        Debug.LogError("Wrong player index");
+        return null;
     }
 }

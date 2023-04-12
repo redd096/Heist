@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: Movement
   movementComponent: {fileID: 1716162120075746935}
-  playerInput: {fileID: 3743467620155536814}
+  pawn: {fileID: 6028118433053544493}
   inputName: Move
 --- !u!114 &4022939224192781672
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: Rotate
   aimComponent: {fileID: 4182660346221481028}
-  playerInput: {fileID: 3743467620155536814}
+  pawn: {fileID: 6028118433053544493}
   inputName: Move
 --- !u!114 &346948929392241493
 MonoBehaviour:
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: Interact
   interactComponent: {fileID: 8013662443815335634}
-  playerInput: {fileID: 3743467620155536814}
+  pawn: {fileID: 6028118433053544493}
   inputName: Interact
 --- !u!114 &629878767146067040
 MonoBehaviour:
@@ -107,13 +107,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4891944727084366731}
-  - component: {fileID: 4301130092445242975}
+  - component: {fileID: 6028118433053544493}
   - component: {fileID: 1716162120075746935}
   - component: {fileID: 4182660346221481028}
   - component: {fileID: 8013662443815335634}
   - component: {fileID: 2843580852274682740}
   - component: {fileID: 1735899570174112655}
-  - component: {fileID: 3743467620155536814}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -138,7 +137,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4301130092445242975
+--- !u!114 &6028118433053544493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,11 +146,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4891944727084366772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d9ca481b8f050f4ba05db5f2f4a6c7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ee3530061397f748acb299cbe538e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterType: 0
   EnemyType: Base Enemy
+  CurrentController: {fileID: 0}
 --- !u!114 &1716162120075746935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,48 +255,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 3
---- !u!114 &3743467620155536814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4891944727084366772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 08a55472a78980c4ca158976e8ed1820, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 520f1dde-993e-46f7-b547-99af655f0996
-    m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 49785787-ead4-4b0e-8149-50c42ca9ea6f
-    m_ActionName: Gameplay/Action[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fcba6ccd-8ef7-4a86-a2cd-476743c69cbf
-    m_ActionName: Gameplay/Throw[/Keyboard/e]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &4891944727093687883
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,9 +532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   States:
-  - StateName: BlockedState
-    Actions: []
-    Transitions: []
   - StateName: NormalState
     Actions:
     - {fileID: 5681589672139636062}
@@ -587,6 +542,9 @@ MonoBehaviour:
       TransitionCheck: 0
       Conditions:
       - {fileID: 629878767146067040}
+  - StateName: BlockedState
+    Actions: []
+    Transitions: []
   - StateName: DraggingState
     Actions:
     - {fileID: 44812435935006394}
@@ -684,7 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: MovementOnDrag
   movementComponent: {fileID: 1716162120075746935}
-  playerInput: {fileID: 3743467620155536814}
+  pawn: {fileID: 6028118433053544493}
   inputName: Move
 --- !u!114 &8702459743139565691
 MonoBehaviour:
@@ -700,7 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: InteractOnDrag
   interactComponent: {fileID: 8013662443815335634}
-  playerInput: {fileID: 3743467620155536814}
+  pawn: {fileID: 6028118433053544493}
   inputName: Interact
 --- !u!114 &2754417097012495366
 MonoBehaviour:
@@ -716,7 +674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: ThrowOnDrag
   throwComponent: {fileID: 2843580852274682740}
-  playerInput: {fileID: 3743467620155536814}
+  pawn: {fileID: 6028118433053544493}
   inputName: Throw
 --- !u!114 &5939242806148744326
 MonoBehaviour:

@@ -1,16 +1,11 @@
 using UnityEngine;
-using redd096.Attributes;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 using redd096.StateMachine.StateMachineRedd096;
 
 public class MoveByInput : ActionTask
 {
-#if ENABLE_INPUT_SYSTEM
     [Header("Necessary Components - default get in parent")]
     [SerializeField] MovementComponent movementComponent = default;
-    [SerializeField] PlayerInput playerInput = default;
+    [SerializeField] PlayerPawn pawn = default;
 
     [Header("Movement")]
     [SerializeField] string inputName = "Move";
@@ -21,25 +16,17 @@ public class MoveByInput : ActionTask
 
         //set references
         if (movementComponent == null) movementComponent = GetStateMachineComponent<MovementComponent>();
-        if (playerInput == null) playerInput = GetStateMachineComponent<PlayerInput>();
-
-        //show warnings if not found
-        if (playerInput && playerInput.actions == null)
-            Debug.LogWarning("Miss Actions on PlayerInput on " + StateMachine);
+        if (pawn == null) pawn = GetStateMachineComponent<PlayerPawn>();
     }
 
     public override void OnUpdateTask()
     {
         base.OnUpdateTask();
 
-        if (movementComponent == null || playerInput == null || playerInput.actions == null)
+        if (movementComponent == null || pawn == null || pawn.CurrentController == null)
             return;
 
         //move in direction
-        movementComponent.MoveInDirection(playerInput.actions.FindAction(inputName).ReadValue<Vector2>());
+        movementComponent.MoveInDirection(pawn.CurrentController.FindAction(inputName).ReadValue<Vector2>());
     }
-#else
-    [HelpBox("This works only with new unity input system", HelpBoxAttribute.EMessageType.Error)]
-    public string Error = "It works only with new unity input system";
-#endif
 }
