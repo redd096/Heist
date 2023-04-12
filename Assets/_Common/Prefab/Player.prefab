@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateMode: 1
   movementMode: 1
-  inputSpeed: 5
+  inputSpeed: 5.5
   maxSpeed: 50
   dragBasedOnVelocity: 1
   useCustomDrag: 0
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateMode: 2
   timeCoroutine: 0.1
-  distancePickDraggable: 1
-  distanceObjectWhenPicked: 0.1
+  distancePickDraggable: 1.5
+  distanceObjectWhenPicked: 0.2
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68097f735588724b984044921696aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 10
-  pushHeight: 5
+  pushForce: 17
+  pushHeight: 0
   dragComponent: {fileID: 8013662443815335634}
   aimComponent: {fileID: 4182660346221481028}
 --- !u!54 &1735899570174112655
@@ -325,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 4891944727093687883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4891944727366660058}
