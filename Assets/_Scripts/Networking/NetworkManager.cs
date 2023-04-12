@@ -5,22 +5,31 @@ using Fusion;
 using Fusion.Sockets;
 using System;
 using UnityEngine.SceneManagement;
-using TMPro;
 using redd096;
 
-public class MenuManager : MonoBehaviour, INetworkRunnerCallbacks
+public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 {
-    public TMP_InputField roomCode;
-    public NetworkRunner _runner;
+    public NetworkRunner Runner;
 
-    async void StartGame(GameMode mode, string sessionName)
+    private List<SessionInfo> _sessions;
+    public List<SessionInfo> Sessions
+    {
+        get { return _sessions; }
+        private set { _sessions = value; }
+    }
+
+    void Start()
     {
         // Create the Fusion runner and let it know that we will be providing user input
-        _runner = gameObject.AddComponent<NetworkRunner>();
-        _runner.ProvideInput = true;
+        Runner = gameObject.AddComponent<NetworkRunner>();
+        Runner.ProvideInput = true;
+    }
+
+    public async void StartGame(GameMode mode, string sessionName)
+    {
 
         // Start or join (depends on gamemode) a session with a specific name
-        await _runner.StartGame(new StartGameArgs()
+        await Runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
             SessionName = sessionName,
@@ -29,17 +38,7 @@ public class MenuManager : MonoBehaviour, INetworkRunnerCallbacks
         });
     }
 
-    public void Create()
-    {
-        var id = "00000";
-        Debug.Log(id);
-        StartGame(GameMode.Host, id);
-    }
-
-    public void Join()
-    {
-        StartGame(GameMode.Client, roomCode.text);
-    }
+    
 
 
     public void OnConnectedToServer(NetworkRunner runner)
@@ -100,6 +99,8 @@ public class MenuManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
+        Debug.Log("Update Session List");
+        Sessions = sessionList;
     }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)

@@ -13,6 +13,6 @@ public class Lobby : MonoBehaviour
 
     public void Start()
     {
-        //text.text = MenuManager.instance._runner.SessionInfo.Name;
+        text.text = NetworkManager.instance.Runner.SessionInfo.Name;
     }
 }
