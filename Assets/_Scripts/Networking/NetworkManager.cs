@@ -15,6 +15,8 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
 
     public Action<User> OnPlayerEnter, OnPlayerRefreshName, OnPlayerExit;
+    public Action<NetworkInput> OnInputCallback;
+    public Action<NetworkRunner> OnSceneLoadStartCallback;
 
     private List<SessionInfo> _sessions;
     public List<SessionInfo> Sessions
@@ -76,6 +78,7 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
+        OnInputCallback?.Invoke(input);
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
@@ -114,6 +117,7 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void OnSceneLoadStart(NetworkRunner runner)
     {
+        OnSceneLoadStartCallback?.Invoke(runner);
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)

@@ -1,3 +1,4 @@
+using Fusion;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +18,31 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     [Header("Pawns")]
+    [SerializeField] private NetworkPrefabRef networkPlayerPrefab;
     [SerializeField] PlayerPawn playerPrefab = default;
     [SerializeField] PlayerPawn[] playersInScene = default;
 
     //win check
     DraggableObject[] draggableObjectsInScene = default;
     TriggerZone[] triggerZonesInScene = default;
+
+    private void Awake()
+    {
+        //online
+        if (NetworkManager.instance)
+        {
+            NetworkManager.instance.OnSceneLoadStartCallback += OnSceneLoadStartCallback;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        //online
+        if (NetworkManager.instance)
+        {
+            NetworkManager.instance.OnSceneLoadStartCallback -= OnSceneLoadStartCallback;
+        }
+    }
 
     private void Start()
     {
@@ -32,6 +52,17 @@ public class LevelManager : MonoBehaviour
         draggableObjectsInScene = FindObjectsOfType<DraggableObject>();
         triggerZonesInScene = FindObjectsOfType<TriggerZone>();
 
+        //local
+        if (NetworkManager.instance == false)
+        {
+            //activate pawns in scene for every player
+            foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())
+                TryActivatePlayer(playerController);
+        }
+    }
+
+    void OnSceneLoadStartCallback(NetworkRunner runner)
+    {
         //activate pawns in scene for every player
         foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())
             TryActivatePlayer(playerController);
@@ -110,11 +141,25 @@ public class LevelManager : MonoBehaviour
 
     public void TryActivatePlayer(PlayerController player)
     {
-        PlayerPawn pawn = GetCharacterToPossess(player.playerIndex);
-        if (pawn) pawn.gameObject.SetActive(true);
+        //online
+        if (NetworkManager.instance)
+        {
+            if (NetworkManager.instance.Runner.IsServer)
+            {
+                NetworkObject networkPlayerObject = NetworkManager.instance.Runner.Spawn(networkPlayerPrefab, Vector3.zero, Quaternion.identity, NetworkManager.instance.Runner.LocalPlayer);
+                if (state == EStateLevelManager.game)
+                    player.Possess(networkPlayerObject.GetComponent<PlayerPawn>());
+            }
+        }
+        //local
+        else
+        {
+            PlayerPawn pawn = GetCharacterToPossess(player.playerIndex);
+            if (pawn) pawn.gameObject.SetActive(true);
 
-        if (state == EStateLevelManager.game)
-            player.Possess(pawn);
+            if (state == EStateLevelManager.game)
+                player.Possess(pawn);
+        }
     }
 
     public void CheckWin()

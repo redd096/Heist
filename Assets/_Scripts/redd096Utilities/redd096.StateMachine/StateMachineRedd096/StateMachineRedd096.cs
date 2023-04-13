@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using redd096.Attributes;
+using Fusion;
 
 namespace redd096.StateMachine.StateMachineRedd096
 {
     [AddComponentMenu("redd096/StateMachine/StateMachineRedd096/State Machine redd096")]
-    public class StateMachineRedd096 : MonoBehaviour
+    public class StateMachineRedd096 : NetworkBehaviour
     {
         public State[] States = default;
 
@@ -35,6 +36,25 @@ namespace redd096.StateMachine.StateMachineRedd096
 
                 //check every transition
                 CheckTransitions();
+            }
+        }
+
+        public override void FixedUpdateNetwork()
+        {
+            base.FixedUpdateNetwork();
+
+            //DoActions
+            if (CurrentState != null)
+            {
+                if (CurrentState.Actions == null)
+                    return;
+
+                //do every action
+                for (int i = 0; i < CurrentState.Actions.Length; i++)
+                {
+                    if (CurrentState.Actions[i] != null)
+                        CurrentState.Actions[i].OnFixedUpdateNetworkTask();
+                }
             }
         }
 

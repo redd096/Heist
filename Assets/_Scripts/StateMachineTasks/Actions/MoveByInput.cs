@@ -23,11 +23,29 @@ public class MoveByInput : ActionTask
     {
         base.OnUpdateTask();
 
+        if (NetworkManager.instance)
+            return;
+
         if (movementComponent == null || pawn == null || pawn.CurrentController == null)
             return;
 
         //move in direction
         Vector2 direction = pawn.CurrentController.FindAction(inputName).ReadValue<Vector2>();
         movementComponent.MoveInDirection(new Vector3(direction.x, 0, direction.y));
+    }
+
+    public override void OnFixedUpdateNetworkTask()
+    {
+        base.OnFixedUpdateNetworkTask();
+
+        if (movementComponent == null || pawn == null || pawn.CurrentController == null)
+            return;
+
+        //move in direction
+        if (GetInput(out NetworkInputData input))
+        {
+            Vector2 direction = input.move;
+            movementComponent.MoveInDirection(new Vector3(direction.x, 0, direction.y));
+        }
     }
 }

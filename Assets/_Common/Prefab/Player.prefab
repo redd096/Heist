@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b0b81ebfac19f43aec3ca1066fc64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: Movement
   movementComponent: {fileID: 1716162120075746935}
   pawn: {fileID: 6028118433053544493}
@@ -147,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c30ba51d639dc4bb7e596c5a58824a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: Rotate
   aimComponent: {fileID: 4182660346221481028}
   pawn: {fileID: 6028118433053544493}
@@ -163,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d175610cab6054eb062220cd6c48b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: Interact
   interactComponent: {fileID: 8013662443815335634}
   pawn: {fileID: 6028118433053544493}
@@ -179,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc429e9609fc27e4c800efda76de7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: Check OnPick
   checkToDo: 0
   dragComponent: {fileID: 8013662443815335634}
@@ -197,6 +201,7 @@ GameObject:
   - component: {fileID: 8013662443815335634}
   - component: {fileID: 2843580852274682740}
   - component: {fileID: 1735899570174112655}
+  - component: {fileID: -4028156506040488847}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -356,6 +361,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 3
+--- !u!114 &-4028156506040488847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891944727084366772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 735f74d8885df6c479769896ab490adc
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 2678706268513403151}
+  - {fileID: 5681589672139636062}
+  - {fileID: 4022939224192781672}
+  - {fileID: 346948929392241493}
+  - {fileID: 629878767146067040}
+  - {fileID: 44812435935006394}
+  - {fileID: 8702459743139565691}
+  - {fileID: 2754417097012495366}
+  - {fileID: 5939242806148744326}
+  - {fileID: 4966971993955766552}
+  SimulationBehaviours: []
 --- !u!1 &4891944727093687883
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050edf7ae47c88345a3a8311c17cd85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   States:
   - StateName: NormalState
     Actions:
@@ -741,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b0b81ebfac19f43aec3ca1066fc64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: MovementOnDrag
   movementComponent: {fileID: 1716162120075746935}
   pawn: {fileID: 6028118433053544493}
@@ -757,6 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d175610cab6054eb062220cd6c48b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: InteractOnDrag
   interactComponent: {fileID: 8013662443815335634}
   pawn: {fileID: 6028118433053544493}
@@ -773,6 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08218f174a888e43ab6960a872f0cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: ThrowOnDrag
   throwComponent: {fileID: 2843580852274682740}
   pawn: {fileID: 6028118433053544493}
@@ -789,6 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63248291b71ed0946bb1c1f93b658166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: SetAimOnDrag
   aimComponent: {fileID: 4182660346221481028}
   dragComponent: {fileID: 8013662443815335634}
@@ -804,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc429e9609fc27e4c800efda76de7480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   TaskName: Check OnDrop
   checkToDo: 1
   dragComponent: {fileID: 8013662443815335634}

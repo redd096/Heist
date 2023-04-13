@@ -7,14 +7,14 @@ public class FixPlayerInputManager : MonoBehaviour
     {
         //in normal game, we have player input manager only in the local lobby, without this script
         //but in gameplay scenes, we have it with this script, just to test rapidly
-        if (GameManager.instance && GameManager.levelManager && PlayerInputManager.instance == this)
+        if (GameManager.instance && GameManager.levelManager && PlayerInputManager.instance == this && NetworkManager.instance == null)
         {
             //if we are in gameplay scene, and this is the instance. Then this is the first scene, so we are testing in editor
+            PlayerInputManager.instance.EnableJoining();
         }
         else
         {
             //else, we are playing normally, and we don't need this in scene
-            GetComponent<PlayerInputManager>().DisableJoining();
             Destroy(gameObject);
         }
     }

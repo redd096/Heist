@@ -2164,6 +2164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsBeforeStartTimer: 3
   timerInSeconds: 90
+  networkPlayerPrefab:
+    RawGuidValue: 735f74d8885df6c479769896ab490adc
   playerPrefab: {fileID: 6028118433053544493, guid: 735f74d8885df6c479769896ab490adc, type: 3}
   playersInScene: []
 --- !u!1 &6385864242262186936

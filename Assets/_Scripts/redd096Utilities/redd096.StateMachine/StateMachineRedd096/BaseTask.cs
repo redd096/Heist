@@ -1,9 +1,10 @@
-﻿using redd096.Attributes;
+﻿using Fusion;
+using redd096.Attributes;
 using UnityEngine;
 
 namespace redd096.StateMachine.StateMachineRedd096
 {
-    public abstract class BaseTask : MonoBehaviour
+    public abstract class BaseTask : NetworkBehaviour
     {
         [Header("Task")]
         public string TaskName = "";

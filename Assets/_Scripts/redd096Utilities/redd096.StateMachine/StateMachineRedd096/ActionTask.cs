@@ -15,6 +15,8 @@ namespace redd096.StateMachine.StateMachineRedd096
         /// </summary>
         public virtual void OnUpdateTask() { }
 
+        public virtual void OnFixedUpdateNetworkTask() { }
+
         /// <summary>
         /// Call onCompleteTask delegate
         /// </summary>
