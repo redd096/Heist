@@ -15,6 +15,10 @@ public class Lobby : MonoBehaviour
 
     private void Awake()
     {
+        //destroy every child
+        for (int i = container.childCount - 1; i >= 0; i--)
+            Destroy(container.GetChild(i).gameObject);
+
         NetworkManager.instance.OnPlayerEnter += AddPlayer;
         NetworkManager.instance.OnPlayerRefreshName += RefreshPlayer;
         NetworkManager.instance.OnPlayerExit += RemovePlayer;
@@ -46,5 +50,15 @@ public class Lobby : MonoBehaviour
         var go = _players[user.Object.Id.ToString()];
         _players.Remove(user.Object.Id.ToString());
         Destroy(go);
+    }
+
+    public void Back()
+    {
+
+    }
+
+    public void GoToSelectLevel()
+    {
+
     }
 }

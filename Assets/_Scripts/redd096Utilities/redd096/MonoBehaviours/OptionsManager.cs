@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using redd096.Attributes;
+using TMPro;
 
 namespace redd096
 {
@@ -9,11 +10,11 @@ namespace redd096
     {
         [Header("UI Volume")]
         [SerializeField] Slider volumeMasterSlider = default;
-        [SerializeField] Text volumeMasterText = default;
+        [SerializeField] TextMeshProUGUI volumeMasterText = default;
         [SerializeField] Slider volumeMusicSlider = default;
-        [SerializeField] Text volumeMusicText = default;
+        [SerializeField] TextMeshProUGUI volumeMusicText = default;
         [SerializeField] Slider volumeSFXSlider = default;
-        [SerializeField] Text volumeSFXText = default;
+        [SerializeField] TextMeshProUGUI volumeSFXText = default;
 
         [Header("UI Graphic")]
         [SerializeField] Toggle fullScreenToggle = default;

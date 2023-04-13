@@ -5,7 +5,7 @@ using TMPro;
 using Fusion;
 using System.Linq;
 
-public class MainMenuManager : MonoBehaviour
+public class OnlineMenuManager : MonoBehaviour
 {
     public TMP_InputField roomCode;
     public TMP_InputField username;
