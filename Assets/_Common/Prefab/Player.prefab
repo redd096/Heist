@@ -244,6 +244,9 @@ MonoBehaviour:
   snapToAxis: 1
   drawPieChartGizmos: 0
   axisDegrees:
+  - lowerAngle: 315
+    greaterAngle: 45
+    directionAngle: 0
   - lowerAngle: 45
     greaterAngle: 135
     directionAngle: 90
@@ -253,9 +256,6 @@ MonoBehaviour:
   - lowerAngle: 225
     greaterAngle: 315
     directionAngle: 270
-  - lowerAngle: 315
-    greaterAngle: 45
-    directionAngle: 0
 --- !u!54 &1735899570174112655
 Rigidbody:
   m_ObjectHideFlags: 0

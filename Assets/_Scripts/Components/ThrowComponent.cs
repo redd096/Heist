@@ -89,7 +89,7 @@ public class ThrowComponent : MonoBehaviour
 
         //get axis with this angle
         Vector3 foundDirection = Quaternion.AngleAxis(foundAngle, Vector3.up) * transform.forward;
-        Debug.Log($"angle {angle} - direction {direction} - found angle {foundAngle} - found direction {foundDirection}");
+        //Debug.Log($"angle {angle} - direction {direction} - found angle {foundAngle} - found direction {foundDirection}");
         return foundDirection;
     }
 
