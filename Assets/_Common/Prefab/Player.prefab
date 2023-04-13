@@ -242,7 +242,7 @@ MonoBehaviour:
   movementComponent: {fileID: 1716162120075746935}
   aimComponent: {fileID: 4182660346221481028}
   snapToAxis: 1
-  drawPieChartGizmos: 0
+  drawPieChartGizmos: 1
   axisDegrees:
   - lowerAngle: 315
     greaterAngle: 45
