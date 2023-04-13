@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Fusion;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace redd096.GameTopDown2D
 {
     [SelectionBase]
     [AddComponentMenu("redd096/.GameTopDown2D/Main/redd096Main")]
-    public class Redd096Main : MonoBehaviour
+    public class Redd096Main : NetworkBehaviour
     {
         Dictionary<System.Type, Component> components = new Dictionary<System.Type, Component>();
 

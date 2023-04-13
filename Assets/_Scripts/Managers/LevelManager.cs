@@ -146,8 +146,8 @@ public class LevelManager : MonoBehaviour
         {
             if (NetworkManager.instance.Runner.IsServer)
             {
-                NetworkObject networkPlayerObject = NetworkManager.instance.Runner.Spawn(networkPlayerPrefab, Vector3.zero, Quaternion.identity, player.GetComponent<User>().Object.InputAuthority);
-                PossessPawnRPC(player, networkPlayerObject.GetComponent<PlayerPawn>());
+                NetworkObject networkPlayerObject = NetworkManager.instance.Runner.Spawn(
+                    networkPlayerPrefab, Vector3.zero, Quaternion.identity, player.GetComponent<User>().Object.InputAuthority);
             }
         }
         //local
@@ -159,13 +159,6 @@ public class LevelManager : MonoBehaviour
             if (state == EStateLevelManager.game)
                 player.Possess(pawn);
         }
-    }
-
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    void PossessPawnRPC(PlayerController controller, PlayerPawn pawn, RpcInfo info = default)
-    {
-        controller.Possess(pawn);
-        pawn.Init();
     }
 
     public void CheckWin()

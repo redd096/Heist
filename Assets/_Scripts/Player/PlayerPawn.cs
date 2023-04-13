@@ -24,15 +24,22 @@ public class PlayerPawn : Character
             GetComponentInChildren<StateMachineRedd096>().enabled = false;
     }
 
-    public void Init()
+    public override void Spawned()
     {
-        if (NetworkManager.instance && CurrentController.GetComponent<User>().HasInputAuthority)
+        base.Spawned();
+
+        //find controller
+        foreach (var controller in FindObjectsOfType<PlayerController>())
+            if (controller.GetComponent<User>().Object.InputAuthority == Object.InputAuthority)
+                controller.Possess(this);
+
+        if (NetworkManager.instance && Object.HasInputAuthority)
             NetworkManager.instance.OnInputCallback += OnInput;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        if (NetworkManager.instance && CurrentController.GetComponent<User>().HasInputAuthority)
+        if (NetworkManager.instance && Object.HasInputAuthority)
             NetworkManager.instance.OnInputCallback -= OnInput;
     }
 
@@ -53,8 +60,6 @@ public class PlayerPawn : Character
 
     private void OnInput(NetworkInput input)
     {
-        Debug.Log(NetworkManager.instance.Runner.LocalPlayer);
-
         input.Set(myInputs);
 
         // Reset the input struct to start with a clean slate

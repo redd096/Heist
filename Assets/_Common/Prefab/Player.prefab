@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee3530061397f748acb299cbe538e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   CharacterType: 0
   EnemyType: Base Enemy
   CurrentController: {fileID: 0}
@@ -384,6 +385,7 @@ MonoBehaviour:
     RawGuidValue: 735f74d8885df6c479769896ab490adc
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 6028118433053544493}
   - {fileID: 2876663244851167489}
   - {fileID: 2678706268513403151}
   - {fileID: 5681589672139636062}
