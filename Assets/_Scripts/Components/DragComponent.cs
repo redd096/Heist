@@ -104,7 +104,7 @@ public class DragComponent : MonoBehaviour
     {
         RaycastHit characterCollisionPoint;
 
-        if (Physics.Linecast(possibleToPickHit.point, transform.position, out characterCollisionPoint))
+        if (Physics.Linecast(possibleToPickHit.point, transform.position, out characterCollisionPoint, ~layersToIgnore, QueryTriggerInteraction.Ignore))
         {
             Vector3 direction = characterCollisionPoint.point - possibleToPickHit.point;
             dragged.transform.position += direction - (direction.normalized * distanceObjectWhenPicked);
@@ -122,7 +122,7 @@ public class DragComponent : MonoBehaviour
             return;
 
         //find draggable in distance
-        Physics.SphereCast(transform.position, radiusRaycast, aimComponent.AimDirectionInput, out possibleToPickHit, distancePickDraggable, ~layersToIgnore);
+        Physics.SphereCast(transform.position, radiusRaycast, aimComponent.AimDirectionInput, out possibleToPickHit, distancePickDraggable, ~layersToIgnore, QueryTriggerInteraction.Ignore);
         possibleToPickDraggable = possibleToPickHit.transform == null ? null : possibleToPickHit.transform.GetComponentInParent<DraggableObject>();
 
         if (previousPossibleToPickDraggable != possibleToPickDraggable)
