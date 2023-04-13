@@ -15,6 +15,12 @@ public class DraggableObject : MonoBehaviour
     CollisionDetectionMode collisionDetection;
     RigidbodyConstraints constraints;
 
+    private void Awake()
+    {
+        //set default physics material
+        foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
+    }
+
     public bool Pick(DragComponent character)
     {
         if (isPicked == false)
