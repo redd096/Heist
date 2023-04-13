@@ -33,13 +33,15 @@ public class PlayerPawn : Character
             if (controller.GetComponent<User>().Object.InputAuthority == Object.InputAuthority)
                 controller.Possess(this);
 
-        if (NetworkManager.instance && Object.HasInputAuthority)
+        if (Object.HasInputAuthority)
             NetworkManager.instance.OnInputCallback += OnInput;
     }
 
-    private void OnDestroy()
+    public override void Despawned(NetworkRunner runner, bool hasState)
     {
-        if (NetworkManager.instance && Object.HasInputAuthority)
+        base.Despawned(runner, hasState);
+
+        if (Object.HasInputAuthority)
             NetworkManager.instance.OnInputCallback -= OnInput;
     }
 
