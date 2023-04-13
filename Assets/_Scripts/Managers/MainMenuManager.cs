@@ -10,6 +10,23 @@ public class MainMenuManager : MonoBehaviour
     public TMP_InputField roomCode;
     public TMP_InputField username;
 
+    string[] fantasyNames = new string[50] {"Tharion", "Eryndor", "Arintha", "Kaelin", "Eldrid",
+                      "Draven", "Ryker", "Torin", "Lirien", "Galadrielle",
+                      "Valoria", "Zephyr", "Sable", "Celestia", "Nyx",
+                      "Calantha", "Sorin", "Isadora", "Auriel", "Thalia",
+                      "Gwyneth", "Lorien", "Alaric", "Rowan", "Eira",
+                      "Darian", "Seraphina", "Evander", "Lysandra", "Halcyon",
+                      "Thorne", "Rhiannon", "Kairos", "Sabriel", "Cygnus",
+                      "Caius", "Elara", "Orion", "Lyra", "Serenity",
+                      "Daedalus", "Lyris", "Vesper", "Aeloria", "Cassius",
+                      "Xanthe", "Thetis", "Zarek", "Niamh", "Elwyn" };
+
+    private void Start()
+    {
+        //set random name
+        username.text = fantasyNames[Random.Range(0, fantasyNames.Length)];
+    }
+
     public void Create()
     {
         if (username.text == "")
@@ -49,6 +66,6 @@ public class MainMenuManager : MonoBehaviour
         if (username.text == "")
             return;
 
-        NetworkManager.instance.StartGame(GameMode.Client, roomCode.text, username.text);
+        NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text);
     }
 }
