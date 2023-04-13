@@ -146,9 +146,13 @@ public class LevelManager : MonoBehaviour
         {
             if (NetworkManager.instance.Runner.IsServer)
             {
-                NetworkObject networkPlayerObject = NetworkManager.instance.Runner.Spawn(networkPlayerPrefab, Vector3.zero, Quaternion.identity, NetworkManager.instance.Runner.LocalPlayer);
+                NetworkObject networkPlayerObject = NetworkManager.instance.Runner.Spawn(networkPlayerPrefab, Vector3.zero, Quaternion.identity, player.GetComponent<User>().playerRef);
                 if (state == EStateLevelManager.game)
-                    player.Possess(networkPlayerObject.GetComponent<PlayerPawn>());
+                {
+                    PlayerPawn playerPawn = networkPlayerObject.GetComponent<PlayerPawn>();
+                    player.Possess(playerPawn);
+                    playerPawn.Init();
+                }
             }
         }
         //local

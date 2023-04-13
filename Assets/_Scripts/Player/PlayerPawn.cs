@@ -24,15 +24,15 @@ public class PlayerPawn : Character
             GetComponentInChildren<StateMachineRedd096>().enabled = false;
     }
 
-    private void OnEnable()
+    public void Init()
     {
-        if (NetworkManager.instance)
+        if (NetworkManager.instance && NetworkManager.instance.Runner.LocalPlayer == CurrentController.GetComponent<User>().playerRef)
             NetworkManager.instance.OnInputCallback += OnInput;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        if (NetworkManager.instance)
+        if (NetworkManager.instance && NetworkManager.instance.Runner.LocalPlayer == CurrentController.GetComponent<User>().playerRef)
             NetworkManager.instance.OnInputCallback -= OnInput;
     }
 
