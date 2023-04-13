@@ -8,7 +8,6 @@ public class User : NetworkBehaviour
 {
     [Networked(OnChanged = nameof(RefreshUI))]
     public string Username { get; set; }
-    public PlayerRef playerRef;
 
 
     public override void Spawned()

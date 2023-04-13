@@ -26,13 +26,13 @@ public class PlayerPawn : Character
 
     public void Init()
     {
-        if (NetworkManager.instance && NetworkManager.instance.Runner.LocalPlayer == CurrentController.GetComponent<User>().playerRef)
+        if (NetworkManager.instance && CurrentController.GetComponent<User>().HasInputAuthority)
             NetworkManager.instance.OnInputCallback += OnInput;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        if (NetworkManager.instance && NetworkManager.instance.Runner.LocalPlayer == CurrentController.GetComponent<User>().playerRef)
+        if (NetworkManager.instance && CurrentController.GetComponent<User>().HasInputAuthority)
             NetworkManager.instance.OnInputCallback -= OnInput;
     }
 
@@ -53,6 +53,8 @@ public class PlayerPawn : Character
 
     private void OnInput(NetworkInput input)
     {
+        Debug.Log(NetworkManager.instance.Runner.LocalPlayer);
+
         input.Set(myInputs);
 
         // Reset the input struct to start with a clean slate
