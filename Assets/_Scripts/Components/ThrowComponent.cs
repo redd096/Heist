@@ -14,7 +14,38 @@ public class ThrowComponent : MonoBehaviour
 
     [Header("Throw at precise axis degrees (0 is forward)")]
     [SerializeField] bool snapToAxis = true;
-    [SerializeField] float snappedAngle = 90;
+    [SerializeField] bool drawPieChartGizmos = false;
+    [SerializeField] AxisDegreesStruct[] axisDegrees = default;
+
+    private void OnDrawGizmos()
+    {
+        if (drawPieChartGizmos)
+        {
+#if UNITY_EDITOR
+            UnityEditor.Handles.color = Color.grey;
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, 5);
+            UnityEditor.Handles.color = Color.white;
+#endif
+
+            if (axisDegrees != null)
+            {
+                foreach (AxisDegreesStruct str in axisDegrees)
+                {
+                    Gizmos.color = Color.red;
+                    Vector3 lowerAngleDirection = Quaternion.AngleAxis(str.lowerAngle, Vector3.up) * transform.forward;
+                    Gizmos.DrawLine(transform.position, transform.position + lowerAngleDirection * 5);
+                    Vector3 greaterAngleDirection = Quaternion.AngleAxis(str.greaterAngle, Vector3.up) * transform.forward;
+                    Gizmos.DrawLine(transform.position, transform.position + greaterAngleDirection * 5);
+
+                    Gizmos.color = Color.green;
+                    Vector3 direction = Quaternion.AngleAxis(str.directionAngle, Vector3.up) * transform.forward;
+                    Gizmos.DrawLine(transform.position, transform.position + direction * 5);
+                }
+            }
+
+            Gizmos.color = Color.white;
+        }
+    }
 
     public void Throw()
     {
@@ -40,15 +71,25 @@ public class ThrowComponent : MonoBehaviour
     {
         //calculate current angle
         float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
-        angle += 360;   //for negative values
+        if (angle < 0) angle += 360;
 
-        //find snapped angle
-        float foundAngle = angle % snappedAngle;
-        foundAngle = angle - foundAngle;
+        //find in which area it is
+        float foundAngle = 0;
+        foreach (var v in axisDegrees)
+        {
+            //if we are calculating something for example between 270 and 90, we calculate between 270 and 450
+            float greaterAngle = v.lowerAngle > v.greaterAngle ? v.greaterAngle + 360 : v.greaterAngle;
+
+            if (angle >= v.lowerAngle && angle < greaterAngle)
+            {
+                foundAngle = v.directionAngle;
+                break;
+            }
+        }
 
         //get axis with this angle
         Vector3 foundDirection = Quaternion.AngleAxis(foundAngle, Vector3.up) * transform.forward;
-        //Debug.Log($"angle {angle} - direction {direction} - found angle {foundAngle} - found direction {foundDirection}");
+        Debug.Log($"angle {angle} - direction {direction} - found angle {foundAngle} - found direction {foundDirection}");
         return foundDirection;
     }
 
@@ -84,5 +125,13 @@ public class ThrowComponent : MonoBehaviour
         }
 
         return true;
+    }
+
+    [System.Serializable]
+    public struct AxisDegreesStruct
+    {
+        public float lowerAngle;
+        public float greaterAngle;
+        public float directionAngle;
     }
 }

@@ -114,7 +114,7 @@
                 {
                     "name": "",
                     "id": "ae39610c-bf39-4e5d-8ed8-3bfd6fb57faf",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseAndKeyboard",
@@ -136,7 +136,7 @@
                 {
                     "name": "",
                     "id": "6d544985-2f45-49bd-aecf-8ad0db6dc054",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseAndKeyboard",

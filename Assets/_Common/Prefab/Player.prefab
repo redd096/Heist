@@ -242,11 +242,20 @@ MonoBehaviour:
   movementComponent: {fileID: 1716162120075746935}
   aimComponent: {fileID: 4182660346221481028}
   snapToAxis: 1
+  drawPieChartGizmos: 0
   axisDegrees:
-  - 0
-  - 90
-  - 180
-  - -90
+  - lowerAngle: 45
+    greaterAngle: 135
+    directionAngle: 90
+  - lowerAngle: 135
+    greaterAngle: 225
+    directionAngle: 180
+  - lowerAngle: 225
+    greaterAngle: 315
+    directionAngle: 270
+  - lowerAngle: 315
+    greaterAngle: 45
+    directionAngle: 0
 --- !u!54 &1735899570174112655
 Rigidbody:
   m_ObjectHideFlags: 0
