@@ -214,7 +214,7 @@ MonoBehaviour:
   updateMode: 2
   timeCoroutine: 0.1
   distancePickDraggable: 1.5
-  distanceObjectWhenPicked: 0.2
+  distanceObjectWhenPicked: 0
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 0
