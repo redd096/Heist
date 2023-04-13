@@ -1,12 +1,15 @@
+using redd096.Attributes;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class LocalMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject localLobbyPlayerPrefab = default;
     [SerializeField] Transform container = default;
+    [Scene][SerializeField] string sceneToLoadOnBack = "MainMenu";
 
     Dictionary<PlayerInput, GameObject> players = new Dictionary<PlayerInput, GameObject>();
 
@@ -42,5 +45,19 @@ public class LocalMenuManager : MonoBehaviour
         //remove player from UI
         Destroy(players[obj].gameObject);
         players.Remove(obj);
+    }
+
+    public void Back()
+    {
+        //remove connected players
+        PlayerController[] playersInScene = FindObjectsOfType<PlayerController>();
+        for (int i = playersInScene.Length - 1; i >= 0; i--)
+            Destroy(playersInScene[i].gameObject);
+
+        //destroy player input manager
+        Destroy(PlayerInputManager.instance.gameObject);
+
+        //because we are going back to main menu
+        SceneManager.LoadScene(sceneToLoadOnBack);
     }
 }
