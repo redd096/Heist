@@ -4,12 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LocalMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject localLobbyPlayerPrefab = default;
     [SerializeField] Transform container = default;
     [Scene][SerializeField] string sceneToLoadOnBack = "MainMenu";
+    [SerializeField] Button selectLevelButton = default;
 
     Dictionary<PlayerInput, GameObject> players = new Dictionary<PlayerInput, GameObject>();
 
@@ -18,15 +20,18 @@ public class LocalMenuManager : MonoBehaviour
         //destroy every child
         for (int i = container.childCount - 1; i >= 0; i--)
             Destroy(container.GetChild(i).gameObject);
+
+        //disable select level button by default
+        selectLevelButton.interactable = false;
     }
 
-    private void OnEnable()
+    private void Start()
     {
         PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
         PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (PlayerInputManager.instance)
         {
@@ -41,6 +46,9 @@ public class LocalMenuManager : MonoBehaviour
         GameObject go = Instantiate(localLobbyPlayerPrefab, container);
         localLobbyPlayerPrefab.GetComponentInChildren<TextMeshProUGUI>().text = "Player " + obj.playerIndex;
         players.Add(obj, go);
+
+        //is enable if at least one player is in the scene
+        selectLevelButton.interactable = true;
     }
 
     private void OnPlayerLeft(PlayerInput obj)

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Fusion;
 using redd096.Attributes;
+using redd096;
 
 public class Lobby : MonoBehaviour
 {
@@ -60,8 +61,9 @@ public class Lobby : MonoBehaviour
 
     public void Back()
     {
-        NetworkManager.instance.LeaveGame();
-        NetworkManager.instance.Runner.SetActiveScene(sceneOnBack);
+        SceneLoader.instance.ExitGame();
+        //NetworkManager.instance.LeaveGame();
+        //NetworkManager.instance.Runner.SetActiveScene(sceneOnBack);
     }
 
     public void GoToSelectLevel()
