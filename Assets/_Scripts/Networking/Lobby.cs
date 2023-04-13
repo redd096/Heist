@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Fusion;
-using Fusion.Sockets;
-using System;
+using redd096.Attributes;
 
 public class Lobby : MonoBehaviour
 {
     public TMP_Text text;
     public GameObject playerPrefab;
     public Transform container;
+    [Scene] public string sceneOnBack = "MainMenu";
+    [SerializeField] UnityEngine.UI.Button selectLevelButton = default;
+    [Scene] public string sceneOnSelectLevel = "SelectLevel";
+
     private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
     private void Awake()
@@ -18,6 +21,9 @@ public class Lobby : MonoBehaviour
         //destroy every child
         for (int i = container.childCount - 1; i >= 0; i--)
             Destroy(container.GetChild(i).gameObject);
+
+        //deactive if not server
+        selectLevelButton.interactable = NetworkManager.instance.Runner.IsServer;
 
         NetworkManager.instance.OnPlayerEnter += AddPlayer;
         NetworkManager.instance.OnPlayerRefreshName += RefreshPlayer;
@@ -54,11 +60,13 @@ public class Lobby : MonoBehaviour
 
     public void Back()
     {
-
+        NetworkManager.instance.LeaveGame();
+        NetworkManager.instance.Runner.SetActiveScene(sceneOnBack);
     }
 
     public void GoToSelectLevel()
     {
-
+        if (NetworkManager.instance.Runner.IsServer)
+            NetworkManager.instance.Runner.SetActiveScene(sceneOnSelectLevel);
     }
 }

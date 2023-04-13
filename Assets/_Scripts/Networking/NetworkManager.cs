@@ -4,15 +4,15 @@ using UnityEngine;
 using Fusion;
 using Fusion.Sockets;
 using System;
-using UnityEngine.SceneManagement;
 using redd096;
 
 public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 {
-    public NetworkRunner Runner;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
+    public NetworkRunner Runner { get; set; }
+    public string playerName { get; set; }
+
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
-    public string playerName;
 
     public Action<User> OnPlayerEnter, OnPlayerRefreshName, OnPlayerExit;
 
@@ -30,7 +30,7 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
         Runner.ProvideInput = true;
     }
 
-    public async void StartGame(GameMode mode, string sessionName, string username)
+    public async void StartGame(GameMode mode, string sessionName, string username, int sceneIndex)
     {
         playerName = username;
 
@@ -39,27 +39,27 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
         {
             GameMode = mode,
             SessionName = sessionName,
-            Scene = 1,
+            Scene = sceneIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()            
         });
     }
 
-    
+    public void LeaveGame()
+    {
+        Runner.Disconnect(Runner.LocalPlayer);
+    }
 
 
     public void OnConnectedToServer(NetworkRunner runner)
     {
-        Debug.Log("OH ALLORA");
     }
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
     {
-        Debug.Log("OH NO");
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
     {
-        Debug.Log("UMMM");
     }
 
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
@@ -84,7 +84,6 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log("WOOOOO");
         if (runner.IsServer)
         {
             // Create a unique position for the player
@@ -119,7 +118,6 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
-        Debug.Log("Update Session List");
         Sessions = sessionList;
     }
 

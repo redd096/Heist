@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Menus/SelectLevel.unity
     guid: 97952989e55d1b2438fe86f220b1fadb
+  - enabled: 1
+    path: Assets/_Scenes/LevelTest1.unity
+    guid: 1e6c796d041e88043b43177f72c750c0
+  - enabled: 1
+    path: Assets/_Scenes/LevelTest2.unity
+    guid: 53a7b90b1b46d31469671c94ebda7727
+  - enabled: 1
+    path: Assets/_Scenes/LevelTest3.unity
+    guid: 6ad17d8c63a86f04b995df92c16f8163
+  - enabled: 1
+    path: Assets/_Scenes/LevelTestOnline.unity
+    guid: 280aa520275287448b8aa129bfd97056
   m_configObjects: {}

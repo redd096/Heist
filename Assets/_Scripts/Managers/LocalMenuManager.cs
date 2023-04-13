@@ -28,8 +28,11 @@ public class LocalMenuManager : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
-        PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
+        if (PlayerInputManager.instance)
+        {
+            PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
+            PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
+        }
     }
 
     private void OnPlayerJoined(PlayerInput obj)

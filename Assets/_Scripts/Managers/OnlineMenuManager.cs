@@ -4,9 +4,11 @@ using UnityEngine;
 using TMPro;
 using Fusion;
 using System.Linq;
+using redd096.Attributes;
 
 public class OnlineMenuManager : MonoBehaviour
 {
+    [Scene][SerializeField] int lobbyScene = 3;
     public TMP_InputField roomCode;
     public TMP_InputField username;
 
@@ -33,7 +35,7 @@ public class OnlineMenuManager : MonoBehaviour
             return;
 
         var id = GenerateRoomID();
-        NetworkManager.instance.StartGame(GameMode.Host, id, username.text);
+        NetworkManager.instance.StartGame(GameMode.Host, id, username.text, lobbyScene);
     }
 
     private string GenerateRoomID()
@@ -66,6 +68,6 @@ public class OnlineMenuManager : MonoBehaviour
         if (username.text == "")
             return;
 
-        NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text);
+        NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text, lobbyScene);
     }
 }

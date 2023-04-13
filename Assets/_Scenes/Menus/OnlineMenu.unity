@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_DragThreshold: 10
   startMenu: {fileID: 0}
   firstSelectedGameObjects:
-  - {fileID: 199910162}
+  - {fileID: 1023934275}
   overrideObjects: []
   notNavigables: []
 --- !u!1 &846160580
@@ -2435,6 +2435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595be7f3650adde439a34b581fbb1c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lobbyScene: 3
   roomCode: {fileID: 268583494}
   username: {fileID: 199910164}
 --- !u!1 &1642786605
@@ -2757,10 +2758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df89561f7c957a140bc210c87d28c748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Runner: {fileID: 0}
   _playerPrefab:
     RawGuidValue: a7917615200504144917ffd881938947
-  playerName: 
 --- !u!4 &1935501658
 Transform:
   m_ObjectHideFlags: 0
