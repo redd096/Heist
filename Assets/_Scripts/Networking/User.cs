@@ -32,7 +32,7 @@ public class User : NetworkBehaviour
 
     public override void Despawned(NetworkRunner runner, bool hasState)
     {
-        NetworkManager.instance.OnPlayerRefreshName?.Invoke(this);
+        NetworkManager.instance.OnPlayerExit?.Invoke(this);
         base.Despawned(runner, hasState);
     }
 }
