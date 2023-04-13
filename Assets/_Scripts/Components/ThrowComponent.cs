@@ -14,7 +14,7 @@ public class ThrowComponent : MonoBehaviour
 
     [Header("Throw at precise axis degrees (0 is forward)")]
     [SerializeField] bool snapToAxis = true;
-    [SerializeField] float[] axisDegrees = new float[4] { 0, 90, 180, -90 };
+    [SerializeField] float snappedAngle = 90;
 
     public void Throw()
     {
@@ -38,22 +38,17 @@ public class ThrowComponent : MonoBehaviour
 
     Vector3 GetSnappedDirection(Vector3 direction)
     {
-        //find nearest angle
+        //calculate current angle
         float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
-        float nearestDegree = axisDegrees[0];
-        float lowerAngle = Mathf.Infinity;
-        foreach (float a in axisDegrees)
-        {
-            float abs = Mathf.Abs(a - angle);
-            if (abs < lowerAngle)
-            {
-                lowerAngle = abs;
-                nearestDegree = a;
-            }
-        }
+        angle += 360;   //for negative values
+
+        //find snapped angle
+        float foundAngle = angle % snappedAngle;
+        foundAngle = angle - foundAngle;
 
         //get axis with this angle
-        Vector3 foundDirection = Quaternion.AngleAxis(nearestDegree, Vector3.up) * transform.forward;
+        Vector3 foundDirection = Quaternion.AngleAxis(foundAngle, Vector3.up) * transform.forward;
+        //Debug.Log($"angle {angle} - direction {direction} - found angle {foundAngle} - found direction {foundDirection}");
         return foundDirection;
     }
 
