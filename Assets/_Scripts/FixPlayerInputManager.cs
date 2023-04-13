@@ -25,11 +25,13 @@ public class FixPlayerInputManager : MonoBehaviour
 
         //call if the player is istantiated after the countdown.
         //If the countodown is still running, this do nothing and the player will be activated normally
-        GameManager.levelManager.TryActivatePlayer(playerInput.GetComponent<PlayerController>());
+        if (GameManager.instance && GameManager.levelManager && PlayerInputManager.instance == this && NetworkManager.instance == null)
+            GameManager.levelManager.TryActivatePlayer(playerInput.GetComponent<PlayerController>());
     }
 
     public void OnPlayerLeft(PlayerInput playerInput)
     {
-        Destroy(playerInput.gameObject);
+        if (GameManager.instance && GameManager.levelManager && PlayerInputManager.instance == this && NetworkManager.instance == null)
+            Destroy(playerInput.gameObject);
     }
 }
