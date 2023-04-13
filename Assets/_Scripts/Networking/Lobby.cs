@@ -34,6 +34,9 @@ public class Lobby : MonoBehaviour
 
     public void RefreshPlayer(User user)
     {
+        if(!_players.ContainsKey(user.Object.Id.ToString()))
+            return;
+
         var go = _players[user.Object.Id.ToString()];
         go.GetComponentInChildren<TMP_Text>().text = user.Username;
     }

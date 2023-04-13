@@ -10,13 +10,13 @@ public class User : NetworkBehaviour
     public string Username { get; set; }
 
 
-    private void Start()
+    public override void Spawned()
     {
+        NetworkManager.instance.OnPlayerEnter?.Invoke(this);
         if (Object.HasInputAuthority)
         {
             RPC_SendName(NetworkManager.instance.playerName);
         }
-        NetworkManager.instance.OnPlayerEnter?.Invoke(this);
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
@@ -30,8 +30,9 @@ public class User : NetworkBehaviour
         NetworkManager.instance.OnPlayerRefreshName?.Invoke(changed.Behaviour);
     }
 
-    private void OnDestroy()
+    public override void Despawned(NetworkRunner runner, bool hasState)
     {
-        NetworkManager.instance.OnPlayerExit?.Invoke(this);
+        NetworkManager.instance.OnPlayerRefreshName?.Invoke(this);
+        base.Despawned(runner, hasState);
     }
 }
