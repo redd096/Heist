@@ -1235,7 +1235,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 7714844002258305021, guid: 452d98d4009e60c4a868a71e2fbbffe1, type: 3}
   container: {fileID: 1152247510}
   sceneOnBack: MainMenu
-  selectLevelButton: {fileID: 0}
+  selectLevelButton: {fileID: 1901038160}
   sceneOnSelectLevel: SelectLevel
 --- !u!1 &1901038158
 GameObject:
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_DragThreshold: 10
   startMenu: {fileID: 0}
   firstSelectedGameObjects:
-  - {fileID: 0}
+  - {fileID: 1901038158}
   overrideObjects: []
   notNavigables: []
 --- !u!1001 &2117580141
