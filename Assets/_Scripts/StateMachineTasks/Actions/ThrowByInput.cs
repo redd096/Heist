@@ -1,5 +1,6 @@
 using UnityEngine;
 using redd096.StateMachine.StateMachineRedd096;
+using redd096.GameTopDown2D;
 
 public class ThrowByInput : ActionTask
 {
@@ -23,11 +24,28 @@ public class ThrowByInput : ActionTask
     {
         base.OnUpdateTask();
 
+        if (NetworkManager.instance)
+            return;
+
         if (throwComponent == null || pawn == null || pawn.CurrentController == null)
             return;
 
         //when press input
         if (pawn.CurrentController.FindAction(inputName).WasPressedThisFrame())
             throwComponent.Throw();
+    }
+
+    public override void OnFixedUpdateNetworkTask()
+    {
+        base.OnFixedUpdateNetworkTask();
+
+        if (throwComponent == null || pawn == null || pawn.CurrentController == null)
+            return;
+
+        if (GetInput(out NetworkInputData input))
+        {
+            if (input.buttons.IsSet(MyButtons.Throw))
+                throwComponent.Throw();
+        }
     }
 }

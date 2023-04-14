@@ -1,5 +1,6 @@
 using UnityEngine;
 using redd096.StateMachine.StateMachineRedd096;
+using redd096.GameTopDown2D;
 
 public class AimByInput : ActionTask
 {
@@ -25,6 +26,9 @@ public class AimByInput : ActionTask
     {
         base.OnUpdateTask();
 
+        if (NetworkManager.instance)
+            return;
+
         if (aimComponent == null || pawn == null || pawn.CurrentController == null)
             return;
 
@@ -33,5 +37,20 @@ public class AimByInput : ActionTask
 
         //check if moving analog or reset input when released
         aimComponent.AimInDirection(new Vector3(inputValue.x, 0, inputValue.y));
+    }
+
+    public override void OnFixedUpdateNetworkTask()
+    {
+        base.OnFixedUpdateNetworkTask();
+
+        if (aimComponent == null || pawn == null || pawn.CurrentController == null)
+            return;
+
+        if (GetInput(out NetworkInputData input))
+        {
+            inputValue = input.move;
+            //check if moving analog or reset input when released
+            aimComponent.AimInDirection(new Vector3(inputValue.x, 0, inputValue.y));
+        }
     }
 }
