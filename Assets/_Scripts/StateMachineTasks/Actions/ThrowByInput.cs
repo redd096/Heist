@@ -39,7 +39,7 @@ public class ThrowByInput : ActionTask
     {
         base.OnFixedUpdateNetworkTask();
 
-        if (throwComponent == null || pawn == null || pawn.CurrentController == null)
+        if (throwComponent == null)
             return;
 
         if (GetInput(out NetworkInputData input))

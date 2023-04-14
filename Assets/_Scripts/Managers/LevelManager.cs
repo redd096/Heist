@@ -18,7 +18,6 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     [Header("Pawns")]
-    [SerializeField] private NetworkPrefabRef networkPlayerPrefab;
     [SerializeField] PlayerPawn playerPrefab = default;
     [SerializeField] PlayerPawn[] playersInScene = default;
 
@@ -141,24 +140,11 @@ public class LevelManager : MonoBehaviour
 
     public void TryActivatePlayer(PlayerController player)
     {
-        //online
-        if (NetworkManager.instance)
-        {
-            if (NetworkManager.instance.Runner.IsServer)
-            {
-                NetworkObject networkPlayerObject = NetworkManager.instance.Runner.Spawn(
-                    networkPlayerPrefab, Vector3.zero, Quaternion.identity, player.GetComponent<User>().Object.InputAuthority);
-            }
-        }
-        //local
-        else
-        {
-            PlayerPawn pawn = GetCharacterToPossess(player.playerIndex);
-            if (pawn) pawn.gameObject.SetActive(true);
+        PlayerPawn pawn = GetCharacterToPossess(player.playerIndex);
+        if (pawn) pawn.gameObject.SetActive(true);
 
-            if (state == EStateLevelManager.game)
-                player.Possess(pawn);
-        }
+        if (state == EStateLevelManager.game)
+            player.Possess(pawn);
     }
 
     public void CheckWin()

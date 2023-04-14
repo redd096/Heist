@@ -40,7 +40,7 @@ public class InteractByInput : ActionTask
     {
         base.OnFixedUpdateNetworkTask();
 
-        if (interactComponent == null || pawn == null || pawn.CurrentController == null)
+        if (interactComponent == null)
             return;
 
         if (GetInput(out NetworkInputData input))

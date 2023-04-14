@@ -6,7 +6,7 @@ namespace redd096.GameTopDown2D
 {
     [SelectionBase]
     [AddComponentMenu("redd096/.GameTopDown2D/Main/redd096Main")]
-    public class Redd096Main : NetworkBehaviour
+    public class Redd096Main : MonoBehaviour
     {
         Dictionary<System.Type, Component> components = new Dictionary<System.Type, Component>();
 

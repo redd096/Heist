@@ -38,7 +38,7 @@ public class MoveByInput : ActionTask
     {
         base.OnFixedUpdateNetworkTask();
 
-        if (movementComponent == null || pawn == null || pawn.CurrentController == null)
+        if (movementComponent == null)
             return;
 
         //move in direction

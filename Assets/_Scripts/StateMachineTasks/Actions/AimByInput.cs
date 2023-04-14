@@ -43,7 +43,7 @@ public class AimByInput : ActionTask
     {
         base.OnFixedUpdateNetworkTask();
 
-        if (aimComponent == null || pawn == null || pawn.CurrentController == null)
+        if (aimComponent == null)
             return;
 
         if (GetInput(out NetworkInputData input))
