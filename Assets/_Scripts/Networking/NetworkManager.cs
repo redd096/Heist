@@ -48,7 +48,8 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void LeaveGame()
     {
-        Runner.Disconnect(Runner.LocalPlayer);
+        Destroy(gameObject);
+        //Runner.Disconnect(Runner.LocalPlayer);
     }
 
 

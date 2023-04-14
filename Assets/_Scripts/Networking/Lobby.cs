@@ -61,9 +61,16 @@ public class Lobby : MonoBehaviour
 
     public void Back()
     {
-        SceneLoader.instance.ExitGame();
-        //NetworkManager.instance.LeaveGame();
-        //NetworkManager.instance.Runner.SetActiveScene(sceneOnBack);
+        //leave online
+        NetworkManager.instance.LeaveGame();
+        //because is not immediate, deactive inputs and wait few seconds before change scene
+        UnityEngine.EventSystems.EventSystem.current.enabled = false;
+        Invoke(nameof(GoToBackScene), 0.2f);
+    }
+
+    void GoToBackScene()
+    {
+        SceneLoader.instance.LoadScene(sceneOnBack);
     }
 
     public void GoToSelectLevel()
