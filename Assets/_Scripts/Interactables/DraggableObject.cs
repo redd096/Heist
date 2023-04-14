@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
 {
+    [SerializeField] int score = 10;
     [SerializeField] PhysicMaterial phMaterialDefault = default;
     [SerializeField] PhysicMaterial phMaterialOnPick = default;
+
+    public int Score => score;
 
     bool isPicked = false;
     Transform previousParent;

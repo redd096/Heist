@@ -1,4 +1,5 @@
 using Fusion;
+using redd096;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ public class LevelManager : MonoBehaviour
     [Header("Pawns")]
     [SerializeField] PlayerPawn playerPrefab = default;
     [SerializeField] PlayerPawn[] playersInScene = default;
+
+    public float Score = 0;
 
     //win check
     DraggableObject[] draggableObjectsInScene = default;
@@ -46,6 +49,9 @@ public class LevelManager : MonoBehaviour
     void OnWin()
     {
         state = EStateLevelManager.endGame;
+        Score = CalculateScore();
+        SaveManager.PlayerPrefs.SetFloat("Score", Score);   //save score
+
         GameManager.uiManager.UpdateEndMenuText(true);
         GameManager.uiManager.EndMenu(true);
     }
@@ -53,8 +59,9 @@ public class LevelManager : MonoBehaviour
     void OnFinishTimer()
     {
         //show end menu
-        GameManager.uiManager.UpdateTimer(0);
         state = EStateLevelManager.endGame;
+
+        GameManager.uiManager.UpdateTimer(0);
         GameManager.uiManager.UpdateEndMenuText(false);
         GameManager.uiManager.EndMenu(true);
     }
@@ -164,5 +171,32 @@ public class LevelManager : MonoBehaviour
         pawnsList.Add(pawn);
         playersInScene = pawnsList.ToArray();   //and add to the list
         return pawn;
+    }
+
+    public float CalculateScore()
+    {
+        //calculate remaining time
+        int timeLeft = Mathf.CeilToInt(timer - Time.time);
+        int minutes = timeLeft / 60;
+        int seconds = timeLeft % 60;
+
+        float multiplier = minutes + (seconds / 100f);
+
+        //calculate score for every box
+        int calculatedScore = 0;
+        List<DraggableObject> draggablesInTrigger = new List<DraggableObject>();
+        foreach (TriggerZone triggerZone in triggerZonesInScene)
+        {
+            foreach (DraggableObject draggable in triggerZone.ObjectsInside)
+            {
+                if (draggablesInTrigger.Contains(draggable) == false)
+                {
+                    draggablesInTrigger.Add(draggable);
+                    calculatedScore += draggable.Score;
+                }
+            }
+        }
+
+        return calculatedScore * multiplier;
     }
 }
