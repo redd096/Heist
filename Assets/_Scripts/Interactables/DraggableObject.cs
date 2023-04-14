@@ -1,6 +1,8 @@
+using Fusion;
+using System.Linq;
 using UnityEngine;
 
-public class DraggableObject : MonoBehaviour
+public class DraggableObject : NetworkBehaviour
 {
     [SerializeField] int score = 10;
     [SerializeField] PhysicMaterial phMaterialDefault = default;
@@ -24,33 +26,57 @@ public class DraggableObject : MonoBehaviour
         foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
     }
 
-    public bool Pick(DragComponent character)
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    void RPCPick(PlayerRef player)
+    {
+        Pick(GameManager.usersInScene.FirstOrDefault((x) => x.Object.InputAuthority == player).GetComponent<PlayerController>().CurrentPawn.transform);
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    void RPCDrop()
+    {
+        GetComponent<NetworkTransform>().enabled = false;
+        transform.parent = previousParent;
+        foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
+        RecreateRigidbody();
+    }
+
+    public bool TryPick(DragComponent character)
     {
         if (isPicked == false)
         {
             isPicked = true;
-            previousParent = transform.parent;
-            transform.parent = character.transform;
-            foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialOnPick;
-            DestroyRigidbody();                     //destroy rigidbody to move with character
+            if (NetworkManager.instance)
+                RPCPick(character.GetComponent<PlayerPawn>().CurrentController.GetComponent<User>().Object.InputAuthority);
+            else
+                Pick(character.transform);
+
             return true;
         }
 
         return false;
     }
 
-    public bool Drop()
+    public bool TryDrop()
     {
         if (isPicked)
         {
             isPicked = false;
-            transform.parent = previousParent;
-            foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
-            RecreateRigidbody();
+            RPCDrop();
+
             return true;
         }
 
         return false;
+    }
+
+    void Pick(Transform character)
+    {
+        GetComponent<NetworkTransform>().enabled = false;
+        previousParent = transform.parent;
+        transform.parent = character;
+        foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialOnPick;
+        DestroyRigidbody();                     //destroy rigidbody to move with character
     }
 
     #region rigidbody

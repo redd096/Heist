@@ -148,7 +148,7 @@ public class DragComponent : MonoBehaviour
         //or try pick
         else if (possibleToPickDraggable != null)
         {
-            if (possibleToPickDraggable.Pick(this))
+            if (possibleToPickDraggable.TryPick(this))
             {
                 dragged = possibleToPickDraggable;
                 SnapDraggableToCharacter();
@@ -167,7 +167,7 @@ public class DragComponent : MonoBehaviour
     {
         if (dragged)
         {
-            if (dragged.Drop())
+            if (dragged.TryDrop())
             {
                 dragged = null;
 

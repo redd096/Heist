@@ -278,6 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53501761a28e914b8b3d113d700b43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  score: 10
   phMaterialDefault: {fileID: 13400000, guid: 1e0e31860547c234b914469fc8f19f3f, type: 2}
   phMaterialOnPick: {fileID: 13400000, guid: ce083c906a1e8b34c8619b21bf1a8fb9, type: 2}
 --- !u!54 &2047265557181653188
@@ -318,6 +320,7 @@ MonoBehaviour:
     RawGuidValue: a5d92ae3b31cc1e458a75eb73217ce16
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 7932930029404190356}
   - {fileID: 871725185407422275}
   SimulationBehaviours: []
 --- !u!114 &871725185407422275

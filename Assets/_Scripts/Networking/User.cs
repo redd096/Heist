@@ -9,6 +9,15 @@ public class User : NetworkBehaviour
     [Networked(OnChanged = nameof(RefreshUI))]
     public string Username { get; set; }
 
+    private void Start()
+    {
+        GameManager.usersInScene.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.usersInScene.Remove(this);
+    }
 
     public override void Spawned()
     {
