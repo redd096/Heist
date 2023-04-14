@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7932930028475216407}
   - component: {fileID: 7932930028475216404}
   - component: {fileID: 515397051421186647}
+  - component: {fileID: 3417664442446616241}
   m_Layer: 0
   m_Name: Volume
   m_TagString: Untagged
@@ -198,6 +199,24 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3417664442446616241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932930028475216394}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7932930028730500425
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +300,7 @@ MonoBehaviour:
   score: 10
   phMaterialDefault: {fileID: 13400000, guid: 1e0e31860547c234b914469fc8f19f3f, type: 2}
   phMaterialOnPick: {fileID: 13400000, guid: ce083c906a1e8b34c8619b21bf1a8fb9, type: 2}
+  outline: {fileID: 3417664442446616241}
 --- !u!54 &2047265557181653188
 Rigidbody:
   m_ObjectHideFlags: 0

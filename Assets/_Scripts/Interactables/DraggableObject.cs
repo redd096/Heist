@@ -5,6 +5,7 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] int score = 10;
     [SerializeField] PhysicMaterial phMaterialDefault = default;
     [SerializeField] PhysicMaterial phMaterialOnPick = default;
+    [SerializeField] Outline outline = default;
 
     public int Score => score;
 
@@ -51,6 +52,13 @@ public class DraggableObject : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Highlight(bool isHighlighted, User user = null)
+    {
+        outline.enabled = isHighlighted;
+        if(user != null)
+            outline.OutlineColor = user.PlayerColor;
     }
 
     #region rigidbody

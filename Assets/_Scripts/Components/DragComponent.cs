@@ -129,10 +129,16 @@ public class DragComponent : MonoBehaviour
         {
             //call events
             if (previousPossibleToPickDraggable != null)
+            {
+                previousPossibleToPickDraggable.Highlight(false);
                 onLostDraggable?.Invoke(previousPossibleToPickDraggable);
+            }
 
             if (possibleToPickDraggable != null)
+            {
+                possibleToPickDraggable.Highlight(true, GetComponent<PlayerPawn>().CurrentController.GetComponent<User>());
                 onFoundDraggable?.Invoke(possibleToPickDraggable);
+            }
 
             //and save previous nearest interactable
             previousPossibleToPickDraggable = possibleToPickDraggable;
@@ -150,6 +156,7 @@ public class DragComponent : MonoBehaviour
         {
             if (possibleToPickDraggable.Pick(this))
             {
+                possibleToPickDraggable.Highlight(false);
                 dragged = possibleToPickDraggable;
                 SnapDraggableToCharacter();
 
