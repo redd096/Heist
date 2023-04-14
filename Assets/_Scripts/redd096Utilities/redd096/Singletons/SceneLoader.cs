@@ -2,7 +2,6 @@
 using UnityEngine.SceneManagement;
 using redd096.Attributes;
 using Fusion;
-using UnityEditor.SearchService;
 
 namespace redd096
 {

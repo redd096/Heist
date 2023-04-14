@@ -1140,7 +1140,7 @@ MonoBehaviour:
   - button: {fileID: 1547321707}
     level: LevelTest3
   - button: {fileID: 823431171}
-    level: MainMenu
+    level: LevelTest4
 --- !u!1001 &1678856356
 PrefabInstance:
   m_ObjectHideFlags: 0

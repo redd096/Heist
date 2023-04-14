@@ -48,7 +48,7 @@ public class LocalMenuManager : MonoBehaviour
     {
         //show new player in UI
         GameObject go = Instantiate(localLobbyPlayerPrefab, container);
-        go.GetComponentInChildren<TextMeshProUGUI>().text = "Player " + obj.playerIndex;
+        go.GetComponentInChildren<TextMeshProUGUI>().text = "Player " + (obj.playerIndex + 1);
         go.GetComponentInChildren<Image>().color = GameManager.instance.PlayersColors[obj.playerIndex];
         players.Add(obj, go);
 
