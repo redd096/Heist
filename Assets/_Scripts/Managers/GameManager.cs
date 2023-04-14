@@ -1,4 +1,5 @@
 using redd096;
+using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -6,6 +7,8 @@ public class GameManager : Singleton<GameManager>
 {
     public static UIManager uiManager { get; private set; }
     public static LevelManager levelManager { get; private set; }
+
+    public List<RandomizeColors.ColorStruct> remainingColors = new List<RandomizeColors.ColorStruct>();
 
     protected override void SetDefaults()
     {
