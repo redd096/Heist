@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using redd096.Attributes;
+using Fusion;
+using UnityEditor.SearchService;
 
 namespace redd096
 {
@@ -63,7 +65,17 @@ namespace redd096
             if (ChangeCursorLockMode) LockMouse(CursorLockMode.None);
             Time.timeScale = 1;
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //change scene online
+            if (NetworkManager.instance)
+            {
+                if (NetworkManager.instance.Runner.IsServer)
+                    NetworkManager.instance.Runner.SetActiveScene(SceneManager.GetActiveScene().name);
+            }
+            //change scene normally
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
 
         /// <summary>
@@ -75,8 +87,17 @@ namespace redd096
             if (ChangeCursorLockMode) LockMouse(CursorLockMode.None);
             Time.timeScale = 1;
 
+            //change scene online
+            if (NetworkManager.instance)
+            {
+                if (NetworkManager.instance.Runner.IsServer)
+                    NetworkManager.instance.Runner.SetActiveScene(scene);
+            }
             //load new scene
-            SceneManager.LoadScene(scene);
+            else
+            {
+                SceneManager.LoadScene(scene);
+            }
         }
 
         /// <summary>
@@ -88,8 +109,18 @@ namespace redd096
             if (ChangeCursorLockMode) LockMouse(CursorLockMode.None);
             Time.timeScale = 1;
 
+
+            //change scene online
+            if (NetworkManager.instance)
+            {
+                if (NetworkManager.instance.Runner.IsServer)
+                    NetworkManager.instance.Runner.SetActiveScene(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex + 1).name);
+            }
             //load next scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
 
         /// <summary>
