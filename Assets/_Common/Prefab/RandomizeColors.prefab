@@ -46,35 +46,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 0}
   interactionsInScene: []
-  queueColorsToNotRepeat: 2
   randomColors:
-  - backgroundColor: {r: 0.95294124, g: 0.59607846, b: 0.59607846, a: 1}
+  - backgroundColor: {r: 0.49803925, g: 0.7960785, b: 0.7686275, a: 1}
     normalColor: {r: 1, g: 1, b: 1, a: 1}
-    highlightedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    pressedColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-    selectedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    disabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
-  - backgroundColor: {r: 1, g: 0, b: 0, a: 1}
+    highlightedColor: {r: 0.85098046, g: 0.2901961, b: 0.32941177, a: 1}
+    pressedColor: {r: 0.5, g: 0.1705069, b: 0.19354837, a: 1}
+    selectedColor: {r: 0.85098046, g: 0.2901961, b: 0.32941177, a: 1}
+    disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  - backgroundColor: {r: 0.7960785, g: 0.69411767, b: 0.49803925, a: 1}
     normalColor: {r: 1, g: 1, b: 1, a: 1}
-    highlightedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    pressedColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-    selectedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    disabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
-  - backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    highlightedColor: {r: 0.5019608, g: 0.5254902, b: 0.9176471, a: 1}
+    pressedColor: {r: 0.27450982, g: 0.28627452, b: 0.5019608, a: 1}
+    selectedColor: {r: 0.5019608, g: 0.5254902, b: 0.9176471, a: 1}
+    disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  - backgroundColor: {r: 0.6509804, g: 0.5568628, b: 0.76470596, a: 1}
     normalColor: {r: 1, g: 1, b: 1, a: 1}
-    highlightedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    pressedColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-    selectedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    disabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
-  - backgroundColor: {r: 0, g: 1, b: 0.11560202, a: 1}
+    highlightedColor: {r: 1, g: 0.7803922, b: 0.32941177, a: 1}
+    pressedColor: {r: 0.5019608, g: 0.3921569, b: 0.16470589, a: 1}
+    selectedColor: {r: 1, g: 0.7803922, b: 0.32941177, a: 1}
+    disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  - backgroundColor: {r: 0.7960785, g: 0.5019608, b: 0.49803925, a: 1}
     normalColor: {r: 1, g: 1, b: 1, a: 1}
-    highlightedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    pressedColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-    selectedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    disabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
-  - backgroundColor: {r: 0.4811321, g: 0.26053756, b: 0.26053756, a: 1}
-    normalColor: {r: 1, g: 1, b: 1, a: 1}
-    highlightedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    pressedColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-    selectedColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
-    disabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    highlightedColor: {r: 0.85098046, g: 1, b: 0.4901961, a: 1}
+    pressedColor: {r: 0.427451, g: 0.5019608, b: 0.24705884, a: 1}
+    selectedColor: {r: 0.85098046, g: 1, b: 0.4901961, a: 1}
+    disabledColor: {r: 1, g: 1, b: 1, a: 1}
