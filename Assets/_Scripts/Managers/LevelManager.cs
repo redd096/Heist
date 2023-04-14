@@ -50,7 +50,10 @@ public class LevelManager : MonoBehaviour
     {
         state = EStateLevelManager.endGame;
         Score = CalculateScore();
-        SaveManager.PlayerPrefs.SetFloat("Score", Score);   //save score
+
+        //save high score
+        if (SaveManager.PlayerPrefs.GetFloat(GetHighScore.HIGHSCORE_SAVE, 0f) < Score)
+            SaveManager.PlayerPrefs.SetFloat(GetHighScore.HIGHSCORE_SAVE, Score);
 
         GameManager.uiManager.UpdateEndMenuText(true);
         GameManager.uiManager.EndMenu(true);
