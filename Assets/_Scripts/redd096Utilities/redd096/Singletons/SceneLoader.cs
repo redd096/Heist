@@ -69,7 +69,7 @@ namespace redd096
             if (NetworkManager.instance)
             {
                 if (NetworkManager.instance.Runner.IsServer)
-                    NetworkManager.instance.Runner.SetActiveScene(SceneManager.GetActiveScene().name);
+                    NetworkManager.instance.Runner.SetActiveScene(NetworkManager.instance.Runner.CurrentScene);
             }
             //change scene normally
             else

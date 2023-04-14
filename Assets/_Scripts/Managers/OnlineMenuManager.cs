@@ -5,9 +5,11 @@ using TMPro;
 using Fusion;
 using System.Linq;
 using redd096.Attributes;
+using UnityEngine.SceneManagement;
 
 public class OnlineMenuManager : MonoBehaviour
 {
+    [Scene][SerializeField] string backButtonScene = "MainMenu";
     [Scene][SerializeField] int lobbyScene = 3;
     public TMP_InputField roomCode;
     public TMP_InputField username;
@@ -69,5 +71,11 @@ public class OnlineMenuManager : MonoBehaviour
             return;
 
         NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text, lobbyScene);
+    }
+
+    public void BackButton()
+    {
+        Destroy(NetworkManager.instance.gameObject);
+        SceneManager.LoadScene(backButtonScene);
     }
 }

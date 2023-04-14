@@ -5,13 +5,14 @@ using TMPro;
 using Fusion;
 using redd096.Attributes;
 using redd096;
+using UnityEngine.InputSystem;
 
 public class Lobby : MonoBehaviour
 {
     public TMP_Text text;
     public GameObject playerPrefab;
     public Transform container;
-    [Scene] public string sceneOnBack = "MainMenu";
+    [Scene] public string sceneOnBack = "OnlineMenu";
     [SerializeField] UnityEngine.UI.Button selectLevelButton = default;
     [Scene] public string sceneOnSelectLevel = "SelectLevel";
 
@@ -29,6 +30,10 @@ public class Lobby : MonoBehaviour
         NetworkManager.instance.OnPlayerEnter += AddPlayer;
         NetworkManager.instance.OnPlayerRefreshName += RefreshPlayer;
         NetworkManager.instance.OnPlayerExit += RemovePlayer;
+
+        //set default players
+        foreach (User u in FindObjectsOfType<User>())
+            AddPlayer(u);
     }
 
     public void Start()
