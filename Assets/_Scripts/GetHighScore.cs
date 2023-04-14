@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GetHighScore : MonoBehaviour
 {
-    [Header("Show high score on a text where {0.00} is the score with 2 values after the comma")]
+    [Header("Set text where {0} is the HighScore")]
     [SerializeField] TextMeshProUGUI text = default;
     [SerializeField] string textToShow = "HIGHSCORE {0} !!";
 
