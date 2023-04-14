@@ -46,7 +46,9 @@ namespace redd096.PathFinding.FlowField2D
         //find waypoints in scene and set in array
         [Button] void FindWaypointsInScene() => waypoints = FindObjectsOfType<WaypointFlowField>();
         //build grid
+#if UNITY_EDITOR
         [Button] void UpdateNodes() { BuildGrid(); SceneView.RepaintAll(); Undo.RegisterFullObjectHierarchyUndo(gameObject, "Update Nodes"); }
+#endif
 
         //grid
         Dictionary<Vector2Int, WaypointFlowField> gridWaypoints = new Dictionary<Vector2Int, WaypointFlowField>();
