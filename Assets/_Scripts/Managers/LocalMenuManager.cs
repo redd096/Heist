@@ -13,9 +13,6 @@ public class LocalMenuManager : MonoBehaviour
     [Scene][SerializeField] string sceneToLoadOnBack = "MainMenu";
     [SerializeField] Button selectLevelButton = default;
 
-    [Header("Players Colors")]
-    [SerializeField] Color[] playersColors = default;
-
     Dictionary<PlayerInput, GameObject> players = new Dictionary<PlayerInput, GameObject>();
 
     private void Awake()
@@ -52,7 +49,7 @@ public class LocalMenuManager : MonoBehaviour
         //show new player in UI
         GameObject go = Instantiate(localLobbyPlayerPrefab, container);
         go.GetComponentInChildren<TextMeshProUGUI>().text = "Player " + obj.playerIndex;
-        go.GetComponentInChildren<Image>().color = playersColors[obj.playerIndex];
+        go.GetComponentInChildren<Image>().color = GameManager.instance.PlayersColors[obj.playerIndex];
         players.Add(obj, go);
 
         //is enable if at least one player is in the scene

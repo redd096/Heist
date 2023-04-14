@@ -9,6 +9,7 @@ public class User : NetworkBehaviour
     [Networked(OnChanged = nameof(RefreshUI))]
     public string Username { get; set; }
 
+    public Color PlayerColor => GameManager.instance.PlayersColors[GetComponent<UnityEngine.InputSystem.PlayerInput>().playerIndex];
 
     public override void Spawned()
     {

@@ -17,9 +17,6 @@ public class Lobby : MonoBehaviour
     [SerializeField] Button selectLevelButton = default;
     [Scene] public string sceneOnSelectLevel = "SelectLevel";
 
-    [Header("Players Colors")]
-    [SerializeField] Color[] playersColors = default;
-
     private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
     private void Awake()
@@ -49,7 +46,7 @@ public class Lobby : MonoBehaviour
     {
         var go = Instantiate(playerPrefab, container);
         go.GetComponentInChildren<TMP_Text>().text = user.Username;
-        go.GetComponentInChildren<Image>().color = playersColors[user.GetComponent<PlayerInput>().playerIndex];
+        go.GetComponentInChildren<Image>().color = GameManager.instance.PlayersColors[user.GetComponent<PlayerInput>().playerIndex];
         _players.Add(user.Object.Id.ToString(), go);
     }
 

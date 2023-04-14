@@ -5,6 +5,9 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public class GameManager : Singleton<GameManager>
 {
+    [Header("Players Colors")]
+    public Color[] PlayersColors = default;
+
     public static UIManager uiManager { get; private set; }
     public static LevelManager levelManager { get; private set; }
     public static PauseManager pauseManager { get; private set; }
