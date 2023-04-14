@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53501761a28e914b8b3d113d700b43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 10
   phMaterialDefault: {fileID: 13400000, guid: 1e0e31860547c234b914469fc8f19f3f, type: 2}
   phMaterialOnPick: {fileID: 13400000, guid: ce083c906a1e8b34c8619b21bf1a8fb9, type: 2}
 --- !u!54 &2047265557181653188
@@ -332,9 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
+  _interpolationDataSource: 3
   InterpolationSpace: 0
-  InterpolationTarget: {fileID: 7932930029404190357}
+  InterpolationTarget: {fileID: 0}
   InterpolateErrorCorrection: 1
   InterpolatedErrorCorrectionSettings:
     MinRate: 3.3

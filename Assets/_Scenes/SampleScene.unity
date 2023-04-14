@@ -1732,6 +1732,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: Flags
+      value: 2561
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 1317062774463302321
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: 5755245596671760829
+      objectReference: {fileID: 0}
     - target: {fileID: 1716162120075746935, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: inputSpeed
       value: 5.5
@@ -1743,6 +1755,18 @@ PrefabInstance:
     - target: {fileID: 2843580852274682740, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: pushHeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034894131471113478, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: Flags
+      value: 2561
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034894131471113478, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 8379401803241941700
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034894131471113478, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: 6876029789343803312
       objectReference: {fileID: 0}
     - target: {fileID: 4891944727084366731, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: m_RootOrder
@@ -1817,6 +1841,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 960917332519735689, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: Flags
+      value: 2561
+      objectReference: {fileID: 0}
+    - target: {fileID: 960917332519735689, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: -4302259126774760837
+      objectReference: {fileID: 0}
+    - target: {fileID: 960917332519735689, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: -1281828594621712485
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject
