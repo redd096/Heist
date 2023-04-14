@@ -1,9 +1,6 @@
-using Fusion;
 using redd096.Attributes;
 using redd096.GameTopDown2D;
 using redd096.StateMachine.StateMachineRedd096;
-using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerPawn : Character
 {
@@ -13,6 +10,9 @@ public class PlayerPawn : Character
     {
         //deactive statemachine if we are online but we are not the server
         if (NetworkManager.instance && NetworkManager.instance.Runner.IsServer == false)
+        {
             GetComponentInChildren<StateMachineRedd096>().enabled = false;
+            GetComponentInChildren<RotateUsingAim>().enabled = false;
+        }
     }
 }

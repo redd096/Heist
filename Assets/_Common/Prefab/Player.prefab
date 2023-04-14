@@ -382,10 +382,10 @@ MonoBehaviour:
   Flags: 2305
   NetworkGuid:
     RawGuidValue: 735f74d8885df6c479769896ab490adc
-  NestedObjects:
-  - {fileID: 4034894131471113478}
+  NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 4161262650018359254}
+  - {fileID: 5058957815651894064}
   - {fileID: 2678706268513403151}
   - {fileID: 5681589672139636062}
   - {fileID: 4022939224192781672}
@@ -533,7 +533,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4891944727366660058}
   - component: {fileID: 8074261119468911475}
-  - component: {fileID: 4034894131471113478}
   - component: {fileID: 5058957815651894064}
   m_Layer: 0
   m_Name: Graphics
@@ -573,30 +572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 20
   aimComponent: {fileID: 4182660346221481028}
---- !u!114 &4034894131471113478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4891944727366660059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 3073
-  NetworkGuid:
-    RawGuidValue: 00000000000000000000000000000000
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 5058957815651894064}
-  SimulationBehaviours: []
 --- !u!114 &5058957815651894064
 MonoBehaviour:
   m_ObjectHideFlags: 0
