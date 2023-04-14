@@ -10,8 +10,31 @@ public class PauseManager : MonoBehaviour
 
     public bool IsPlaying { get; private set; } = true;
 
+    private void OnEnable()
+    {
+        if (GameManager.levelManager)
+            GameManager.levelManager.onChangeState += OnLevelManagerChangeState;
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.levelManager)
+            GameManager.levelManager.onChangeState += OnLevelManagerChangeState;
+    }
+
+    void OnLevelManagerChangeState()
+    {
+        //be sure to not have pause menu active, when end game
+        if (GameManager.levelManager.State == LevelManager.EStateLevelManager.endGame)
+            Resume();
+    }
+
     public void Pause()
     {
+        //only in game
+        if (GameManager.levelManager.State != LevelManager.EStateLevelManager.game)
+            return;
+
         IsPlaying = false;
 
         //show pause menu

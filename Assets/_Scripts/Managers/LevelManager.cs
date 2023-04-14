@@ -11,10 +11,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int secondsBeforeStartTimer = 3;
     [SerializeField] int timerInSeconds = 90;
 
-    enum EStateLevelManager { countdown, game, endGame}
+    public enum EStateLevelManager { countdown, game, endGame}
 
     EStateLevelManager state = EStateLevelManager.countdown;
     float timer;
+
+    public EStateLevelManager State => state;
+    public System.Action onChangeState { get; set; }
 
     #endregion
 
@@ -49,6 +52,7 @@ public class LevelManager : MonoBehaviour
     void OnWin()
     {
         state = EStateLevelManager.endGame;
+        onChangeState?.Invoke();
         Score = CalculateScore();
 
         //save high score
@@ -63,6 +67,7 @@ public class LevelManager : MonoBehaviour
     {
         //show end menu
         state = EStateLevelManager.endGame;
+        onChangeState?.Invoke();
 
         GameManager.uiManager.UpdateTimer(0);
         GameManager.uiManager.UpdateEndMenuText(false);
@@ -108,6 +113,7 @@ public class LevelManager : MonoBehaviour
         //set timer
         GameManager.uiManager.ShowCountdown(false);
         state = EStateLevelManager.game;
+        onChangeState?.Invoke();
         timer = Time.time + timerInSeconds;
 
         //possess pawns

@@ -29,6 +29,10 @@ public class LocalMenuManager : MonoBehaviour
     {
         PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
         PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
+
+        //set default players
+        foreach (PlayerController p in FindObjectsOfType<PlayerController>())
+            OnPlayerJoined(p.GetComponent<PlayerInput>());
     }
 
     private void OnDestroy()
