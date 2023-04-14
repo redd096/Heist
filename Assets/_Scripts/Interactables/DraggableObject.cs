@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
@@ -29,6 +30,7 @@ public class DraggableObject : MonoBehaviour
     {
         if (isPicked == false)
         {
+
             isPicked = true;
             previousParent = transform.parent;
             transform.parent = character.transform;
@@ -47,11 +49,29 @@ public class DraggableObject : MonoBehaviour
             isPicked = false;
             transform.parent = previousParent;
             foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
-            RecreateRigidbody();
+            var rb = RecreateRigidbody();
+            rb.isKinematic = true;
             return true;
         }
-
         return false;
+    }
+
+    public void WaitEndOfThrow()
+    {
+        StartCoroutine(CheckIsMoving());
+    }
+
+    private IEnumerator CheckIsMoving()
+    {
+        var rb = GetComponent<Rigidbody>();
+
+        while (rb.velocity.magnitude == 0)
+            yield return null;
+
+        while (rb.velocity.magnitude > 0)
+            yield return null;
+
+        rb.isKinematic = true;
     }
 
     public void Highlight(bool isHighlighted, User user = null)
@@ -80,7 +100,7 @@ public class DraggableObject : MonoBehaviour
         Destroy(rb);
     }
 
-    void RecreateRigidbody()
+    Rigidbody RecreateRigidbody()
     {
         //add rigidbody
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
@@ -94,6 +114,7 @@ public class DraggableObject : MonoBehaviour
         rb.interpolation = interpolation;
         rb.collisionDetectionMode = collisionDetection;
         rb.constraints = constraints;
+        return rb;
     }
 
     #endregion

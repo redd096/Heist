@@ -57,13 +57,15 @@ public class ThrowComponent : MonoBehaviour
         {
             DraggableObject draggedObject = dragComponent.Dragged;
             dragComponent.Drop();
-
+            var rb = draggedObject.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
             //movement or aim direction
             Vector3 directionInput = throwAtMovementDirection ? movementComponent.MoveDirectionInput : aimComponent.AimDirectionInput;
             if (directionInput == Vector3.zero) directionInput = transform.forward;             //if no aim or move direction, throw forward
             Vector3 direction = new Vector3(directionInput.x, 0, directionInput.z).normalized;  //be sure to ignore Y
             if (snapToAxis) direction = GetSnappedDirection(direction);                         //if necessary, snap direction
-            draggedObject.GetComponent<Rigidbody>().AddForce(direction * pushForce + Vector3.up * pushHeight, ForceMode.VelocityChange);
+            rb.AddForce(direction * pushForce + Vector3.up * pushHeight, ForceMode.VelocityChange);
+            draggedObject.WaitEndOfThrow();
         }
     }
 
