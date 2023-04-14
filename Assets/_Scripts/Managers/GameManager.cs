@@ -10,7 +10,6 @@ public class GameManager : Singleton<GameManager>
     public static PauseManager pauseManager { get; private set; }
 
     public static List<RandomizeColors.ColorStruct> remainingColors = new List<RandomizeColors.ColorStruct>();
-    public static List<User> usersInScene = new List<User>();
 
     protected override void SetDefaults()
     {
