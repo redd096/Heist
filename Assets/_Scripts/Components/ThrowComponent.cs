@@ -59,7 +59,7 @@ public class ThrowComponent : MonoBehaviour
             dragComponent.Drop();
 
             //movement or aim direction
-            Vector3 directionInput = throwAtMovementDirection ? movementComponent.MoveDirectionInput : aimComponent.AimDirectionInput;
+            Vector3 directionInput = throwAtMovementDirection && movementComponent.MoveDirectionInput != Vector3.zero ? movementComponent.MoveDirectionInput : aimComponent.AimDirectionInput;
             if (directionInput == Vector3.zero) directionInput = transform.forward;             //if no aim or move direction, throw forward
             Vector3 direction = new Vector3(directionInput.x, 0, directionInput.z).normalized;  //be sure to ignore Y
             if (snapToAxis) direction = GetSnappedDirection(direction);                         //if necessary, snap direction
