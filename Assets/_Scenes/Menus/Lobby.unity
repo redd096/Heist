@@ -1237,6 +1237,11 @@ MonoBehaviour:
   sceneOnBack: OnlineMenu
   selectLevelButton: {fileID: 1901038160}
   sceneOnSelectLevel: SelectLevel
+  playersColors:
+  - {r: 0.25490198, g: 0.5803922, b: 0.83921576, a: 1}
+  - {r: 0.83921576, g: 0.25490198, b: 0.3372549, a: 1}
+  - {r: 0.36078432, g: 0.83921576, b: 0.25490198, a: 1}
+  - {r: 0.7058824, g: 0.427451, b: 1, a: 1}
 --- !u!1 &1901038158
 GameObject:
   m_ObjectHideFlags: 0

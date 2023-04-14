@@ -6,6 +6,7 @@ using Fusion;
 using redd096.Attributes;
 using redd096;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Lobby : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class Lobby : MonoBehaviour
     public GameObject playerPrefab;
     public Transform container;
     [Scene] public string sceneOnBack = "OnlineMenu";
-    [SerializeField] UnityEngine.UI.Button selectLevelButton = default;
+    [SerializeField] Button selectLevelButton = default;
     [Scene] public string sceneOnSelectLevel = "SelectLevel";
+
+    [Header("Players Colors")]
+    [SerializeField] Color[] playersColors = default;
 
     private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
@@ -45,6 +49,7 @@ public class Lobby : MonoBehaviour
     {
         var go = Instantiate(playerPrefab, container);
         go.GetComponentInChildren<TMP_Text>().text = user.Username;
+        go.GetComponentInChildren<Image>().color = playersColors[user.GetComponent<PlayerInput>().playerIndex];
         _players.Add(user.Object.Id.ToString(), go);
     }
 
