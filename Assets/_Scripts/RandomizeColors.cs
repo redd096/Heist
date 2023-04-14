@@ -37,13 +37,13 @@ public class RandomizeColors : MonoBehaviour
     ColorStruct GetRandomColors()
     {
         //when reach 0, recreate list
-        if (GameManager.instance.remainingColors.Count <= 0)
-            GameManager.instance.remainingColors.AddRange(randomColors);
+        if (GameManager.remainingColors.Count <= 0)
+            GameManager.remainingColors.AddRange(randomColors);
 
         //select random color and remove from the list
-        int index = Random.Range(0, GameManager.instance.remainingColors.Count);
-        ColorStruct foundColor = GameManager.instance.remainingColors[index];
-        GameManager.instance.remainingColors.RemoveAt(index);
+        int index = Random.Range(0, GameManager.remainingColors.Count);
+        ColorStruct foundColor = GameManager.remainingColors[index];
+        GameManager.remainingColors.RemoveAt(index);
 
         return foundColor;
     }

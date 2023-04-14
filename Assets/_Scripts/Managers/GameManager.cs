@@ -7,8 +7,9 @@ public class GameManager : Singleton<GameManager>
 {
     public static UIManager uiManager { get; private set; }
     public static LevelManager levelManager { get; private set; }
+    public static PauseManager pauseManager { get; private set; }
 
-    public List<RandomizeColors.ColorStruct> remainingColors = new List<RandomizeColors.ColorStruct>();
+    public static List<RandomizeColors.ColorStruct> remainingColors = new List<RandomizeColors.ColorStruct>();
 
     protected override void SetDefaults()
     {
@@ -17,5 +18,6 @@ public class GameManager : Singleton<GameManager>
         //set references
         uiManager = FindObjectOfType<UIManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        pauseManager = FindObjectOfType<PauseManager>();
     }
 }

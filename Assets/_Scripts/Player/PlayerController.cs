@@ -17,6 +17,30 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Update()
+    {
+        //check if in a scene with pause manager
+        if (GameManager.pauseManager)
+        {
+            if (GameManager.pauseManager.IsPlaying)
+            {
+                //check if press Pause
+                if (playerInput.actions.FindAction("Pause").WasPressedThisFrame())
+                {
+                    GameManager.pauseManager.Pause();
+                }
+            }
+            else
+            {
+                //check if press resume
+                if (playerInput.actions.FindAction("Resume").WasPressedThisFrame())
+                {
+                    GameManager.pauseManager.Resume();
+                }
+            }
+        }
+    }
+
     public void Possess(PlayerPawn pawn)
     {
         Unpossess();            //be sure to possess only one pawn
