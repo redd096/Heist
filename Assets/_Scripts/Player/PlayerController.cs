@@ -1,3 +1,4 @@
+using Fusion;
 using redd096.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -50,6 +51,10 @@ public class PlayerController : MonoBehaviour
             if (CurrentPawn.CurrentController) CurrentPawn.CurrentController.Unpossess();   //if another controller is possessing pawn, unpossess
             CurrentPawn.CurrentController = this;                                           //possess pawn
         }
+
+        //if online, set input authority
+        if (NetworkManager.instance)
+            CurrentPawn.GetComponent<NetworkObject>().AssignInputAuthority(GetComponent<User>().Object.InputAuthority);
     }
 
     public void Unpossess()

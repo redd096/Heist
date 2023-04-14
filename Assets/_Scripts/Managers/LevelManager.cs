@@ -25,24 +25,6 @@ public class LevelManager : MonoBehaviour
     DraggableObject[] draggableObjectsInScene = default;
     TriggerZone[] triggerZonesInScene = default;
 
-    private void Awake()
-    {
-        //online
-        if (NetworkManager.instance)
-        {
-            NetworkManager.instance.OnSceneLoadDoneCallback += OnSceneLoadStartCallback;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        //online
-        if (NetworkManager.instance)
-        {
-            NetworkManager.instance.OnSceneLoadDoneCallback -= OnSceneLoadStartCallback;
-        }
-    }
-
     private void Start()
     {
         ResetTimers();
@@ -51,17 +33,6 @@ public class LevelManager : MonoBehaviour
         draggableObjectsInScene = FindObjectsOfType<DraggableObject>();
         triggerZonesInScene = FindObjectsOfType<TriggerZone>();
 
-        //local
-        if (NetworkManager.instance == null)
-        {
-            //activate pawns in scene for every player
-            foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())
-                TryActivatePlayer(playerController);
-        }
-    }
-
-    void OnSceneLoadStartCallback(NetworkRunner runner)
-    {
         //activate pawns in scene for every player
         foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())
             TryActivatePlayer(playerController);
