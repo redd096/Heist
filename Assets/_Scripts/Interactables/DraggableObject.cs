@@ -8,6 +8,8 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] PhysicMaterial phMaterialOnPick = default;
     [SerializeField] Outline outline = default;
 
+    private Coroutine coroutine;
+
     public int Score => score;
 
     bool isPicked = false;
@@ -30,8 +32,13 @@ public class DraggableObject : MonoBehaviour
     {
         if (isPicked == false)
         {
-
             isPicked = true;
+            if(coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+
             previousParent = transform.parent;
             transform.parent = character.transform;
             foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialOnPick;
@@ -58,7 +65,7 @@ public class DraggableObject : MonoBehaviour
 
     public void WaitEndOfThrow()
     {
-        StartCoroutine(CheckIsMoving());
+        coroutine = StartCoroutine(CheckIsMoving());
     }
 
     private IEnumerator CheckIsMoving()
@@ -68,7 +75,7 @@ public class DraggableObject : MonoBehaviour
         while (rb.velocity.magnitude == 0)
             yield return null;
 
-        while (rb.velocity.magnitude > 0)
+        while (!rb.IsSleeping())
             yield return null;
 
         rb.isKinematic = true;
