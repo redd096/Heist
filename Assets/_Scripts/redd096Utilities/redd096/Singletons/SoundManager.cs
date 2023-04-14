@@ -45,10 +45,6 @@ namespace redd096
         [Header("Sounds On Click Button (random from array)")]
         [SerializeField] AudioClassBase[] soundsOnClick = default;
 
-        [Header("Volume Settings")]
-        [ReadOnly][Range(0f, 1f)][SerializeField] float volumeMusic = 1;
-        [ReadOnly][Range(0f, 1f)][SerializeField] float volumeSFX = 1;
-
         //sound parent (instantiate if null)
         private Transform soundsParent;
         public Transform SoundsParent
@@ -70,6 +66,8 @@ namespace redd096
 
         //used for volume settings
         Dictionary<AudioSource, float> savedVolumes = new Dictionary<AudioSource, float>();
+        float volumeMusic = 1;
+        float volumeSFX = 1;
 
         #endregion
 

@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 187518473707530972}
   - component: {fileID: 4521019374871618960}
   - component: {fileID: 460136667938168963}
+  - component: {fileID: 798807930373385136}
+  - component: {fileID: 569061726080286443}
+  - component: {fileID: 4729927749372714920}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -82,3 +85,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChangeCursorLockMode: 0
   LockModeOnResume: 2
+--- !u!114 &798807930373385136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187518473707530973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7272410f0ebdfb14e9914ac463f23743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &569061726080286443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187518473707530973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5de5dc489d7f84182f896d57fd253a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4729927749372714920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187518473707530973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3598e02ecb4cb7549b4231fd47cd43bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicPrefab: {fileID: 0}
+  fadeInMusic:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fadeOutMusic:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stopBackgroundMusicThisScene: 0
+  musicThisScene:
+    audioClip: {fileID: 0}
+    volume: 1
+  loopMusicThisScene: 1
+  forceReplayThisScene: 0
+  sound2DPrefab: {fileID: 0}
+  sound3DPrefab: {fileID: 0}
+  soundsOnClick: []
+  volumeMusic: 1
+  volumeSFX: 1
