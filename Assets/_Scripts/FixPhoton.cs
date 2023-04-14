@@ -12,7 +12,7 @@ public class FixPhoton : MonoBehaviour
         //online
         if (NetworkManager.instance)
         {
-            NetworkManager.instance.OnSceneLoadStartCallback += OnSceneLoadStartCallback;
+            NetworkManager.instance.OnSceneLoadDoneCallback += OnSceneLoadStartCallback;
         }
     }
 
@@ -21,7 +21,7 @@ public class FixPhoton : MonoBehaviour
         //online
         if (NetworkManager.instance)
         {
-            NetworkManager.instance.OnSceneLoadStartCallback -= OnSceneLoadStartCallback;
+            NetworkManager.instance.OnSceneLoadDoneCallback -= OnSceneLoadStartCallback;
         }
     }
 

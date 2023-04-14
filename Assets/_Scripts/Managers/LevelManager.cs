@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
         //online
         if (NetworkManager.instance)
         {
-            NetworkManager.instance.OnSceneLoadStartCallback += OnSceneLoadStartCallback;
+            NetworkManager.instance.OnSceneLoadDoneCallback += OnSceneLoadStartCallback;
         }
     }
 
@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         //online
         if (NetworkManager.instance)
         {
-            NetworkManager.instance.OnSceneLoadStartCallback -= OnSceneLoadStartCallback;
+            NetworkManager.instance.OnSceneLoadDoneCallback -= OnSceneLoadStartCallback;
         }
     }
 
@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         triggerZonesInScene = FindObjectsOfType<TriggerZone>();
 
         //local
-        if (NetworkManager.instance == false)
+        if (NetworkManager.instance == null)
         {
             //activate pawns in scene for every player
             foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())

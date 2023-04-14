@@ -16,7 +16,7 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public Action<User> OnPlayerEnter, OnPlayerRefreshName, OnPlayerExit;
     public Action<NetworkInput> OnInputCallback;
-    public Action<NetworkRunner> OnSceneLoadStartCallback;
+    public Action<NetworkRunner> OnSceneLoadDoneCallback;
 
     private List<SessionInfo> _sessions;
     public List<SessionInfo> Sessions
@@ -113,11 +113,11 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
+        OnSceneLoadDoneCallback?.Invoke(runner);
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)
     {
-        OnSceneLoadStartCallback?.Invoke(runner);
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
