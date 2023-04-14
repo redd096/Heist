@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.21176471, g: 0.35686275, b: 0.6431373, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -1784,6 +1784,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 886013515}
     m_Modifications:
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: Flags
+      value: 133633
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 3552130103723254600
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: -2624092254347205755
+      objectReference: {fileID: 0}
     - target: {fileID: 362818274593072665, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2551,6 +2563,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 886013515}
     m_Modifications:
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: Flags
+      value: 133633
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 8954386236723653721
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: -7419549770408622960
+      objectReference: {fileID: 0}
     - target: {fileID: 362818274593072665, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4508,6 +4532,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 886013515}
     m_Modifications:
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: Flags
+      value: 133633
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: -772157372714807353
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: 8828443491677695135
+      objectReference: {fileID: 0}
     - target: {fileID: 362818274593072665, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6503,6 +6539,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 886013515}
     m_Modifications:
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: Flags
+      value: 133633
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 1748175611435268489
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028156506040488847, guid: 735f74d8885df6c479769896ab490adc, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: 5021166297399804809
+      objectReference: {fileID: 0}
     - target: {fileID: 4891944727084366731, guid: 735f74d8885df6c479769896ab490adc, type: 3}
       propertyPath: m_RootOrder
       value: 0
