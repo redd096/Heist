@@ -21,7 +21,7 @@ public class RandomizeColors : MonoBehaviour
         backgroundImage.color = randomColor.backgroundColor;
 
         //set interactions in scene
-        Selectable[] selectables = interactionsInScene != null && interactionsInScene.Length > 0 ? interactionsInScene : FindObjectsOfType<Selectable>();
+        Selectable[] selectables = interactionsInScene != null && interactionsInScene.Length > 0 ? interactionsInScene : FindObjectsOfType<Selectable>(true);
         foreach (var v in selectables)
         {
             ColorBlock colorBlock = v.colors;
