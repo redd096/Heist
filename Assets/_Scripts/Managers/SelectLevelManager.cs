@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class SelectLevelManager : MonoBehaviour
 {
+    [Scene][SerializeField] string backSceneOnline = "Lobby";
+    [Scene][SerializeField] string backSceneOffline = "LocalMenu";
     [SerializeField] LevelButtonStruct[] levelButtons = default;
 
     private void Start()
@@ -19,17 +21,15 @@ public class SelectLevelManager : MonoBehaviour
 
     void LoadLevel(string level)
     {
-        //change scene online
+        SceneLoader.instance.LoadScene(level);
+    }
+
+    public void BackButton()
+    {
         if (NetworkManager.instance)
-        {
-            if (NetworkManager.instance.Runner.IsServer)
-                NetworkManager.instance.Runner.SetActiveScene(level);
-        }
-        //change scene normally
+            SceneLoader.instance.LoadScene(backSceneOnline);
         else
-        {
-            SceneLoader.instance.LoadScene(level);
-        }
+            SceneLoader.instance.LoadScene(backSceneOffline);
     }
 
     [System.Serializable]
