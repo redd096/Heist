@@ -268,19 +268,28 @@ MonoBehaviour:
     SetParent: 0
     GameObjectsFeedback: []
     ParticlesFeedback: []
-    AudiosFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: 366b240a646155d47a228e0b04085980, type: 3}
+      volume: 0.3
+      is3D: 0
   onDrop:
     InstantiateOneRandom: 0
     SetParent: 0
     GameObjectsFeedback: []
     ParticlesFeedback: []
-    AudiosFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: c5dad13b9f168a64387fae16b020df88, type: 3}
+      volume: 0.3
+      is3D: 0
   onThrow:
     InstantiateOneRandom: 0
     SetParent: 0
     GameObjectsFeedback: []
     ParticlesFeedback: []
-    AudiosFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: 6a76d78106dbc4f4dae6f23bb32b757a, type: 3}
+      volume: 0.3
+      is3D: 0
 --- !u!1 &7932930029404190346
 GameObject:
   m_ObjectHideFlags: 0
