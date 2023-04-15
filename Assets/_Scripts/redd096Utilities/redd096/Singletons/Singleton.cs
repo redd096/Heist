@@ -10,6 +10,12 @@ namespace redd096
         protected virtual void Awake()
         {
             CheckInstance();
+
+            if (instance == this)
+                InitializeSingleton();
+
+            //call set defaults in the instance
+            instance.SetDefaults();
         }
 
         void CheckInstance()
@@ -25,13 +31,19 @@ namespace redd096
                 instance = (T)this;
                 DontDestroyOnLoad(this);
             }
-
-            //call set defaults in the instance
-            instance.SetDefaults();
         }
 
         /// <summary>
-        /// Called on Awake. This will be called every time is loaded a new scene, if in the new scene there is another object of this type
+        /// Called one time in Awake, only if this is the correct instance. Called before SetDefaults
+        /// </summary>
+        protected virtual void InitializeSingleton()
+        {
+
+        }
+
+        /// <summary>
+        /// Called on Awake, after InitializeSingleton. 
+        /// This will be called every time is loaded a new scene, if in the new scene there is another object of this type
         /// </summary>
         protected virtual void SetDefaults()
         {
