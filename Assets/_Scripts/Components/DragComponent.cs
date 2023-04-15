@@ -148,7 +148,7 @@ public class DragComponent : MonoBehaviour
     public void Interact()
     {
         //try drop
-        if (Drop())
+        if (Drop(false))
             return;
 
         //or try pick
@@ -170,11 +170,11 @@ public class DragComponent : MonoBehaviour
         }
     }
 
-    public bool Drop()
+    public bool Drop(bool isThrowed)
     {
         if (dragged)
         {
-            if (dragged.Drop())
+            if (dragged.Drop(isThrowed))
             {
                 dragged = null;
 

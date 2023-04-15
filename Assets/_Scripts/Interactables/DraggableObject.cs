@@ -12,6 +12,10 @@ public class DraggableObject : MonoBehaviour
 
     public int Score => score;
 
+    public System.Action onPick { get; set; }
+    public System.Action onDrop { get; set; }
+    public System.Action onThrow { get; set; }
+
     bool isPicked = false;
     Transform previousParent;
 
@@ -43,13 +47,16 @@ public class DraggableObject : MonoBehaviour
             transform.parent = character.transform;
             foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialOnPick;
             DestroyRigidbody();                     //destroy rigidbody to move with character
+
+            onPick?.Invoke();
+
             return true;
         }
 
         return false;
     }
 
-    public bool Drop()
+    public bool Drop(bool isThrowed)
     {
         if (isPicked)
         {
@@ -58,6 +65,10 @@ public class DraggableObject : MonoBehaviour
             foreach (Collider col in GetComponentsInChildren<Collider>()) col.material = phMaterialDefault;
             var rb = RecreateRigidbody();
             rb.isKinematic = true;
+
+            if (isThrowed) onThrow?.Invoke();
+            else onDrop?.Invoke();
+
             return true;
         }
         return false;

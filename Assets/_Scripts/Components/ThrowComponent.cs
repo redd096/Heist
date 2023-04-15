@@ -56,7 +56,7 @@ public class ThrowComponent : MonoBehaviour
         if (dragComponent.Dragged)
         {
             DraggableObject draggedObject = dragComponent.Dragged;
-            dragComponent.Drop();
+            dragComponent.Drop(true);
             var rb = draggedObject.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             //movement or aim direction

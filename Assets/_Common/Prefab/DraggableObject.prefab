@@ -226,6 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7932930028730500424}
+  - component: {fileID: 4811370168282988241}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -249,6 +250,37 @@ Transform:
   m_Father: {fileID: 7932930029404190357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4811370168282988241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932930028730500425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc82ae8eff26a1d40be3ac6263a0101e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 7932930029404190356}
+  onPick:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback: []
+  onDrop:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback: []
+  onThrow:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback: []
 --- !u!1 &7932930029404190346
 GameObject:
   m_ObjectHideFlags: 0
