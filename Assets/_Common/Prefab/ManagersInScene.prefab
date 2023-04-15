@@ -621,6 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e12a4043aafd94782bff9d2be8a821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCurrentScene: 1
   sceneOfHighScore: LevelTest1
   text: {fileID: 1344199387117165803}
   textToShow: HIGHSCORE {0} !
