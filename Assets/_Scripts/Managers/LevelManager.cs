@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] PlayerPawn[] playersInScene = default;
 
     public int Score { get; set; } = 0;
+    public int FinalScore { get; set; } = 0;
 
     public System.Action onWin;
     public System.Action onFinishTimer;
@@ -53,30 +54,43 @@ public class LevelManager : MonoBehaviour
 
     void OnWin()
     {
+        //calculate score
         state = EStateLevelManager.endGame;
         onChangeState?.Invoke();
+        UpdateScoreInGame();    //just to be sure score is correct
         CalculateFinalScore();
 
         //save high score
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if (SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, 0) < Score)
-            SaveManager.PlayerPrefsFWMV.SetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, Score);
+        if (SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, 0) < FinalScore)
+            SaveManager.PlayerPrefsFWMV.SetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, FinalScore);
 
+        //show end menu
         GameManager.uiManager.UpdateEndMenuText(true);
         GameManager.uiManager.EndMenu(true);
+        GameManager.uiManager.ShowScoreTab(Score, Mathf.CeilToInt(timer - Time.time), FinalScore);
 
         onWin?.Invoke();
     }
 
     void OnFinishTimer()
     {
-        //show end menu
+        //calculate score
         state = EStateLevelManager.endGame;
         onChangeState?.Invoke();
+        UpdateScoreInGame();    //just to be sure score is correct
+        CalculateFinalScore();
 
+        //save high score
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, 0) < FinalScore)
+            SaveManager.PlayerPrefsFWMV.SetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, FinalScore);
+
+        //show end menu
         GameManager.uiManager.UpdateTimer(0);
         GameManager.uiManager.UpdateEndMenuText(false);
         GameManager.uiManager.EndMenu(true);
+        GameManager.uiManager.ShowScoreTab(Score, Mathf.CeilToInt(timer - Time.time), FinalScore);
 
         onFinishTimer?.Invoke();
     }
@@ -233,6 +247,6 @@ public class LevelManager : MonoBehaviour
 
     public void CalculateFinalScore()
     {
-        Score = CalculateTriggerZonesScore() + CalculateTimerScore();
+        FinalScore = CalculateTriggerZonesScore() + CalculateTimerScore();
     }
 }
