@@ -1847,6 +1847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6385864242211570638}
   - component: {fileID: 6385864242211570639}
+  - component: {fileID: 4606916292439910558}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1885,7 +1886,31 @@ MonoBehaviour:
   timerInSeconds: 90
   playerPrefab: {fileID: 6028118433053544493, guid: 735f74d8885df6c479769896ab490adc, type: 3}
   playersInScene: []
-  Score: 0
+--- !u!114 &4606916292439910558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385864242211570633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0364fa9932b85d9488191d68d26f40e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 6385864242211570639}
+  onWin:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback: []
+  onFinishTimer:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback: []
 --- !u!1 &6385864242262186936
 GameObject:
   m_ObjectHideFlags: 0

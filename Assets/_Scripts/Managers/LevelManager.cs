@@ -1,4 +1,3 @@
-using Fusion;
 using redd096;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +24,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] PlayerPawn playerPrefab = default;
     [SerializeField] PlayerPawn[] playersInScene = default;
 
-    public float Score = 0;
+    public float Score { get; set; } = 0;
+
+    public System.Action onWin;
+    public System.Action onFinishTimer;
 
     //win check
     DraggableObject[] draggableObjectsInScene = default;
@@ -61,6 +63,8 @@ public class LevelManager : MonoBehaviour
 
         GameManager.uiManager.UpdateEndMenuText(true);
         GameManager.uiManager.EndMenu(true);
+
+        onWin?.Invoke();
     }
 
     void OnFinishTimer()
@@ -72,6 +76,8 @@ public class LevelManager : MonoBehaviour
         GameManager.uiManager.UpdateTimer(0);
         GameManager.uiManager.UpdateEndMenuText(false);
         GameManager.uiManager.EndMenu(true);
+
+        onFinishTimer?.Invoke();
     }
 
     #region timers
