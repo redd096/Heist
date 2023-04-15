@@ -17,6 +17,7 @@ public class TriggerZone : MonoBehaviour
         if (draggable && currentObjectsInside.Contains(draggable) == false)
         {
             currentObjectsInside.Add(draggable);
+            GameManager.levelManager.UpdateScoreInGame();
 
             onEnterDraggable?.Invoke(draggable);
 
@@ -32,6 +33,7 @@ public class TriggerZone : MonoBehaviour
         if (draggable && currentObjectsInside.Contains(draggable))
         {
             currentObjectsInside.Remove(draggable);
+            GameManager.levelManager.UpdateScoreInGame();
 
             onExitDraggable?.Invoke(draggable);
         }

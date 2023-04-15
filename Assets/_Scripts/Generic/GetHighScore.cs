@@ -24,18 +24,18 @@ public class GetHighScore : MonoBehaviour
         UpdateScoreText();
     }
 
-    void UpdateScoreText()
+    public void UpdateScoreText()
     {
-        float highScore = SaveManager.PlayerPrefsFWMV.GetFloat(HIGHSCORE_SAVE, sceneToUse, 0);
+        int highScore = SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0);
 
         //set text with score
         if (text)
         {
-            text.text = string.Format(textToShow, highScore.ToString("F2"));
+            text.text = string.Format(textToShow, highScore.ToString());
         }
 
         //deactive object if there is no score
-        if (highScore <= Mathf.Epsilon)
+        if (highScore <= 0)
         {
             if (objectToDeactiveWhenScoreIsZero)
                 objectToDeactiveWhenScoreIsZero.SetActive(false);
@@ -43,11 +43,9 @@ public class GetHighScore : MonoBehaviour
     }
 
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add001ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 0.01f); UpdateScoreText(); }
+    void Add1ToScore() { SaveManager.PlayerPrefsFWMV.SetInt(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0) + 1); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add01ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 0.1f); UpdateScoreText(); }
-    [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add1ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 1f); UpdateScoreText(); }
+    void Add10ToScore() { SaveManager.PlayerPrefsFWMV.SetInt(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0) + 10); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
     void RemoveScore() { SaveManager.PlayerPrefsFWMV.DeleteKey(HIGHSCORE_SAVE, sceneToUse); UpdateScoreText(); }
 }

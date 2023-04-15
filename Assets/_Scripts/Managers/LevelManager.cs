@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] PlayerPawn playerPrefab = default;
     [SerializeField] PlayerPawn[] playersInScene = default;
 
-    public float Score { get; set; } = 0;
+    public int Score { get; set; } = 0;
 
     public System.Action onWin;
     public System.Action onFinishTimer;
@@ -55,12 +55,12 @@ public class LevelManager : MonoBehaviour
     {
         state = EStateLevelManager.endGame;
         onChangeState?.Invoke();
-        Score = CalculateScore();
+        CalculateFinalScore();
 
         //save high score
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if (SaveManager.PlayerPrefsFWMV.GetFloat(GetHighScore.HIGHSCORE_SAVE, sceneName, 0f) < Score)
-            SaveManager.PlayerPrefsFWMV.SetFloat(GetHighScore.HIGHSCORE_SAVE, sceneName, Score);
+        if (SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, 0) < Score)
+            SaveManager.PlayerPrefsFWMV.SetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, Score);
 
         GameManager.uiManager.UpdateEndMenuText(true);
         GameManager.uiManager.EndMenu(true);
@@ -132,6 +132,41 @@ public class LevelManager : MonoBehaviour
 
     #endregion
 
+    #region private API
+
+    int CalculateTriggerZonesScore()
+    {
+        //calculate score for every box
+        int calculatedScore = 0;
+        List<DraggableObject> draggablesInTrigger = new List<DraggableObject>();
+        foreach (TriggerZone triggerZone in triggerZonesInScene)
+        {
+            foreach (DraggableObject draggable in triggerZone.ObjectsInside)
+            {
+                if (draggablesInTrigger.Contains(draggable) == false)
+                {
+                    draggablesInTrigger.Add(draggable);
+                    calculatedScore += draggable.Score;
+                }
+            }
+        }
+
+        return calculatedScore;
+    }
+
+    int CalculateTimerScore()
+    {
+        //calculate remaining time
+        int timeLeft = Mathf.CeilToInt(timer - Time.time);
+        int minutes = timeLeft / 60;
+        int seconds = timeLeft % 60;
+
+        //if remain 1 minute and 30 seconds, add 130 to score
+        return seconds + (minutes * 100);
+    }
+
+    #endregion
+
     public void TryActivatePlayer(PlayerController player)
     {
         PlayerPawn pawn = GetCharacterToPossess(player.playerIndex);
@@ -189,30 +224,15 @@ public class LevelManager : MonoBehaviour
         return pawn;
     }
 
-    public float CalculateScore()
+    public void UpdateScoreInGame()
     {
-        //calculate remaining time
-        int timeLeft = Mathf.CeilToInt(timer - Time.time);
-        int minutes = timeLeft / 60;
-        int seconds = timeLeft % 60;
+        //update score using only trigger zones
+        Score = CalculateTriggerZonesScore();
+        GameManager.uiManager.UpdateScore(Score);
+    }
 
-        float multiplier = minutes + (seconds / 100f);
-
-        //calculate score for every box
-        int calculatedScore = 0;
-        List<DraggableObject> draggablesInTrigger = new List<DraggableObject>();
-        foreach (TriggerZone triggerZone in triggerZonesInScene)
-        {
-            foreach (DraggableObject draggable in triggerZone.ObjectsInside)
-            {
-                if (draggablesInTrigger.Contains(draggable) == false)
-                {
-                    draggablesInTrigger.Add(draggable);
-                    calculatedScore += draggable.Score;
-                }
-            }
-        }
-
-        return calculatedScore * multiplier;
+    public void CalculateFinalScore()
+    {
+        Score = CalculateTriggerZonesScore() + CalculateTimerScore();
     }
 }

@@ -17,14 +17,14 @@ public class GetCurrentScore : MonoBehaviour
         UpdateScoreText();
     }
 
-    void UpdateScoreText()
+    public void UpdateScoreText()
     {
-        float score = GameManager.levelManager.Score;
+        int score = GameManager.levelManager.Score;
 
         //set text with score
         if (text)
         {
-            text.text = string.Format(textToShow, score.ToString("F2"));
+            text.text = string.Format(textToShow, score.ToString());
         }
 
         //deactive object if there is no score

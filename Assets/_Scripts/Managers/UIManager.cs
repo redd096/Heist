@@ -8,9 +8,20 @@ public class UIManager : redd096.UIManager
     [SerializeField] TextMeshProUGUI countdownBeforeStart = default;
     [SerializeField] TextMeshProUGUI timerText = default;
 
+    [Header("Score")]
+    [SerializeField] string scoreString = "Score: {0:000}";
+    [SerializeField] TextMeshProUGUI scoreText = default;
+
     [Header("Text EndMenu")]
     [SerializeField] GameObject textOnWin = default;
     [SerializeField] GameObject textOnFinishTime = default;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        UpdateScore(0);
+    }
 
     public void UpdateCountdownBeforeStart(int timeInSeconds)
     {
@@ -48,6 +59,17 @@ public class UIManager : redd096.UIManager
         int minutes = timeInSeconds / 60;
         int seconds = timeInSeconds % 60;
         timerText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    public void UpdateScore(int score)
+    {
+        if (scoreText == null)
+        {
+            if (ShowDebugLogs) Debug.Log("Missing score text on UIManager");
+            return;
+        }
+
+        scoreText.text = string.Format(scoreString, score);
     }
 
     public void UpdateEndMenuText(bool isWin)
