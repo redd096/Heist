@@ -22,7 +22,8 @@ public class SetAimUsingDraggable : ActionTask
 
         if (aimComponent == null || dragComponent == null)
             return;
-
-        aimComponent.AimInDirection(-dragComponent.PossibleToPickRaycastHit.normal);
+        
+        Vector3 direction = -dragComponent.PossibleToPickRaycastHit.normal;
+        aimComponent.AimInDirection(new Vector3(direction.x, 0, direction.z));
     }
 }
