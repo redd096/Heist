@@ -5,6 +5,7 @@ public class RandomizeColors : MonoBehaviour
 {
     [Header("Background")]
     [SerializeField] Image backgroundImage = default;
+    [SerializeField] float alpha = 1;
 
     [Header("Interactions - if empty, get every Selectable in scene")]
     [SerializeField] Selectable[] interactionsInScene = default;
@@ -18,7 +19,7 @@ public class RandomizeColors : MonoBehaviour
         ColorStruct randomColor = GetRandomColors();
 
         //set background color
-        backgroundImage.color = randomColor.backgroundColor;
+        backgroundImage.color = new Color(randomColor.backgroundColor.r, randomColor.backgroundColor.g, randomColor.backgroundColor.b, alpha);
 
         //set interactions in scene
         Selectable[] selectables = interactionsInScene != null && interactionsInScene.Length > 0 ? interactionsInScene : FindObjectsOfType<Selectable>(true);
