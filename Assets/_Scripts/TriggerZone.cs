@@ -7,6 +7,9 @@ public class TriggerZone : MonoBehaviour
 
     List<DraggableObject> currentObjectsInside = new List<DraggableObject>();
 
+    public System.Action<DraggableObject> onEnterDraggable;
+    public System.Action<DraggableObject> onExitDraggable;
+
     private void OnTriggerEnter(Collider other)
     {
         //add to list
@@ -14,6 +17,8 @@ public class TriggerZone : MonoBehaviour
         if (draggable && currentObjectsInside.Contains(draggable) == false)
         {
             currentObjectsInside.Add(draggable);
+
+            onEnterDraggable?.Invoke(draggable);
 
             //check win
             GameManager.levelManager.CheckWin();
@@ -27,6 +32,8 @@ public class TriggerZone : MonoBehaviour
         if (draggable && currentObjectsInside.Contains(draggable))
         {
             currentObjectsInside.Remove(draggable);
+
+            onExitDraggable?.Invoke(draggable);
         }
     }
 }
