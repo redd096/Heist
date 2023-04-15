@@ -980,12 +980,15 @@ MonoBehaviour:
   countdownObject: {fileID: 6385864241590017078}
   countdownBeforeStart: {fileID: 6385864241735340695}
   timerText: {fileID: 6385864241830657258}
+  secondsToStartBlink: 10
+  blinkTime: 0.5
+  increaseFontWhenBlink: 30
   scoreString: 'Score: {0:000}'
   scoreText: {fileID: 1031211565854159713}
   textOnWin: {fileID: 1006143787051862707}
   textOnFinishTime: {fileID: 6385864242746874324}
   scoreTabString: '{0:000}'
-  timeBetweenUpdates: 0.01
+  durationTextAnimation: 5
   waitBeforeUpdateNextText: 1
   scoreTabText: {fileID: 2034996459380261970}
   timeLeftText: {fileID: 1694608275948190956}
@@ -1605,7 +1608,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 291.264, y: 123.369}
+  m_SizeDelta: {x: 291.264, y: 112.51}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6385864241830657259
 CanvasRenderer:
@@ -3271,7 +3274,7 @@ MonoBehaviour:
     m_Top: 30
     m_Bottom: 0
   m_ChildAlignment: 2
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

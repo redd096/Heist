@@ -9,6 +9,9 @@ public class UIManager : redd096.UIManager
     [SerializeField] GameObject countdownObject = default;
     [SerializeField] TextMeshProUGUI countdownBeforeStart = default;
     [SerializeField] TextMeshProUGUI timerText = default;
+    [SerializeField] int secondsToStartBlink = 10;
+    [SerializeField] float blinkTime = 0.5f;
+    [SerializeField] int increaseFontWhenBlink = 30;
 
     [Header("Score")]
     [SerializeField] string scoreString = "Score: {0:000}";
@@ -26,6 +29,8 @@ public class UIManager : redd096.UIManager
     [SerializeField] TextMeshProUGUI timeLeftText = default;
     [SerializeField] TextMeshProUGUI finalScoreText = default;
     [SerializeField] Button[] buttonsEndMenu = default;
+
+    Coroutine timerBlinkCoroutine;
 
     protected override void Start()
     {
@@ -75,6 +80,30 @@ public class UIManager : redd096.UIManager
         int minutes = timeInSeconds / 60;
         int seconds = timeInSeconds % 60;
         timerText.text = $"{minutes:00}:{seconds:00}";
+
+        //blink and increase size when left low time
+        if (timeInSeconds < secondsToStartBlink && timerBlinkCoroutine == null)
+        {
+            timerText.fontSize += increaseFontWhenBlink;
+            Vector2 sizeDelta = timerText.GetComponent<RectTransform>().sizeDelta;
+            timerText.GetComponent<RectTransform>().sizeDelta = new Vector2(sizeDelta.x, sizeDelta.y + increaseFontWhenBlink);
+            timerBlinkCoroutine = StartCoroutine(TimerBlinkCoroutine());
+        }
+    }
+
+    IEnumerator TimerBlinkCoroutine()
+    {
+        float time = Time.time;
+        while (true)
+        {
+            timerText.alpha = 0;
+            time += blinkTime;
+            yield return new WaitUntil(() => Time.time > time);
+
+            timerText.alpha = 1;
+            time += blinkTime;
+            yield return new WaitUntil(() => Time.time > time);
+        }
     }
 
     public void UpdateScore(int score)
