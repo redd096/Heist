@@ -141,7 +141,9 @@ MonoBehaviour:
   forceReplayThisScene: 0
   sound2DPrefab: {fileID: 0}
   sound3DPrefab: {fileID: 0}
-  soundsOnClick: []
+  soundsOnClick:
+  - audioClip: {fileID: 8300000, guid: d72e371f71ddccb4a9e79ab980dbb0b4, type: 3}
+    volume: 0.2
 --- !u!114 &460136667938168963
 MonoBehaviour:
   m_ObjectHideFlags: 0

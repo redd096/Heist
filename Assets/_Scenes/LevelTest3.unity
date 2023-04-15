@@ -4254,6 +4254,7 @@ GameObject:
   - component: {fileID: 1289598958}
   - component: {fileID: 1289598957}
   - component: {fileID: 1289598955}
+  - component: {fileID: 1289598960}
   - component: {fileID: 1289598959}
   m_Layer: 0
   m_Name: Button (1)
@@ -4359,6 +4360,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 1, z: -0.00000008940697}
+--- !u!114 &1289598960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289598953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66479dccf74961444a2d68e0df33a4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 1289598955}
+  onOpenGate:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: d4cf8028221f8254d8593af665b1d012, type: 3}
+      volume: 0.3
+      is3D: 0
+  onCloseGate:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: 9704f235325965c49973b42314a75ded, type: 3}
+      volume: 0.3
+      is3D: 0
 --- !u!1 &1290451005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,6 +4606,7 @@ GameObject:
   - component: {fileID: 1293369245}
   - component: {fileID: 1293369244}
   - component: {fileID: 1293369243}
+  - component: {fileID: 1293369248}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4677,6 +4710,37 @@ Transform:
   m_Father: {fileID: 199919730}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1293369248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293369242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66479dccf74961444a2d68e0df33a4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 1293369243}
+  onOpenGate:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: d4cf8028221f8254d8593af665b1d012, type: 3}
+      volume: 0.3
+      is3D: 0
+  onCloseGate:
+    InstantiateOneRandom: 0
+    SetParent: 0
+    GameObjectsFeedback: []
+    ParticlesFeedback: []
+    AudiosFeedback:
+    - audioClip: {fileID: 8300000, guid: 9704f235325965c49973b42314a75ded, type: 3}
+      volume: 0.3
+      is3D: 0
 --- !u!1 &1295693604
 GameObject:
   m_ObjectHideFlags: 0
