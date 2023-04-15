@@ -571,6 +571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e12a4043aafd94782bff9d2be8a821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCurrentScene: 0
+  sceneOfHighScore: LevelTest4
   text: {fileID: 1986664137}
   textToShow: HIGHSCORE {0} !
   objectToDeactiveWhenScoreIsZero: {fileID: 1986664135}
@@ -709,6 +711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e12a4043aafd94782bff9d2be8a821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCurrentScene: 0
+  sceneOfHighScore: LevelTest1
   text: {fileID: 1284067803}
   textToShow: HIGHSCORE {0} !
   objectToDeactiveWhenScoreIsZero: {fileID: 1284067801}
@@ -1334,6 +1338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e12a4043aafd94782bff9d2be8a821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCurrentScene: 0
+  sceneOfHighScore: LevelTest3
   text: {fileID: 1141637805}
   textToShow: HIGHSCORE {0} !
   objectToDeactiveWhenScoreIsZero: {fileID: 1141637803}
@@ -1924,6 +1930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e12a4043aafd94782bff9d2be8a821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCurrentScene: 0
+  sceneOfHighScore: LevelTest2
   text: {fileID: 1793044723}
   textToShow: HIGHSCORE {0} !
   objectToDeactiveWhenScoreIsZero: {fileID: 1793044721}

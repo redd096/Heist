@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class GetHighScore : MonoBehaviour
 {
-    [Header("Scene of this high score")]
+    [Header("Score for current scene or select a scene to use")]
+    [SerializeField] bool useCurrentScene = false;
     [Scene][SerializeField] string sceneOfHighScore = "LevelTest1";
 
     [Header("Set text where {0} is the HighScore")]
@@ -16,6 +17,7 @@ public class GetHighScore : MonoBehaviour
     [SerializeField] GameObject objectToDeactiveWhenScoreIsZero = default;
 
     public const string HIGHSCORE_SAVE = "HighScore";
+    string sceneToUse => useCurrentScene ? UnityEngine.SceneManagement.SceneManager.GetActiveScene().name : sceneOfHighScore;
 
     private void OnEnable()
     {
@@ -24,7 +26,7 @@ public class GetHighScore : MonoBehaviour
 
     void UpdateScoreText()
     {
-        float highScore = SaveManager.PlayerPrefsFWMV.GetFloat(HIGHSCORE_SAVE, sceneOfHighScore, 0);
+        float highScore = SaveManager.PlayerPrefsFWMV.GetFloat(HIGHSCORE_SAVE, sceneToUse, 0);
 
         //set text with score
         if (text)
@@ -41,11 +43,11 @@ public class GetHighScore : MonoBehaviour
     }
 
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add001ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneOfHighScore, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 0.01f); UpdateScoreText(); }
+    void Add001ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 0.01f); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add01ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneOfHighScore, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 0.1f); UpdateScoreText(); }
+    void Add01ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 0.1f); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add1ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneOfHighScore, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 1f); UpdateScoreText(); }
+    void Add1ToScore() { SaveManager.PlayerPrefsFWMV.SetFloat(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefs.GetFloat(HIGHSCORE_SAVE, 0) + 1f); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void RemoveScore() { SaveManager.PlayerPrefsFWMV.DeleteKey(HIGHSCORE_SAVE, sceneOfHighScore); UpdateScoreText(); }
+    void RemoveScore() { SaveManager.PlayerPrefsFWMV.DeleteKey(HIGHSCORE_SAVE, sceneToUse); UpdateScoreText(); }
 }
