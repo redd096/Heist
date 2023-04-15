@@ -1899,6 +1899,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4729927749372714920, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+      propertyPath: musicThisScene.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729927749372714920, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+      propertyPath: musicThisScene.audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 99351aa173cdfa14cbbc3039915120c6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
 --- !u!1001 &737188790
