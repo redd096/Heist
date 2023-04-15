@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2785,6 +2785,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6385864241229394315}
     m_Modifications:
     - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: alpha
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: backgroundImage
       value: 
       objectReference: {fileID: 6385864241424641381}
@@ -2800,6 +2804,22 @@ PrefabInstance:
       propertyPath: interactionsInScene.Array.data[1]
       value: 
       objectReference: {fileID: 6385864242075376014}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[0].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[1].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[2].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[3].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5005350760442414777, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2863,6 +2883,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6385864241751983344}
     m_Modifications:
     - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: alpha
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: backgroundImage
       value: 
       objectReference: {fileID: 6385864241359033734}
@@ -2882,6 +2906,22 @@ PrefabInstance:
       propertyPath: interactionsInScene.Array.data[2]
       value: 
       objectReference: {fileID: 6385864242931977565}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[0].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[1].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[2].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: randomColors.Array.data[3].backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5005350760442414777, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: m_RootOrder
       value: 0

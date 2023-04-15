@@ -259,6 +259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -661,6 +665,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -750,6 +758,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
@@ -1875,6 +1887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -2609,6 +2625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -2699,6 +2719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2788,6 +2812,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
@@ -2955,6 +2983,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
@@ -4962,6 +4994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5052,6 +5088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -5141,6 +5181,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
@@ -5882,6 +5926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -6311,6 +6359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -6401,6 +6453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -6490,6 +6546,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
@@ -6780,6 +6840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -6870,6 +6934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableObject (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -6959,6 +7027,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
@@ -7085,6 +7157,10 @@ PrefabInstance:
     - target: {fileID: 7932930029404190346, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_Name
       value: DraggableObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932930029404190356, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
+      propertyPath: score
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7932930029404190357, guid: a5d92ae3b31cc1e458a75eb73217ce16, type: 3}
       propertyPath: m_RootOrder
