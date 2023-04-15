@@ -22,7 +22,7 @@ public class LocalMenuManager : MonoBehaviour
             Destroy(container.GetChild(i).gameObject);
 
         //disable select level button by default
-        selectLevelButton.interactable = false;
+        UpdateButtonInteractable();
     }
 
     private void Start()
@@ -53,7 +53,7 @@ public class LocalMenuManager : MonoBehaviour
         players.Add(obj, go);
 
         //is enable if at least one player is in the scene
-        selectLevelButton.interactable = true;
+        Invoke(nameof(UpdateButtonInteractable), 0.1f);
     }
 
     private void OnPlayerLeft(PlayerInput obj)
@@ -61,6 +61,8 @@ public class LocalMenuManager : MonoBehaviour
         //remove player from UI
         Destroy(players[obj].gameObject);
         players.Remove(obj);
+
+        UpdateButtonInteractable();
     }
 
     public void Back()
@@ -75,5 +77,10 @@ public class LocalMenuManager : MonoBehaviour
 
         //because we are going back to main menu
         SceneManager.LoadScene(sceneToLoadOnBack);
+    }
+
+    void UpdateButtonInteractable()
+    {
+        selectLevelButton.interactable = players.Count > 0;
     }
 }
