@@ -15,6 +15,9 @@ public class WannabeGate : MonoBehaviour
     List<Collider> collidersInTrigger = new List<Collider>();
     List<WannabeGate> wannabeGates = new List<WannabeGate>();
 
+    public System.Action<GameObject> onOpenGate;
+    public System.Action<GameObject> onCloseGate;
+
     private void Awake()
     {
         //add to the list every other pressure plate that activate this gate
@@ -23,6 +26,8 @@ public class WannabeGate : MonoBehaviour
             if (wannabeGate.gate == gate)
                 wannabeGates.Add(wannabeGate);
         }
+
+        TryActivate();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,9 +71,27 @@ public class WannabeGate : MonoBehaviour
     private void TryActivate()
     {
         //check if something is on trigger. False to open, True to close
-        if(CheckThereIsSomethingInTrigger())
-            gate.SetActive(openWhenInTrigger == false);
+        if (CheckThereIsSomethingInTrigger())
+        {
+            bool openGate = openWhenInTrigger == false;
+            if (gate.activeSelf != openGate)
+                Activate(openGate);
+        }
         else
-            gate.SetActive(openWhenInTrigger);
+        {
+            bool openGate = openWhenInTrigger;
+            if (gate.activeSelf != openGate)
+                Activate(openGate);
+        }
+    }
+
+    void Activate(bool openGate)
+    {
+        gate.SetActive(openGate);
+
+        if (openGate)
+            onOpenGate?.Invoke(gate);
+        else
+            onCloseGate?.Invoke(gate);
     }
 }
