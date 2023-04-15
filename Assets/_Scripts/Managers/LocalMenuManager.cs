@@ -12,6 +12,7 @@ public class LocalMenuManager : MonoBehaviour
     [SerializeField] Transform container = default;
     [Scene][SerializeField] string sceneToLoadOnBack = "MainMenu";
     [SerializeField] Button selectLevelButton = default;
+    [SerializeField] GameObject objectWhenNoPlayersInScene = default;
 
     Dictionary<PlayerInput, GameObject> players = new Dictionary<PlayerInput, GameObject>();
 
@@ -19,7 +20,13 @@ public class LocalMenuManager : MonoBehaviour
     {
         //destroy every child
         for (int i = container.childCount - 1; i >= 0; i--)
+        {
+            //ignore object when no players in scene
+            if (container.GetChild(i).gameObject == objectWhenNoPlayersInScene)
+                continue;
+
             Destroy(container.GetChild(i).gameObject);
+        }
 
         //disable select level button by default
         UpdateButtonInteractable();
@@ -51,6 +58,7 @@ public class LocalMenuManager : MonoBehaviour
         go.GetComponentInChildren<TextMeshProUGUI>().text = "Player " + (obj.playerIndex + 1);
         go.GetComponentInChildren<Image>().color = GameManager.instance.PlayersColors[obj.playerIndex];
         players.Add(obj, go);
+        if (objectWhenNoPlayersInScene) objectWhenNoPlayersInScene.SetActive(false);    //do immediatly, without wait update button
 
         //is enable if at least one player is in the scene
         Invoke(nameof(UpdateButtonInteractable), 0.1f);
@@ -67,13 +75,13 @@ public class LocalMenuManager : MonoBehaviour
 
     public void Back()
     {
+        //destroy player input manager
+        Destroy(PlayerInputManager.instance.gameObject);
+
         //remove connected players
         PlayerController[] playersInScene = FindObjectsOfType<PlayerController>();
         for (int i = playersInScene.Length - 1; i >= 0; i--)
             Destroy(playersInScene[i].gameObject);
-
-        //destroy player input manager
-        Destroy(PlayerInputManager.instance.gameObject);
 
         //because we are going back to main menu
         SceneManager.LoadScene(sceneToLoadOnBack);
@@ -81,6 +89,8 @@ public class LocalMenuManager : MonoBehaviour
 
     void UpdateButtonInteractable()
     {
-        selectLevelButton.interactable = players.Count > 0;
+        bool thereArePlayersInScene = players.Count > 0;
+        if (objectWhenNoPlayersInScene) objectWhenNoPlayersInScene.SetActive(thereArePlayersInScene == false);
+        if (selectLevelButton) selectLevelButton.interactable = thereArePlayersInScene;
     }
 }
