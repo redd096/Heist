@@ -1539,7 +1539,7 @@ MonoBehaviour:
   startMenu: {fileID: 0}
   firstSelectedGameObjects:
   - {fileID: 6385864241729184089}
-  - {fileID: 6385864242697930440}
+  - {fileID: 6385864242075376008}
   overrideObjects: []
   notNavigables: []
 --- !u!114 &6385864241804186051
