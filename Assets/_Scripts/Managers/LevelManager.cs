@@ -54,10 +54,11 @@ public class LevelManager : MonoBehaviour
 
     void OnWin()
     {
+        UpdateScoreInGame();    //just to be sure score is correct
+
         //calculate score
         state = EStateLevelManager.endGame;
         onChangeState?.Invoke();
-        UpdateScoreInGame();    //just to be sure score is correct
         CalculateFinalScore();
 
         //save high score
@@ -75,10 +76,11 @@ public class LevelManager : MonoBehaviour
 
     void OnFinishTimer()
     {
+        UpdateScoreInGame();    //just to be sure score is correct
+
         //calculate score
         state = EStateLevelManager.endGame;
         onChangeState?.Invoke();
-        UpdateScoreInGame();    //just to be sure score is correct
         CalculateFinalScore();
 
         //save high score
@@ -240,9 +242,12 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateScoreInGame()
     {
-        //update score using only trigger zones
-        Score = CalculateTriggerZonesScore();
-        GameManager.uiManager.UpdateScore(Score);
+        if (state == EStateLevelManager.game)
+        {
+            //update score using only trigger zones
+            Score = CalculateTriggerZonesScore();
+            GameManager.uiManager.UpdateScore(Score);
+        }
     }
 
     public void CalculateFinalScore()
