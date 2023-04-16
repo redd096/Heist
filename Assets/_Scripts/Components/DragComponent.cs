@@ -16,7 +16,7 @@ public class DragComponent : MonoBehaviour
     [SerializeField] float radiusRaycast = 0.2f;
 
     [Header("Necessary Components (by default get from this gameObject)")]
-    [SerializeField] AimComponent aimComponent = default;
+    [SerializeField] Transform graphic = default;
 
     [Header("DEBUG")]
     [SerializeField] ShowDebugRedd096 showAreaInteractable = Color.cyan;
@@ -45,8 +45,8 @@ public class DragComponent : MonoBehaviour
         if (showAreaInteractable)
         {
             Gizmos.color = showAreaInteractable.ColorDebug;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * distancePickDraggable);
-            Gizmos.DrawWireSphere(transform.position + transform.forward * distancePickDraggable, radiusRaycast);
+            Gizmos.DrawLine(graphic.position, graphic.position + graphic.forward * distancePickDraggable);
+            Gizmos.DrawWireSphere(graphic.position + graphic.forward * distancePickDraggable, radiusRaycast);
             Gizmos.color = Color.white;
         }
     }
@@ -84,27 +84,11 @@ public class DragComponent : MonoBehaviour
 
     #region private API
 
-    bool CheckComponents()
-    {
-        //check if have components
-        if (aimComponent == null)
-            aimComponent = GetComponentInParent<AimComponent>();
-
-        //if movement mode is rigidbody, be sure to have a rigidbody
-        if (aimComponent == null)
-        {
-            Debug.LogWarning($"Miss AimComponent on {name}");
-            return false;
-        }
-
-        return true;
-    }
-
     void SnapDraggableToCharacter()
     {
         RaycastHit characterCollisionPoint;
 
-        if (Physics.Linecast(possibleToPickHit.point, transform.position, out characterCollisionPoint, ~layersToIgnore, QueryTriggerInteraction.Ignore))
+        if (Physics.Linecast(possibleToPickHit.point, graphic.position, out characterCollisionPoint, ~layersToIgnore, QueryTriggerInteraction.Ignore))
         {
             Vector3 direction = characterCollisionPoint.point - possibleToPickHit.point;
             dragged.transform.position += direction - (direction.normalized * distanceObjectWhenPicked);
@@ -117,12 +101,8 @@ public class DragComponent : MonoBehaviour
 
     public void FindInteractables()
     {
-        //start only if there are all necessary components
-        if (CheckComponents() == false)
-            return;
-
         //find draggable in distance
-        Physics.SphereCast(transform.position, radiusRaycast, aimComponent.AimDirectionInput, out possibleToPickHit, distancePickDraggable, ~layersToIgnore, QueryTriggerInteraction.Ignore);
+        Physics.SphereCast(graphic.position, radiusRaycast, graphic.forward, out possibleToPickHit, distancePickDraggable, ~layersToIgnore, QueryTriggerInteraction.Ignore);
         possibleToPickDraggable = possibleToPickHit.transform == null ? null : possibleToPickHit.transform.GetComponentInParent<DraggableObject>();
 
         if (previousPossibleToPickDraggable != possibleToPickDraggable)

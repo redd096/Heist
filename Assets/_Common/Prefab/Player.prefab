@@ -308,7 +308,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   radiusRaycast: 0.2
-  aimComponent: {fileID: 4182660346221481028}
+  graphic: {fileID: 4891944727366660058}
   showAreaInteractable:
     ShowDebug: 0
     ColorDebug: {r: 0, g: 1, b: 1, a: 1}
