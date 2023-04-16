@@ -14,8 +14,8 @@ public class SelectLevelManager : MonoBehaviour
 
     private void Start()
     {
-        //deactive if not server
-        backButton.interactable = NetworkManager.instance.Runner.IsServer;
+        //active only if offline, or server (not client)
+        backButton.interactable = NetworkManager.instance == null || NetworkManager.instance.Runner.IsServer;
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
@@ -29,7 +29,8 @@ public class SelectLevelManager : MonoBehaviour
 
     void LoadLevel(string level)
     {
-        if (NetworkManager.instance.Runner.IsServer)
+        //only if offline, or server (not client)
+        if (NetworkManager.instance == null || NetworkManager.instance.Runner.IsServer)
             SceneChangerAnimation.FadeOutLoadScene(level);
     }
 

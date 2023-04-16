@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        GameManager.playersInScene.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.playersInScene.Remove(this);
     }
 
     private void Update()
