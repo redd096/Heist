@@ -1314,6 +1314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToDeactive: {fileID: 0}
+  deactiveOnlyClient: 0
 --- !u!1 &6385864241735340689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1870,7 @@ GameObject:
   - component: {fileID: 6385864242075376012}
   - component: {fileID: 6385864242075376015}
   - component: {fileID: 6385864242075376014}
+  - component: {fileID: 5907193109645027898}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -1990,6 +1992,20 @@ MonoBehaviour:
           m_StringArgument: SelectLevel
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5907193109645027898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385864242075376008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaee29ee360adbf42bc066a2e3f6d5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToDeactive: {fileID: 0}
+  deactiveOnlyClient: 1
 --- !u!1 &6385864242211570633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToDeactive: {fileID: 0}
+  deactiveOnlyClient: 0
 --- !u!1 &6385864242746874324
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,10 +2781,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
-        m_TargetAssemblyTypeName: redd096.SceneChangerAnimation, Assembly-CSharp
-        m_MethodName: FadeOutLoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 475451707521282133}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ExitButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

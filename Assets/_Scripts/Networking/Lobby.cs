@@ -76,6 +76,7 @@ public class Lobby : MonoBehaviour
     public void GoToSelectLevel()
     {
         //only server can call this button
-        SceneChangerAnimation.FadeOutLoadScene(sceneOnSelectLevel);
+        if (NetworkManager.instance.Runner.IsServer)
+            SceneChangerAnimation.FadeOutLoadScene(sceneOnSelectLevel);
     }
 }
