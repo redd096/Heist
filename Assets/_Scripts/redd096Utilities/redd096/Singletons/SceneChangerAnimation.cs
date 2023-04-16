@@ -35,7 +35,7 @@ namespace redd096
     public class SceneChangerAnimation : Singleton<SceneChangerAnimation>
     {
         [Header("Necessary components - default get from children")]
-        [SerializeField] CanvasScaler canvasScaler = default;
+        [SerializeField] Canvas canvas = default;
         [SerializeField] Image mask = default;
         [SerializeField] Image blackScreen = default;
 
@@ -54,11 +54,12 @@ namespace redd096
         [SerializeField] Vector2 maskOffset = Vector2.zero;
         [SerializeField] Vector2 blackScreenOffset = Vector2.zero;
 
-        Vector2 maskSizeFade => canvasScaler.referenceResolution + maskOffset;
-        Vector2 blackScreenSizeFade => canvasScaler.referenceResolution + blackScreenOffset;
+        Vector2 maskSizeFade => canvasRect.sizeDelta + maskOffset;
+        Vector2 blackScreenSizeFade => canvasRect.sizeDelta + blackScreenOffset;
 
         EventSystem eventSystem;
         Coroutine fadeCoroutine;
+        RectTransform canvasRect;
         RectTransform maskRect;
         RectTransform blackScreenRect;
 
@@ -70,17 +71,18 @@ namespace redd096
             base.InitializeSingleton();
 
             //get references
-            if (canvasScaler == null) canvasScaler = GetComponentInChildren<CanvasScaler>(true);
+            if (canvas == null) canvas = GetComponentInChildren<Canvas>(true);
             if (mask == null) mask = GetComponentInChildren<Image>(true);
             if (blackScreen == null) blackScreen = mask.transform.GetChild(0).GetComponentInChildren<Image>(true);
 
-            if (canvasScaler == null && mask == null || blackScreen == null)
+            if (canvas == null && mask == null || blackScreen == null)
             {
                 Debug.LogWarning($"Missing references on SceneChangerAnimation", gameObject);
                 return;
             }
 
             //get rect transform references
+            if (canvasRect == null) canvasRect = canvas.GetComponent<RectTransform>();
             if (maskRect == null) maskRect = mask.GetComponent<RectTransform>();
             if (blackScreenRect == null) blackScreenRect = blackScreen.GetComponent<RectTransform>();
         }
@@ -99,7 +101,7 @@ namespace redd096
                 //be sure objects are active
                 mask.gameObject.SetActive(true);
                 blackScreen.gameObject.SetActive(true);
-                canvasScaler.gameObject.SetActive(true);
+                canvas.gameObject.SetActive(true);
 
                 //fade in after few seconds
                 Invoke(nameof(StartFadeIn), waitBeforeFadeOnAwake);
@@ -107,7 +109,7 @@ namespace redd096
             //else, deactivate images, to be sure the screen is clear
             else
             {
-                canvasScaler.gameObject.SetActive(false);
+                canvas.gameObject.SetActive(false);
             }
         }
 
@@ -173,7 +175,7 @@ namespace redd096
 
         void StartFade(bool fadeIn, System.Action func)
         {
-            if (canvasScaler == null || mask == null || blackScreen == null)
+            if (canvas == null || mask == null || blackScreen == null)
             {
                 Debug.LogWarning($"Missing references on SceneChangerAnimation", gameObject);
                 return;
@@ -195,7 +197,7 @@ namespace redd096
             //be sure objects are active
             mask.gameObject.SetActive(true);
             blackScreen.gameObject.SetActive(true);
-            canvasScaler.gameObject.SetActive(true);
+            canvas.gameObject.SetActive(true);
 
             //start fade coroutine
             if (fadeCoroutine != null)
@@ -218,7 +220,7 @@ namespace redd096
             }
 
             //deactivate images, to be sure the screen is clear
-            canvasScaler.gameObject.SetActive(false);
+            canvas.gameObject.SetActive(false);
 
             //call event
             onFadeInComplete?.Invoke();
