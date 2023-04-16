@@ -47,7 +47,7 @@ namespace redd096
         [EnableIf("fadeInOnAwake")][SerializeField] float waitBeforeFadeOnAwake = 0.3f;
 
         [Header("Animation")]
-        [SerializeField] float animDuration = 2f;
+        [SerializeField] float animDuration = 1f;
         [Tooltip("Use realtime or deltaTime?")][SerializeField] bool useRealtimeInsteadOfDeltatime = true;
 
         [Header("Fade use ScreenSize, need offset?")]
@@ -65,14 +65,14 @@ namespace redd096
         //events
         public System.Action onFadeInComplete { get; set; }
 
-        protected override void SetDefaults()
+        protected override void InitializeSingleton()
         {
-            base.SetDefaults();
+            base.InitializeSingleton();
 
             //get references
-            if (canvasScaler == null) canvasScaler = GetComponentInChildren<CanvasScaler>();
-            if (mask == null) mask = GetComponentInChildren<Image>();
-            if (blackScreen == null) blackScreen = mask.transform.GetChild(0).GetComponentInChildren<Image>();
+            if (canvasScaler == null) canvasScaler = GetComponentInChildren<CanvasScaler>(true);
+            if (mask == null) mask = GetComponentInChildren<Image>(true);
+            if (blackScreen == null) blackScreen = mask.transform.GetChild(0).GetComponentInChildren<Image>(true);
 
             if (canvasScaler == null && mask == null || blackScreen == null)
             {
@@ -83,6 +83,11 @@ namespace redd096
             //get rect transform references
             if (maskRect == null) maskRect = mask.GetComponent<RectTransform>();
             if (blackScreenRect == null) blackScreenRect = blackScreen.GetComponent<RectTransform>();
+        }
+
+        protected override void SetDefaults()
+        {
+            base.SetDefaults();
 
             //fade in when enter in scene
             if (fadeInOnAwake)
@@ -97,13 +102,18 @@ namespace redd096
                 canvasScaler.gameObject.SetActive(true);
 
                 //fade in after few seconds
-                Invoke(nameof(FadeIn), waitBeforeFadeOnAwake);
+                Invoke(nameof(StartFadeIn), waitBeforeFadeOnAwake);
             }
-            //deactivate images, to be sure the screen is clear
+            //else, deactivate images, to be sure the screen is clear
             else
             {
                 canvasScaler.gameObject.SetActive(false);
             }
+        }
+
+        void StartFadeIn()
+        {
+            FadeIn();
         }
 
         #region public API
@@ -111,50 +121,50 @@ namespace redd096
         /// <summary>
         /// Do fade in
         /// </summary>
-        public void FadeIn()
+        public static void FadeIn()
         {
-            StartFade(true, OnFadeInComplete);
+            instance.StartFade(true, instance.OnFadeInComplete);
         }
 
         /// <summary>
         /// Do fade out
         /// </summary>
-        public void FadeOut()
+        public static void FadeOut()
         {
-            StartFade(false, null);
+            instance.StartFade(false, null);
         }
 
         /// <summary>
         /// Fade out, then move to next scene in build settings
         /// </summary>
-        public void FadeOutNextScene()
+        public static void FadeOutNextScene()
         {
-            StartFade(false, () => SceneLoader.instance.LoadNextScene());
+            instance.StartFade(false, () => SceneLoader.instance.LoadNextScene());
         }
 
         /// <summary>
         /// Fade out, then load passed scene
         /// </summary>
         /// <param name="scene"></param>
-        public void FadeOutLoadScene(string scene)
+        public static void FadeOutLoadScene(string scene)
         {
-            StartFade(false, () => SceneLoader.instance.LoadScene(scene));
+            instance.StartFade(false, () => SceneLoader.instance.LoadScene(scene));
         }
 
         /// <summary>
         /// Fade out, then reload this scene
         /// </summary>
-        public void FadeOutReloadScene()
+        public static void FadeOutReloadScene()
         {
-            StartFade(false, () => SceneLoader.instance.ReloadScene());
+            instance.StartFade(false, () => SceneLoader.instance.ReloadScene());
         }
 
         /// <summary>
         /// Fade out, then exit from game
         /// </summary>
-        public void ExitGame()
+        public static void ExitGame()
         {
-            StartFade(false, () => SceneLoader.instance.ExitGame());
+            instance.StartFade(false, () => SceneLoader.instance.ExitGame());
         }
 
         #endregion
@@ -163,7 +173,7 @@ namespace redd096
 
         void StartFade(bool fadeIn, System.Action func)
         {
-            if (mask == null || blackScreen == null)
+            if (canvasScaler == null || mask == null || blackScreen == null)
             {
                 Debug.LogWarning($"Missing references on SceneChangerAnimation", gameObject);
                 return;

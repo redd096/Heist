@@ -85,7 +85,7 @@ public class LocalMenuManager : MonoBehaviour
             Destroy(playersInScene[i].gameObject);
 
         //because we are going back to main menu
-        SceneChangerAnimation.instance.FadeOutLoadScene(sceneToLoadOnBack);
+        SceneChangerAnimation.FadeOutLoadScene(sceneToLoadOnBack);
     }
 
     void UpdateButtonInteractable()

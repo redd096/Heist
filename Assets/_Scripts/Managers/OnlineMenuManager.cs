@@ -40,7 +40,7 @@ public class OnlineMenuManager : MonoBehaviour
 
         //start game
         var id = GenerateRoomID();
-        SceneChangerAnimation.instance.FadeOut();
+        SceneChangerAnimation.FadeOut();
         NetworkManager.instance.StartGame(GameMode.Host, id, username.text, lobbyScene);
     }
 
@@ -78,7 +78,7 @@ public class OnlineMenuManager : MonoBehaviour
             username.text = fantasyNames[Random.Range(0, fantasyNames.Length)];
 
         //start game
-        SceneChangerAnimation.instance.FadeOut();
+        SceneChangerAnimation.FadeOut();
         NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text, lobbyScene);
     }
 
@@ -87,6 +87,6 @@ public class OnlineMenuManager : MonoBehaviour
         //back
         Destroy(NetworkManager.instance.gameObject);
 
-        SceneChangerAnimation.instance.FadeOutLoadScene(backButtonScene);
+        SceneChangerAnimation.FadeOutLoadScene(backButtonScene);
     }
 }

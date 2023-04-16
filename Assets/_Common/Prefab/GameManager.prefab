@@ -178,7 +178,7 @@ MonoBehaviour:
   randomSprites: []
   fadeInOnAwake: 1
   waitBeforeFadeOnAwake: 0.3
-  animDuration: 2
+  animDuration: 1
   useRealtimeInsteadOfDeltatime: 1
   maskOffset: {x: 0, y: 0}
   blackScreenOffset: {x: 0, y: 0}

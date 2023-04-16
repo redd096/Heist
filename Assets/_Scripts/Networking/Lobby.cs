@@ -70,12 +70,12 @@ public class Lobby : MonoBehaviour
     {
         //leave online
         NetworkManager.instance.LeaveGame();
-        SceneChangerAnimation.instance.FadeOutLoadScene(sceneOnBack);
+        SceneChangerAnimation.FadeOutLoadScene(sceneOnBack);
     }
 
     public void GoToSelectLevel()
     {
         //only server can call this button
-        SceneChangerAnimation.instance.FadeOutLoadScene(sceneOnSelectLevel);
+        SceneChangerAnimation.FadeOutLoadScene(sceneOnSelectLevel);
     }
 }
