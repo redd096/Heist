@@ -1645,19 +1645,19 @@ MonoBehaviour:
     levelToCheckScoreForUnlock: MainMenu
   - button: {fileID: 2040801762}
     level: LevelTest2
-    minScoreToUnlock: 100
+    minScoreToUnlock: 45
     levelToCheckScoreForUnlock: LevelTest1
   - button: {fileID: 1547321707}
     level: LevelTest3
-    minScoreToUnlock: 100
+    minScoreToUnlock: 45
     levelToCheckScoreForUnlock: LevelTest2
   - button: {fileID: 823431171}
     level: LevelTest4
-    minScoreToUnlock: 100
+    minScoreToUnlock: 45
     levelToCheckScoreForUnlock: LevelTest3
   - button: {fileID: 586177851}
     level: LevelTest5
-    minScoreToUnlock: 100
+    minScoreToUnlock: 45
     levelToCheckScoreForUnlock: LevelTest4
 --- !u!1001 &1678856356
 PrefabInstance:
