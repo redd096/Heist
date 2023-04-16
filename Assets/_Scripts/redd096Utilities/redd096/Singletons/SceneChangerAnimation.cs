@@ -162,7 +162,7 @@ namespace redd096
         /// <summary>
         /// Fade out, then exit from game
         /// </summary>
-        public static void ExitGame()
+        public static void FadeOutExitGame()
         {
             instance.StartFade(false, () => SceneLoader.instance.ExitGame());
         }

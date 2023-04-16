@@ -2394,9 +2394,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 460136667938168963, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
-        m_TargetAssemblyTypeName: redd096.SceneLoader, Assembly-CSharp
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+        m_TargetAssemblyTypeName: redd096.SceneChangerAnimation, Assembly-CSharp
+        m_MethodName: FadeOutExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2831,9 +2831,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 460136667938168963, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
-        m_TargetAssemblyTypeName: redd096.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+        m_TargetAssemblyTypeName: redd096.SceneChangerAnimation, Assembly-CSharp
+        m_MethodName: FadeOutLoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5716,9 +5716,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 460136667938168963, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
-        m_TargetAssemblyTypeName: redd096.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+        m_TargetAssemblyTypeName: redd096.SceneChangerAnimation, Assembly-CSharp
+        m_MethodName: FadeOutLoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
