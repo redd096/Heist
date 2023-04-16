@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 442232352}
     - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: interactionsInScene.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: interactionsInScene.Array.data[0]
@@ -162,6 +162,10 @@ PrefabInstance:
       propertyPath: interactionsInScene.Array.data[5]
       value: 
       objectReference: {fileID: 1514066404}
+    - target: {fileID: 5005350760442414776, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
+      propertyPath: interactionsInScene.Array.data[6]
+      value: 
+      objectReference: {fileID: 607122502}
     - target: {fileID: 5005350760442414777, guid: ac3887924f2fc174a9226d263fdabd97, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -582,7 +586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 215d2f0bf3105e0418f9e079d3d9710a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eaaaa48cb43fb714b9540d5584df7978, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -618,7 +622,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 397, y: 80}
+  m_SizeDelta: {x: 558, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &645617358
 GameObject:
