@@ -76,13 +76,13 @@ public class LocalMenuManager : MonoBehaviour
 
     public void Back()
     {
-        //destroy player input manager
-        Destroy(PlayerInputManager.instance.gameObject);
-
         //remove connected players
         PlayerController[] playersInScene = FindObjectsOfType<PlayerController>();
         for (int i = playersInScene.Length - 1; i >= 0; i--)
             Destroy(playersInScene[i].gameObject);
+
+        //destroy player input manager
+        Destroy(PlayerInputManager.instance.gameObject);
 
         //because we are going back to main menu
         SceneChangerAnimation.FadeOutLoadScene(sceneToLoadOnBack);
