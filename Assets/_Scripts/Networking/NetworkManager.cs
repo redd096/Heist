@@ -5,6 +5,7 @@ using Fusion;
 using Fusion.Sockets;
 using System;
 using redd096;
+using System.Threading.Tasks;
 
 public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 {
@@ -17,6 +18,8 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
     public Action<User> OnPlayerEnter, OnPlayerRefreshName, OnPlayerExit;
     public Action<NetworkInput> OnInputCallback;
     public Action<NetworkRunner> OnSceneLoadDoneCallback;
+    public Action OnStartCreateOrJoinLobby;
+    public Action<bool> OnCompleteCreateOrJoinRoom;
 
     private List<SessionInfo> _sessions;
     public List<SessionInfo> Sessions
@@ -30,11 +33,25 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
         // Create the Fusion runner and let it know that we will be providing user input
         Runner = gameObject.AddComponent<NetworkRunner>();
         Runner.ProvideInput = true;
+        Runner.StartGame(new StartGameArgs());
     }
 
     public async void StartGame(GameMode mode, string sessionName, string username, int sceneIndex)
     {
         playerName = username;
+        OnStartCreateOrJoinLobby?.Invoke();
+
+        await Runner.JoinSessionLobby(SessionLobby.ClientServer);
+
+        await Task.Yield();
+
+
+        if (mode == GameMode.Client)
+            if (!Sessions.Find((room) => room.Name == sessionName))
+            {
+                OnCompleteCreateOrJoinRoom?.Invoke(false);
+                return;
+            }
 
         // Start or join (depends on gamemode) a session with a specific name
         await Runner.StartGame(new StartGameArgs()
@@ -42,7 +59,8 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
             GameMode = mode,
             SessionName = sessionName,
             Scene = sceneIndex,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()            
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            PlayerCount = 4
         });
     }
 
@@ -123,6 +141,7 @@ public class NetworkManager : Singleton<NetworkManager>, INetworkRunnerCallbacks
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
+        Debug.Log("Update");
         Sessions = sessionList;
     }
 

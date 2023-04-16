@@ -14,6 +14,8 @@ public class OnlineMenuManager : MonoBehaviour
     [Scene][SerializeField] int lobbyScene = 3;
     public TMP_InputField roomCode;
     public TMP_InputField username;
+    public TMP_Text joinErrorText;
+    public string errorMessage;
 
     string[] fantasyNames = new string[50] {"Tharion", "Eryndor", "Arintha", "Kaelin", "Eldrid",
                       "Draven", "Ryker", "Torin", "Lirien", "Galadrielle",
@@ -30,6 +32,22 @@ public class OnlineMenuManager : MonoBehaviour
     {
         //set random name
         username.text = fantasyNames[Random.Range(0, fantasyNames.Length)];
+        NetworkManager.instance.OnStartCreateOrJoinLobby += OnStartJoinRoom;
+        NetworkManager.instance.OnCompleteCreateOrJoinRoom += OnCompleteJoinRoom;
+    }
+
+    private void OnStartJoinRoom()
+    {
+        joinErrorText.text = "";
+    }
+
+    private void OnCompleteJoinRoom(bool isSuccess)
+    {
+        if (!isSuccess)
+        {
+            SceneChangerAnimation.FadeIn();
+            joinErrorText.text = errorMessage;
+        }
     }
 
     public void Create()
@@ -77,8 +95,8 @@ public class OnlineMenuManager : MonoBehaviour
         if (username.text == "")
             username.text = fantasyNames[Random.Range(0, fantasyNames.Length)];
 
-        //start game
         SceneChangerAnimation.FadeOut();
+        //start game
         NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text, lobbyScene);
     }
 
@@ -88,5 +106,14 @@ public class OnlineMenuManager : MonoBehaviour
         Destroy(NetworkManager.instance.gameObject);
 
         SceneChangerAnimation.FadeOutLoadScene(backButtonScene);
+    }
+
+    private void OnDestroy()
+    {
+        if(NetworkManager.instance != null)
+        {
+            NetworkManager.instance.OnStartCreateOrJoinLobby -= OnStartJoinRoom;
+            NetworkManager.instance.OnCompleteCreateOrJoinRoom -= OnCompleteJoinRoom;
+        }
     }
 }

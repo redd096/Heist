@@ -61,6 +61,7 @@ public class LocalMenuManager : MonoBehaviour
         players.Add(obj, go);
         if (objectWhenNoPlayersInScene) objectWhenNoPlayersInScene.SetActive(false);    //do immediatly, without wait update button
 
+        selectLevelButton.interactable = false;
         //is enable if at least one player is in the scene
         Invoke(nameof(UpdateButtonInteractable), 0.1f);
     }

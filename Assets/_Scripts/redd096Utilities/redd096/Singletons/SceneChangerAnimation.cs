@@ -54,6 +54,8 @@ namespace redd096
         [SerializeField] Vector2 maskOffset = Vector2.zero;
         [SerializeField] Vector2 blackScreenOffset = Vector2.zero;
 
+        private EventSystem _eventSystem;
+
         Vector2 maskSizeFade => canvasRect.sizeDelta + maskOffset;
         Vector2 blackScreenSizeFade => canvasRect.sizeDelta + blackScreenOffset;
 
@@ -183,8 +185,14 @@ namespace redd096
 
             //disable event system until finish fade
             eventSystem = EventSystem.current;
+            if (eventSystem == null)
+                eventSystem = _eventSystem;
+
             if (eventSystem)
+            {
+                _eventSystem = eventSystem;
                 eventSystem.enabled = false;
+            }
 
             //select random sprite
             if (randomSprites != null && randomSprites.Length > 0)
