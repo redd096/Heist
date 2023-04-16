@@ -1,3 +1,4 @@
+using redd096;
 using redd096.Attributes;
 using System.Collections.Generic;
 using TMPro;
@@ -84,7 +85,7 @@ public class LocalMenuManager : MonoBehaviour
             Destroy(playersInScene[i].gameObject);
 
         //because we are going back to main menu
-        SceneManager.LoadScene(sceneToLoadOnBack);
+        SceneChangerAnimation.instance.FadeOutLoadScene(sceneToLoadOnBack);
     }
 
     void UpdateButtonInteractable()

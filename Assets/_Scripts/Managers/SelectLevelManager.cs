@@ -25,15 +25,16 @@ public class SelectLevelManager : MonoBehaviour
 
     void LoadLevel(string level)
     {
-        SceneLoader.instance.LoadScene(level);
+        SceneChangerAnimation.instance.FadeOutLoadScene(level);
     }
 
     public void BackButton()
     {
+        //change scene if online or offline
         if (NetworkManager.instance)
-            SceneLoader.instance.LoadScene(backSceneOnline);
+            SceneChangerAnimation.instance.FadeOutLoadScene(backSceneOnline);
         else
-            SceneLoader.instance.LoadScene(backSceneOffline);
+            SceneChangerAnimation.instance.FadeOutLoadScene(backSceneOffline);
     }
 
     [System.Serializable]

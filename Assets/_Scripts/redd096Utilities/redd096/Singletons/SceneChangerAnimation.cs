@@ -117,6 +117,14 @@ namespace redd096
         }
 
         /// <summary>
+        /// Do fade out
+        /// </summary>
+        public void FadeOut()
+        {
+            StartFade(false, null);
+        }
+
+        /// <summary>
         /// Fade out, then move to next scene in build settings
         /// </summary>
         public void FadeOutNextScene()

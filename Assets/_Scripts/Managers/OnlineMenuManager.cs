@@ -6,6 +6,7 @@ using Fusion;
 using System.Linq;
 using redd096.Attributes;
 using UnityEngine.SceneManagement;
+using redd096;
 
 public class OnlineMenuManager : MonoBehaviour
 {
@@ -33,16 +34,21 @@ public class OnlineMenuManager : MonoBehaviour
 
     public void Create()
     {
+        //if no name, set one random
         if (username.text == "")
-            return;
+            username.text = fantasyNames[Random.Range(0, fantasyNames.Length)];
 
+        //start game
         var id = GenerateRoomID();
+        SceneChangerAnimation.instance.FadeOut();
         NetworkManager.instance.StartGame(GameMode.Host, id, username.text, lobbyScene);
     }
 
     private string GenerateRoomID()
     {
         string result;
+
+        //generate random string, check no sessions has same string, else retry
         while (true)
         {
             result = RandomString(4);
@@ -67,15 +73,20 @@ public class OnlineMenuManager : MonoBehaviour
 
     public void Join()
     {
+        //if no name, set one random
         if (username.text == "")
-            return;
+            username.text = fantasyNames[Random.Range(0, fantasyNames.Length)];
 
+        //start game
+        SceneChangerAnimation.instance.FadeOut();
         NetworkManager.instance.StartGame(GameMode.Client, roomCode.text.ToUpper(), username.text, lobbyScene);
     }
 
     public void BackButton()
     {
+        //back
         Destroy(NetworkManager.instance.gameObject);
-        SceneManager.LoadScene(backButtonScene);
+
+        SceneChangerAnimation.instance.FadeOutLoadScene(backButtonScene);
     }
 }

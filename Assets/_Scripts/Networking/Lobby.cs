@@ -70,19 +70,12 @@ public class Lobby : MonoBehaviour
     {
         //leave online
         NetworkManager.instance.LeaveGame();
-        //because is not immediate, deactive inputs and wait few seconds before change scene
-        UnityEngine.EventSystems.EventSystem.current.enabled = false;
-        Invoke(nameof(GoToBackScene), 0.2f);
-    }
-
-    void GoToBackScene()
-    {
-        SceneLoader.instance.LoadScene(sceneOnBack);
+        SceneChangerAnimation.instance.FadeOutLoadScene(sceneOnBack);
     }
 
     public void GoToSelectLevel()
     {
-        if (NetworkManager.instance.Runner.IsServer)
-            NetworkManager.instance.Runner.SetActiveScene(sceneOnSelectLevel);
+        //only server can call this button
+        SceneChangerAnimation.instance.FadeOutLoadScene(sceneOnSelectLevel);
     }
 }
