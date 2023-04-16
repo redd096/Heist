@@ -9,9 +9,9 @@ using redd096.Attributes;
 //2. attach SpriteRenderer to the second. Set a sprite, black color, and mask interaction to "Visible Outside Mask"
 //NB set scale of SpriteRenderer to the size of the screen. You can disable sprite renderer to not have black screen in editor (component, not object)
 
-namespace redd096
+namespace redd096.OLD
 {
-    [AddComponentMenu("redd096/MonoBehaviours/Scene Changer Animation")]
+    [AddComponentMenu("redd096/.OLD/MonoBehaviours/Scene Changer Animation")]
     public class SceneChangerAnimation : MonoBehaviour
     {
         [Header("Get Random Sprite - default refs get from children")]
