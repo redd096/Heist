@@ -371,7 +371,7 @@ MonoBehaviour:
   m_DragThreshold: 10
   startMenu: {fileID: 0}
   firstSelectedGameObjects:
-  - {fileID: 0}
+  - {fileID: 1514066402}
   overrideObjects: []
   notNavigables: []
 --- !u!1 &822588322
