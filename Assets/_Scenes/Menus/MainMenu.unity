@@ -5586,6 +5586,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+      propertyPath: maskOffset.x
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+      propertyPath: maskOffset.y
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+      propertyPath: randomSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520626881756989350, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
+      propertyPath: randomSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c8a4710b23ee6a49b319d53d71eb195, type: 3}
     - target: {fileID: 4729927749372714920, guid: 38ca854ed12381749bd5f584a41bc468, type: 3}
       propertyPath: musicThisScene.volume
       value: 0.2
