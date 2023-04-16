@@ -134,7 +134,7 @@ public class DragComponent : MonoBehaviour
                 onLostDraggable?.Invoke(previousPossibleToPickDraggable);
             }
 
-            if (possibleToPickDraggable != null)
+            if (possibleToPickDraggable != null && GetComponent<PlayerPawn>().CurrentController)
             {
                 possibleToPickDraggable.Highlight(true, GetComponent<PlayerPawn>().CurrentController.GetComponent<User>());
                 onFoundDraggable?.Invoke(possibleToPickDraggable);
