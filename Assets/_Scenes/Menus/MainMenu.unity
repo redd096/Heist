@@ -1478,6 +1478,7 @@ GameObject:
   - component: {fileID: 556252606}
   - component: {fileID: 556252608}
   - component: {fileID: 556252607}
+  - component: {fileID: 556252609}
   m_Layer: 5
   m_Name: FullScreenToggle
   m_TagString: Untagged
@@ -1581,6 +1582,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &556252609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556252605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f95b47c8bf2f4b8cd4901fa7fefe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToDeactive: {fileID: 0}
 --- !u!1 &559648160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2126,7 @@ GameObject:
   - component: {fileID: 701975865}
   - component: {fileID: 701975864}
   - component: {fileID: 701975863}
+  - component: {fileID: 701975866}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -2233,6 +2248,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701975861}
   m_CullTransparentMesh: 1
+--- !u!114 &701975866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701975861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f95b47c8bf2f4b8cd4901fa7fefe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToDeactive: {fileID: 0}
 --- !u!1 &711132478
 GameObject:
   m_ObjectHideFlags: 0

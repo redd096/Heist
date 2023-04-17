@@ -11,9 +11,10 @@ namespace redd096
         {
 #if UNITY_STANDALONE
             return GetKnownFolders_Windows.GetDownloadPath();
-#else
+#elif UNITY_ANDROID
             return GetKnownFolders_Android.GetDownloadPath();
 #endif
+            return string.Empty;
         }
     }
 
