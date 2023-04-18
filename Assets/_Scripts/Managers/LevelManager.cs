@@ -63,8 +63,8 @@ public class LevelManager : MonoBehaviour
 
         //save high score
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if (SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, 0) < FinalScore)
-            SaveManager.PlayerPrefsFWMV.SetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, FinalScore);
+        if (PlayerPrefs.GetInt(sceneName, 0) < FinalScore)
+            PlayerPrefs.SetInt(sceneName, FinalScore);
 
         //show end menu
         GameManager.uiManager.UpdateEndMenuText(true);
@@ -85,8 +85,8 @@ public class LevelManager : MonoBehaviour
 
         //save high score
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if (SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, 0) < FinalScore)
-            SaveManager.PlayerPrefsFWMV.SetInt(GetHighScore.HIGHSCORE_SAVE, sceneName, FinalScore);
+        if (PlayerPrefs.GetInt(sceneName, 0) < FinalScore)
+            PlayerPrefs.SetInt(sceneName, FinalScore);
 
         //show end menu
         GameManager.uiManager.UpdateTimer(0);

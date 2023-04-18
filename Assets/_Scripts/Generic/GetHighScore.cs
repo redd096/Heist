@@ -16,7 +16,7 @@ public class GetHighScore : MonoBehaviour
     [Header("If there isn't an high score, deactive text")]
     [SerializeField] GameObject objectToDeactiveWhenScoreIsZero = default;
 
-    public const string HIGHSCORE_SAVE = "HighScore";
+    //public const string HIGHSCORE_SAVE = "HighScore";
     string sceneToUse => useCurrentScene ? UnityEngine.SceneManagement.SceneManager.GetActiveScene().name : sceneOfHighScore;
 
     private void OnEnable()
@@ -26,7 +26,7 @@ public class GetHighScore : MonoBehaviour
 
     public void UpdateScoreText()
     {
-        int highScore = SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0);
+        int highScore = PlayerPrefs.GetInt(sceneToUse, 0);
 
         //set text with score
         if (text)
@@ -42,10 +42,18 @@ public class GetHighScore : MonoBehaviour
         }
     }
 
+
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add1ToScore() { SaveManager.PlayerPrefsFWMV.SetInt(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0) + 1); UpdateScoreText(); }
+    void Add1ToScore() { PlayerPrefs.SetInt(sceneToUse, PlayerPrefs.GetInt(sceneToUse, 0) + 1); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void Add10ToScore() { SaveManager.PlayerPrefsFWMV.SetInt(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0) + 10); UpdateScoreText(); }
+    void Add10ToScore() { PlayerPrefs.SetInt(sceneToUse, PlayerPrefs.GetInt(sceneToUse, 0) + 10); UpdateScoreText(); }
     [Button(ButtonAttribute.EEnableType.PlayMode)]
-    void RemoveScore() { SaveManager.PlayerPrefsFWMV.DeleteKey(HIGHSCORE_SAVE, sceneToUse); UpdateScoreText(); }
+    void RemoveScore() { PlayerPrefs.DeleteKey(sceneToUse); UpdateScoreText(); }
+
+    //[Button(ButtonAttribute.EEnableType.PlayMode)]
+    //void Add1ToScore() { SaveManager.PlayerPrefsFWMV.SetInt(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0) + 1); UpdateScoreText(); }
+    //[Button(ButtonAttribute.EEnableType.PlayMode)]
+    //void Add10ToScore() { SaveManager.PlayerPrefsFWMV.SetInt(HIGHSCORE_SAVE, sceneToUse, SaveManager.PlayerPrefsFWMV.GetInt(HIGHSCORE_SAVE, sceneToUse, 0) + 10); UpdateScoreText(); }
+    //[Button(ButtonAttribute.EEnableType.PlayMode)]
+    //void RemoveScore() { SaveManager.PlayerPrefsFWMV.DeleteKey(HIGHSCORE_SAVE, sceneToUse); UpdateScoreText(); }
 }

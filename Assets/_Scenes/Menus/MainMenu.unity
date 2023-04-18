@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17934352, g: 0.22456233, b: 0.30625236, a: 1}
+  m_IndirectSpecularColor: {r: 0.4453289, g: 0.4949754, b: 0.573963, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4747,6 +4747,7 @@ GameObject:
   - component: {fileID: 1561700295}
   - component: {fileID: 1561700294}
   - component: {fileID: 1561700293}
+  - component: {fileID: 1561700297}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4836,6 +4837,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1561700297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561700292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d402618cd3280274d9f5ac80d26f82d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeMasterSlider: {fileID: 27631084}
+  volumeMasterText: {fileID: 341306196}
+  volumeMusicSlider: {fileID: 1808702373}
+  volumeMusicText: {fileID: 904169583}
+  volumeSFXSlider: {fileID: 320453977}
+  volumeSFXText: {fileID: 2028692535}
+  fullScreenToggle: {fileID: 556252607}
+  takeFromUI: 0
+  volumeMasterDefault: 1
+  volumeMusicDefault: 1
+  volumeSFXDefault: 1
+  fullScreenDefault: 0
+  saveOnDisable: 1
 --- !u!1 &1563450137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6369,7 +6395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1877015483}
   - component: {fileID: 1877015485}
-  - component: {fileID: 1877015484}
   m_Layer: 5
   m_Name: SettingsVertical
   m_TagString: Untagged
@@ -6402,31 +6427,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 960, y: 550}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &1877015484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877015482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d402618cd3280274d9f5ac80d26f82d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeMasterSlider: {fileID: 27631084}
-  volumeMasterText: {fileID: 341306196}
-  volumeMusicSlider: {fileID: 1808702373}
-  volumeMusicText: {fileID: 904169583}
-  volumeSFXSlider: {fileID: 320453977}
-  volumeSFXText: {fileID: 2028692535}
-  fullScreenToggle: {fileID: 556252607}
-  takeFromUI: 1
-  volumeMasterDefault: 1
-  volumeMusicDefault: 1
-  volumeSFXDefault: 1
-  fullScreenDefault: 1
-  saveOnDisable: 1
 --- !u!114 &1877015485
 MonoBehaviour:
   m_ObjectHideFlags: 0

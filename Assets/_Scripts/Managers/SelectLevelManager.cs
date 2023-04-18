@@ -22,7 +22,7 @@ public class SelectLevelManager : MonoBehaviour
             string s = levelButtons[i].level;
             levelButtons[i].button.onClick.AddListener(() => LoadLevel(s));
 
-            int scoreInLevelToCheck = SaveManager.PlayerPrefsFWMV.GetInt(GetHighScore.HIGHSCORE_SAVE, levelButtons[i].levelToCheckScoreForUnlock, 0);
+            int scoreInLevelToCheck = PlayerPrefs.GetInt(levelButtons[i].levelToCheckScoreForUnlock, 0);
             levelButtons[i].button.interactable = scoreInLevelToCheck >= levelButtons[i].minScoreToUnlock;
         }
     }
